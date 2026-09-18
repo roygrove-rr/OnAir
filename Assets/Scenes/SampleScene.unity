@@ -134,7 +134,8 @@ GameObject:
   - component: {fileID: 481017985}
   - component: {fileID: 481017988}
   - component: {fileID: 481017987}
-  m_Layer: 0
+  - component: {fileID: 481017989}
+  m_Layer: 3
   m_Name: FirstPersonPlayer
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -194,7 +195,7 @@ MonoBehaviour:
   gravity: -19.62
   jumpHeight: 3
   groundCheck: {fileID: 986289623}
-  groundDistance: 0.4
+  groundDistance: 0.01
   groundMask:
     serializedVersion: 2
     m_Bits: 128
@@ -214,6 +215,23 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 1
+--- !u!114 &481017989
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 481017984}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a09dad4c88f3df34a8612b6762a79fab, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  playerCamera: {fileID: 963194228}
+  pickupDistance: 2
+  pickupLayerMask:
+    serializedVersion: 2
+    m_Bits: 311
 --- !u!1 &548333660
 GameObject:
   m_ObjectHideFlags: 0
@@ -223,7 +241,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 548333661}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Hold Position
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -255,8 +273,7 @@ GameObject:
   m_Component:
   - component: {fileID: 613262867}
   - component: {fileID: 613262869}
-  - component: {fileID: 613262868}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Pickup Camera
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -278,14 +295,6 @@ Transform:
   m_Father: {fileID: 963194228}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!81 &613262868
-AudioListener:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 613262866}
-  m_Enabled: 1
 --- !u!20 &613262869
 Camera:
   m_ObjectHideFlags: 0
@@ -646,8 +655,7 @@ GameObject:
   - component: {fileID: 963194227}
   - component: {fileID: 963194226}
   - component: {fileID: 963194230}
-  - component: {fileID: 963194229}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Main Camera
   m_TagString: MainCamera
   m_Icon: {fileID: 0}
@@ -722,18 +730,6 @@ Transform:
   m_Father: {fileID: 481017986}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &963194229
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 963194225}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 09563c4f2d7a50b40adb16592acbd5b2, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!114 &963194230
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -757,7 +753,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 986289623}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: GroundCheck
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -790,7 +786,7 @@ GameObject:
   - component: {fileID: 1707315773}
   - component: {fileID: 1707315775}
   - component: {fileID: 1707315774}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Cylinder
   m_TagString: Untagged
   m_Icon: {fileID: 0}
