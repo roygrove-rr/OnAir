@@ -22,12 +22,12 @@ public class PlayerMovementScript : MonoBehaviour
     void Update()
     {
         // Checks if the player is on the ground to reset gravity
-        isGrounded = Physics.CheckSphere(groundCheck.position, groundDistance, groundMask);
+        //isGrounded = Physics.CheckSphere(groundCheck.position, groundDistance, groundMask);
 
-        if(isGrounded && velocity.y < 0)
-        {
-            velocity.y = -2f;
-        }
+        //if(isGrounded && velocity.y < 0)
+        //{
+        //    velocity.y = -2f;
+        //}
         
         // Checks if movement input is being pressed
         float x = Input.GetAxis("Horizontal");
@@ -38,14 +38,14 @@ public class PlayerMovementScript : MonoBehaviour
 
         controller.Move(move * speed * Time.deltaTime);
 
-        // Makes the character jump when the space bar is pressed
-        if(Input.GetButtonDown("Jump") && isGrounded)
-        {
-            velocity.y = Mathf.Sqrt(jumpHeight * -2f * gravity);
-        }
+        // Makes the character jump when the space bar is pressed (Jumping is broken right now ignore this)
+        //if (Input.GetButtonDown("Jump") && isGrounded)
+        //{
+        //    velocity.y = Mathf.Sqrt(jumpHeight * -2f * gravity);
+        //}
 
-        // Apply gravity
-        velocity.y += gravity * Time.deltaTime;
-        controller.Move(velocity * Time.deltaTime);
+        // Apply gravity 
+        //velocity.y += gravity * Time.deltaTime;
+        //controller.Move(velocity * Time.deltaTime);
     }
 }
