@@ -12,11 +12,22 @@ using UnityEngine;
 interface IInteractable
 {
     public void Interact();
+    public void OnHover();
+    public void OnHoverExit();
 }
 public class Interact : MonoBehaviour
 {
-    public Transform interactorSource;
-    public float interactRange = 2f;
+    public Camera cam;
+    public float interactDistance = 2f;
+    public Color hoverColor = Color.yellow;
+
+    private IInteractable current;
+    private Renderer r;
+    private Color originalColor;
+    
+    
+    //public Transform interactorSource;
+    //public float interactRange = 2f;
     
     // Start is called before the first frame update
     void Start()
@@ -29,14 +40,55 @@ public class Interact : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.E))
         {
-            Ray r = new Ray(interactorSource.position, interactorSource.forward);
-            if (Physics.Raycast(r, out RaycastHit hitInfo, interactRange))
+            RaycastHit hit;
+            if (Physics.Raycast(cam.transform.position, cam.transform.forward, out hit, interactDistance) && hit.collider.TryGetComponent(out IInteractable i))
             {
-                if (hitInfo.collider.gameObject.TryGetComponent(out IInteractable interactObj))
+                if (current != i)
                 {
-                    interactObj.Interact();
+                    Clear();
+                    current = i;
+                    current.OnHover();
+
+                    r = hit.collider.GetComponent<Renderer>();
+                    if (r)
+                    {
+                        originalColor = r.material.color;
+                        r.material.color = hoverColor;
+                    }
+                }
+
+                if (Input.GetKeyDown(KeyCode.E))
+                {
+                    current.Interact();
                 }
             }
+            else
+            {
+                Clear();
+            }
+            
+            
+            //Debug.Log("Raycast Sent");
+            //Ray r = new Ray(interactorSource.position, interactorSource.forward);
+            //if (Physics.Raycast(r, out RaycastHit hitInfo, interactRange))
+            //{
+            //    if (hitInfo.collider.gameObject.TryGetComponent(out IInteractable interactObj))
+            //    {
+            //        interactObj.Interact();
+            //        Debug.Log("Raycast Return");
+            //    }
+            //}
+        }
+    }
+
+    void Clear()
+    {
+        if (current != null)
+        {
+            current.OnHoverExit();
+            if (r) r.material.color = originalColor;
+            current = null;
+            r = null;
         }
     }
 }

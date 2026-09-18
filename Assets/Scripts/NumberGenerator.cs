@@ -8,6 +8,17 @@ public class NumberGenerator : MonoBehaviour, IInteractable
     {
         Debug.Log(Random.Range(0, 100));
     }
+   
+    public void OnHover()
+    {
+
+    }
+
+    public void OnHoverExit()
+    {
+
+    }
+
     // Start is called before the first frame update
     void Start()
     {

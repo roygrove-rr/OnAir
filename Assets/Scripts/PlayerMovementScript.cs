@@ -22,12 +22,12 @@ public class PlayerMovementScript : MonoBehaviour
     void Update()
     {
         // Checks if the player is on the ground to reset gravity
-        //isGrounded = Physics.CheckSphere(groundCheck.position, groundDistance, groundMask);
+        isGrounded = Physics.CheckSphere(groundCheck.position, groundDistance, groundMask);
 
-        //if(isGrounded && velocity.y < 0)
-        //{
-        //    velocity.y = -2f;
-        //}
+        if(isGrounded && velocity.y < 0)
+        {
+            velocity.y = -2f;
+        }
         
         // Checks if movement input is being pressed
         float x = Input.GetAxis("Horizontal");
@@ -45,7 +45,7 @@ public class PlayerMovementScript : MonoBehaviour
         //}
 
         // Apply gravity 
-        //velocity.y += gravity * Time.deltaTime;
-        //controller.Move(velocity * Time.deltaTime);
+        velocity.y += gravity * Time.deltaTime;
+        controller.Move(velocity * Time.deltaTime);
     }
 }
