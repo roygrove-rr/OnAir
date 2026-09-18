@@ -7,6 +7,7 @@ using UnityEngine;
 // To make an object able to be interacted with this simply change the public class to "public class NumberGenerator : MonoBehaviour, IInteractable"
 // and then outside of the start or update functions add a function "public void Interact()"
 // then add all of the code you want to run when interacting with it inside of that function.
+// If at all possible avoid changing this code.
 
 interface IInteractable
 {
@@ -15,7 +16,7 @@ interface IInteractable
 public class Interact : MonoBehaviour
 {
     public Transform interactorSource;
-    public float interactRange;
+    public float interactRange = 2f;
     
     // Start is called before the first frame update
     void Start()
