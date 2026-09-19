@@ -44,7 +44,7 @@ public class PlayerInteraction : MonoBehaviour
                 interactionText.text = interactable.GetDescription();
 
                 // If the interact button is pressed, tell the interactable object to run the code in its Interact function
-                if (Input.GetKeyDown(KeyCode.E))
+                if (Input.GetMouseButtonDown(0))
                 {
                     interactable.Interact();
                 }
