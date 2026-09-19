@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
 
+// This is the universal interaction code, none of what happens when you interact with objects is handled here, so leave this unchanged
+
 public class PlayerInteraction : MonoBehaviour
 {
     public Camera mainCam;
@@ -38,6 +40,8 @@ public class PlayerInteraction : MonoBehaviour
             {
                 hitSomething = true;
                 interactionText.text = interactable.GetDescription();
+                
+                Debug.Log("Interactable Detected");
 
                 if (Input.GetKeyDown(KeyCode.E))
                 {

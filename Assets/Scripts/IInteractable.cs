@@ -2,6 +2,8 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+// This is the interactable interface, don't change this if at all possible.
+
 public interface IInteractable
 {
     void Interact();
@@ -9,15 +11,5 @@ public interface IInteractable
 }
 public class NewBehaviourScript : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
 }
