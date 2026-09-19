@@ -30,6 +30,7 @@ public class PickUpObj : MonoBehaviour, IInteractable
     
     public void  Interact()
     {
+        // Assigns the object to the players heldObj and disables its physics
         Physics.IgnoreCollision(this.GetComponent<Collider>(), player.GetComponent<Collider>(), true);
         selfRigidbody.isKinematic = true;
         this.layer = pickupScript.LayerNumber;
