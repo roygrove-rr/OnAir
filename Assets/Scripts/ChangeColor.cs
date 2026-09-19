@@ -27,6 +27,7 @@ public class ChangeColor : MonoBehaviour, IInteractable
         return "Change to a random color.";
     }
 
+    // This is the code that runs when the player presses the interact key on this object
     public void Interact()
     {
         mat.color = new Color(Random.value, Random.value, Random.value);

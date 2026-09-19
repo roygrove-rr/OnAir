@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
 
-// This is the universal interaction code, none of what happens when you interact with objects is handled here, so leave this unchanged
+// This is the universal interaction code, none of what happens when you interact with objects is handled here, so leave this unchanged.
 
 public class PlayerInteraction : MonoBehaviour
 {
@@ -31,18 +31,19 @@ public class PlayerInteraction : MonoBehaviour
         RaycastHit hit;
 
         bool hitSomething = false;
-
+        
+        // Sends out a raycast to check if any interactable objects are in from of the player
         if (Physics.Raycast(ray, out hit, interactionDistance))
         {
             IInteractable interactable = hit.collider.GetComponent<IInteractable>();
 
+            // If the raycasts hits an interactable object, brings up the interact prompt
             if (interactable != null)
             {
                 hitSomething = true;
                 interactionText.text = interactable.GetDescription();
-                
-                Debug.Log("Interactable Detected");
 
+                // If the interact button is pressed, tell the interactable object to run the code in its Interact function
                 if (Input.GetKeyDown(KeyCode.E))
                 {
                     interactable.Interact();
