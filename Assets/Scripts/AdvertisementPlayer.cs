@@ -32,7 +32,7 @@ public class AdvertisementPlayer : MonoBehaviour, IInteractable
         if (tvPlayer.clip == null || tvPlayer.clip == newsChannel)
         {
             tvPlayer.clip = adChannel;
-            tvPlayer.playbackSpeed = 4;
+            tvPlayer.playbackSpeed = 1;
         }
     }
 }
