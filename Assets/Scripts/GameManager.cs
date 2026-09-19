@@ -83,7 +83,7 @@ public class GameManager : MonoBehaviour
     // Public functions available to all scripts go here
     public void PauseUnpause()
     {
-        if (Input.GetKeyDown(KeyCode.Escape))
+        if (Input.GetKeyDown(KeyCode.F))
         {
             if (CurrentState == GameState.Gameplay)
             {
