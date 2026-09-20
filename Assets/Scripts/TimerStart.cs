@@ -33,7 +33,7 @@ public class TimerStart : MonoBehaviour, IInteractable
         else
         {
             timerScript.isCountingDown = false;
-            timerScript.timeRemaining = 90;
+            timerScript.sectionLength = 90;
             timerScript.section = 1;
         }
         

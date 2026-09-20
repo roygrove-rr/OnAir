@@ -6,7 +6,7 @@ using UnityEngine;
 public class Timer : MonoBehaviour
 {
     public TextMeshProUGUI timerText;
-    public float timeRemaining = 90f;
+    public float sectionLength = 90f;
     public bool isCountingDown = false;
     public int section = 1;
     
@@ -22,18 +22,18 @@ public class Timer : MonoBehaviour
         // Increments the timer down every second and updates the section when it reaches 0
         if (isCountingDown == true)
         {
-            if (timeRemaining > 0)
+            if (sectionLength > 0)
             {
-                timeRemaining -= Time.deltaTime;
+                sectionLength -= Time.deltaTime;
             }
             else
             {
-                timeRemaining = 90;
+                sectionLength = 90;
                 section++;
             }
         }
 
-        DisplayTime(timeRemaining);
+        DisplayTime(sectionLength);
     }
 
     void DisplayTime(float timeToDisplay)

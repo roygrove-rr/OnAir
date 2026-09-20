@@ -5,6 +5,8 @@ using System.Diagnostics.Tracing;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
+// Game Manager code, this handles switching between game states. Generally do not touch this unless you need to add a publically available function.
+
 public class GameManager : MonoBehaviour
 {
     public static GameManager Instance;
@@ -68,30 +70,10 @@ public class GameManager : MonoBehaviour
 
     }
 
+
     private void HandleGameplay()
     {
-        var malfunctionCounter = 0;
-        
-        switch (timerScript.section)
-        {
-            case 1:
-                break;
 
-            case 2:
-                break;
-
-            case 3:
-                break;
-
-            case 4:
-                break;
-
-            case 5:
-                break;
-
-            default:
-                break;
-        }
     }
 
     private void HandlePaused()
