@@ -12,6 +12,7 @@ public class AdvertisementPlayer : MonoBehaviour, IInteractable
     public VideoClip adChannel_2;
     public VideoClip adChannel_3;
     private VideoPlayer tvPlayer;
+    private int randomAd = 1;
     public TVPlayer tvScript;
     
     // Start is called before the first frame update
@@ -33,29 +34,50 @@ public class AdvertisementPlayer : MonoBehaviour, IInteractable
 
     public void Interact()
     {
+        
+        // If the tv is not already playing an ad, it starts playing one
         if (tvPlayer.clip == null || tvPlayer.clip == newsChannel)
         {
-            tvScript.savedTime = tvPlayer.time;
-
-            var randomAd = Random.Range(0, 4);
-            tvPlayer.clip = adChannel_1;
-
-            switch (randomAd)
+            if (tvPlayer.clip == newsChannel)
             {
-                case 1:
-                    tvPlayer.clip = adChannel_1;
-                    break;
-
-                case 2:
-                    tvPlayer.clip = adChannel_2;
-                    break;
-
-                case 3:
-                    tvPlayer.clip = adChannel_3;
-                    break;
+                tvScript.savedTime = tvPlayer.time;
             }
 
-            tvPlayer.playbackSpeed = 1;
+            // Picks from a random ad to display, and checks to make sure that it's not the same as the last one
+            var previousAd = randomAd;
+            var adPlayed = 0;
+
+            while (adPlayed < 1)
+            {
+                randomAd = Random.Range(0, 3);
+
+                if (randomAd != previousAd)
+                {
+                    switch (randomAd)
+                    {
+                        case 0:
+                            tvPlayer.clip = adChannel_1;
+                            adPlayed++;
+                            break;
+
+                        case 1:
+                            tvPlayer.clip = adChannel_2;
+                            adPlayed++;
+                            break;
+
+                        case 2:
+                            tvPlayer.clip = adChannel_3;
+                            adPlayed++;
+                            break;
+                    }
+                }
+                else
+                {
+                    randomAd = Random.Range(0, 3);
+                }
+
+                tvPlayer.playbackSpeed = 1;
+            }
         }
     }
 }
