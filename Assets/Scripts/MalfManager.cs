@@ -8,6 +8,7 @@ public class MalfManager : MonoBehaviour
     private float timef = 0f;
     public int secondsPassed = 0;
     private int malfTrigger = 0;
+    private int malfNum = 0;
     
     // Start is called before the first frame update
     void Start()

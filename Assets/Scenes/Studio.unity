@@ -9209,7 +9209,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 3294631866847653760, guid: db18b6df88ee48d4aa9e031b6713c37a, type: 3}
       propertyPath: m_CollisionDetection
-      value: 2
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 3294631866847653766, guid: db18b6df88ee48d4aa9e031b6713c37a, type: 3}
       propertyPath: m_Name
