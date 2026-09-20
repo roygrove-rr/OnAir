@@ -1,44 +1,41 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Diagnostics.Tracing;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour
 {
-    public static GameManager Instance { get; private set; }
+    public static GameManager Instance;
 
-    public enum GameState
-    {
-        MainMenu,
-        Gameplay,
-        Paused,
-        GameOver
-    }
+    public GameState State;
 
-    public GameState CurrentState { get; private set; }
-
+    public static event Action<GameState> OnGameStateChanged;
+    
     private void Awake()
     {
-        if (Instance == null && Instance != this)
         {
-            Destroy(gameObject);
-            return;
+            Instance = this;
         }
     }
 
-    public void Start()
+    public Timer timerScript;
+    
+    private void Start()
     {
-        UpdateState(GameState.MainMenu);
+        UpdateGameState(GameState.Gameplay);
     }
 
-    public void Update()
+    private void Update()
     {
-        PauseUnpause();
+        //Debug.Log(State);
     }
 
-    public void UpdateState(GameState newState)
+
+    public void UpdateGameState(GameState newState)
     {
-        CurrentState = newState;
+        State = newState;
 
         switch (newState)
         {
@@ -57,48 +54,72 @@ public class GameManager : MonoBehaviour
             case GameState.GameOver:
                 HandleGameOver();
                 break;
+
+            case GameState.GameWin:
+                HandleGameWin();
+                break;
         }
+
+        OnGameStateChanged?.Invoke(newState);
     }
 
     private void HandleMainMenu()
     {
-        Time.timeScale = 1f;
+
     }
 
     private void HandleGameplay()
     {
-        Time.timeScale = 1f;
+        var malfunctionCounter = 0;
+        
+        switch (timerScript.section)
+        {
+            case 1:
+                break;
+
+            case 2:
+                break;
+
+            case 3:
+                break;
+
+            case 4:
+                break;
+
+            case 5:
+                break;
+
+            default:
+                break;
+        }
     }
 
     private void HandlePaused()
     {
-        Time.timeScale = 0f;
+
     }
 
     private void HandleGameOver()
     {
-        Time.timeScale = 1f;
+
     }
 
-    // Public functions available to all scripts go here
-    public void PauseUnpause()
+    private void HandleGameWin()
     {
-        if (Input.GetKeyDown(KeyCode.F))
-        {
-            if (CurrentState == GameState.Gameplay)
-            {
-                CurrentState = GameState.Paused;
-            }
-            else if (CurrentState == GameState.Paused)
-            {
-                CurrentState = GameState.Gameplay;
-            }
-        }
+
     }
 
-    public void RestartGame()
+    public void LightingMalfunction()
     {
-        UpdateState(GameState.Gameplay);
-        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+
     }
+}
+
+public enum GameState
+{
+    MainMenu,
+    Gameplay,
+    Paused,
+    GameOver,
+    GameWin
 }

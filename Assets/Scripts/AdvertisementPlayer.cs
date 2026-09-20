@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Runtime.CompilerServices;
 using UnityEngine;
 using UnityEngine.Video;
 
@@ -7,8 +8,11 @@ public class AdvertisementPlayer : MonoBehaviour, IInteractable
 {
     public GameObject tv;
     public VideoClip newsChannel;
-    public VideoClip adChannel;
+    public VideoClip adChannel_1;
+    public VideoClip adChannel_2;
+    public VideoClip adChannel_3;
     private VideoPlayer tvPlayer;
+    public TVPlayer tvScript;
     
     // Start is called before the first frame update
     void Start()
@@ -31,7 +35,26 @@ public class AdvertisementPlayer : MonoBehaviour, IInteractable
     {
         if (tvPlayer.clip == null || tvPlayer.clip == newsChannel)
         {
-            tvPlayer.clip = adChannel;
+            tvScript.savedTime = tvPlayer.time;
+
+            var randomAd = Random.Range(0, 4);
+            tvPlayer.clip = adChannel_1;
+
+            switch (randomAd)
+            {
+                case 1:
+                    tvPlayer.clip = adChannel_1;
+                    break;
+
+                case 2:
+                    tvPlayer.clip = adChannel_2;
+                    break;
+
+                case 3:
+                    tvPlayer.clip = adChannel_3;
+                    break;
+            }
+
             tvPlayer.playbackSpeed = 1;
         }
     }

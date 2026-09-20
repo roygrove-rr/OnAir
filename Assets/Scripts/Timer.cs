@@ -19,6 +19,7 @@ public class Timer : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        // Increments the timer down every second and updates the section when it reaches 0
         if (isCountingDown == true)
         {
             if (timeRemaining > 0)
@@ -31,16 +32,13 @@ public class Timer : MonoBehaviour
                 section++;
             }
         }
-        else
-        {
-            //timeRemaining += Time.deltaTime;
-        }
 
         DisplayTime(timeRemaining);
     }
 
     void DisplayTime(float timeToDisplay)
     {
+        // Formats the time and section display
         float minutes = Mathf.FloorToInt(timeToDisplay / 60);
         float seconds = Mathf.FloorToInt(timeToDisplay % 60);
 
