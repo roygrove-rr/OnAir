@@ -5,18 +5,16 @@ using UnityEngine;
 public class LightSwitch : MonoBehaviour, IInteractable
 {
     public MalfManager malfManager;
-    
-    public GameObject reporter;
-    public GameObject desk;
+
     public GameObject stage;
     public GameObject eyes;
-    public GameObject lights;
-    private bool lightsOn = true;
+
+    private bool lightsOn;
     
     // Start is called before the first frame update
     void Start()
     {
-        
+
     }
 
     // Update is called once per frame
@@ -32,25 +30,16 @@ public class LightSwitch : MonoBehaviour, IInteractable
 
     public void Interact()
     {
-        if (lightsOn == true)
+        if (malfManager.lightsBroken == true)
         {
-            reporter.SetActive(false);
-            desk.SetActive(false);
-            stage.SetActive(false);
-            lights.SetActive(false);
-            eyes.SetActive(true);
+            stage.SetActive(true);
+            eyes.SetActive(false);
 
-            lightsOn = false;
+            malfManager.lightsBroken = false;
         }
         else
         {
-            reporter.SetActive(true);
-            desk.SetActive(true);
-            stage.SetActive(true);
-            lights.SetActive(true);
-            eyes.SetActive(false);
 
-            lightsOn = true;
         }
     }
 }

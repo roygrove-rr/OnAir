@@ -14,13 +14,18 @@ public class MalfManager : MonoBehaviour
     public float audioDistortionMin = 0.5f;
     public float audioDistortionMax = 2f;
     public bool audioPitchLow = false;
+
+    public GameObject stage;
+    public GameObject eyes;
     
     private float timef = 0f;
     public int secondsPassed = 0;
     private int malfTrigger = 0;
     public int malfNum = 0;
+    public float malfRandom = 0f;
 
     public bool audioBroken = false;
+    public bool lightsBroken = false;
 
     public bool isAdPlaying = false;
     
@@ -43,7 +48,7 @@ public class MalfManager : MonoBehaviour
                 break;
 
             case 2:
-                malfTrigger = 5;
+                malfTrigger = 10;
                 break;
 
             case 3:
@@ -62,18 +67,47 @@ public class MalfManager : MonoBehaviour
 
         if (secondsPassed == malfTrigger)
         {
-            if (audioBroken == false)
-            {
-                Debug.Log("Audio Malfunction Occured");
-                AudioMalfunction();
-                audioBroken = true;
+            var malfTriggered = 0;
+            malfRandom = Random.value;
+            
+            while (malfTriggered < 1)
+                if (malfRandom <= 0.5)
+                {
+                    if (audioBroken == false)
+                    {
+                        Debug.Log("Audio Malfunction Occured");
+                        AudioMalfunction();
 
-                malfNum++;
-            }
-            else
-            {
-                Debug.Log("No possible malfunction");
-            }
+                        malfNum++;
+
+                        malfTriggered++;
+                    }
+                    else
+                    {
+                        Debug.Log("There is already a malfunction of this type");
+                    }
+                }
+                else if (malfRandom > 0.5)
+                {
+                    if (lightsBroken == false)
+                    {
+                        Debug.Log("Lighting Malfunction Occured");
+                        LightingMalfunction();
+
+                        malfNum++;
+
+                        malfTriggered++;
+                    }
+                    else
+                    {
+                        Debug.Log("There is already a malfunction of this type");
+                    }
+                }
+                else
+                {
+                    malfRandom = Random.Range(0, 2);
+                }
+
                 timef = 0;
         }
 
@@ -82,7 +116,10 @@ public class MalfManager : MonoBehaviour
 
     void LightingMalfunction()
     {
+        stage.SetActive(false);
+        eyes.SetActive(true);
 
+        lightsBroken = true;
     }
 
     void AudioMalfunction()
