@@ -36,5 +36,9 @@ public class AudioFix : MonoBehaviour, IInteractable
             malfManager.audioBroken = false;
             malfManager.malfNum--;
         }
+        else
+        {
+
+        }
     }
 }

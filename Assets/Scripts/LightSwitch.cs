@@ -36,6 +36,7 @@ public class LightSwitch : MonoBehaviour, IInteractable
             eyes.SetActive(false);
 
             malfManager.lightsBroken = false;
+            malfManager.malfNum--;
         }
         else
         {

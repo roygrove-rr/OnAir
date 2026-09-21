@@ -21,6 +21,7 @@ public class MalfManager : MonoBehaviour
     private float timef = 0f;
     public int secondsPassed = 0;
     private int malfTrigger = 0;
+    private int maxMalfunctions;
     private float totalMalfunctions = 2f;
     public int malfNum = 0;
     public float malfRandom = 0f;
@@ -46,10 +47,12 @@ public class MalfManager : MonoBehaviour
         {
             case 1:
                 malfTrigger = 10;
+                maxMalfunctions = 5;
                 break;
 
             case 2:
                 malfTrigger = 10;
+                maxMalfunctions = 2;
                 break;
 
             case 3:
@@ -66,7 +69,7 @@ public class MalfManager : MonoBehaviour
 
         }
 
-        if (secondsPassed == malfTrigger)
+        if (secondsPassed == malfTrigger && malfNum < maxMalfunctions)
         {
             var malfTriggered = 0;
             malfRandom = Random.value;
@@ -86,6 +89,7 @@ public class MalfManager : MonoBehaviour
                     else
                     {
                         Debug.Log("There is already a malfunction of this type");
+                        malfTriggered++;
                     }
                 }
                 else if (malfRandom > (1 / totalMalfunctions))
@@ -102,6 +106,7 @@ public class MalfManager : MonoBehaviour
                     else
                     {
                         Debug.Log("There is already a malfunction of this type");
+                        malfTriggered++;
                     }
                 }
                 else
