@@ -40,8 +40,15 @@ public class MalfManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        timef += Time.deltaTime;
-        secondsPassed = Mathf.FloorToInt(timef);
+        if (malfNum < maxMalfunctions)
+        {
+            timef += Time.deltaTime;
+            secondsPassed = Mathf.FloorToInt(timef);
+        }
+        else
+        {
+            Debug.Log("Waiting for malfunction to be fixed");
+        }
 
         switch (timer.section)
         {
@@ -88,7 +95,7 @@ public class MalfManager : MonoBehaviour
                     }
                     else
                     {
-                        Debug.Log("There is already a malfunction of this type");
+                        Debug.Log("There is already a malfunction of type audio");
                         malfTriggered++;
                     }
                 }
@@ -105,7 +112,7 @@ public class MalfManager : MonoBehaviour
                     }
                     else
                     {
-                        Debug.Log("There is already a malfunction of this type");
+                        Debug.Log("There is already a malfunction of type lighting");
                         malfTriggered++;
                     }
                 }
