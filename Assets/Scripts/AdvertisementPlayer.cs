@@ -11,6 +11,9 @@ public class AdvertisementPlayer : MonoBehaviour, IInteractable
     public VideoClip adChannel_1;
     public VideoClip adChannel_2;
     public VideoClip adChannel_3;
+    public AudioClip adMusic;
+    public AudioSource audioSource;
+    public MalfManager malfManager;
     private VideoPlayer tvPlayer;
     private int randomAd = 1;
     public TVPlayer tvScript;
@@ -41,6 +44,7 @@ public class AdvertisementPlayer : MonoBehaviour, IInteractable
             if (tvPlayer.clip == newsChannel)
             {
                 tvScript.savedTime = tvPlayer.time;
+                tvScript.savedAudio = audioSource.time;
             }
 
             // Picks from a random ad to display, and checks to make sure that it's not the same as the last one
@@ -76,7 +80,8 @@ public class AdvertisementPlayer : MonoBehaviour, IInteractable
                     randomAd = Random.Range(0, 3);
                 }
 
-                tvPlayer.playbackSpeed = 1;
+                audioSource.clip = adMusic;
+                malfManager.isAdPlaying = true;
             }
         }
     }

@@ -33,6 +33,8 @@ public class AudioFix : MonoBehaviour, IInteractable
             {
                 tvAudio.pitch = 1;
             }
+            malfManager.audioBroken = false;
+            malfManager.malfNum--;
         }
     }
 }

@@ -1,20 +1,24 @@
 using System.Collections;
 using System.Collections.Generic;
 using System.Diagnostics.Contracts;
+using TMPro;
 using UnityEngine;
 
 public class MalfManager : MonoBehaviour
 {
+    public TextMeshProUGUI malfunctionUI;
+
     public Timer timer;
     
     public AudioSource tvAudio;
     public float audioDistortionMin = 0.5f;
     public float audioDistortionMax = 2f;
+    public bool audioPitchLow = false;
     
     private float timef = 0f;
     public int secondsPassed = 0;
     private int malfTrigger = 0;
-    private int malfNum = 0;
+    public int malfNum = 0;
 
     public bool audioBroken = false;
 
@@ -63,6 +67,8 @@ public class MalfManager : MonoBehaviour
                 Debug.Log("Audio Malfunction Occured");
                 AudioMalfunction();
                 audioBroken = true;
+
+                malfNum++;
             }
             else
             {
@@ -70,6 +76,8 @@ public class MalfManager : MonoBehaviour
             }
                 timef = 0;
         }
+
+        malfunctionUI.text = malfNum.ToString();
     }
 
     void LightingMalfunction()
@@ -84,10 +92,12 @@ public class MalfManager : MonoBehaviour
             if (Random.value < 0.5)
             {
                 tvAudio.pitch = audioDistortionMin;
+                audioPitchLow = true;
             }
             else
             {
                 tvAudio.pitch = audioDistortionMax;
+                audioPitchLow = false;
             }
             audioBroken = true;
         }

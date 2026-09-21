@@ -2274,6 +2274,7 @@ GameObject:
   - component: {fileID: 313384219}
   - component: {fileID: 313384218}
   - component: {fileID: 313384217}
+  - component: {fileID: 313384221}
   m_Layer: 0
   m_Name: AudioFix
   m_TagString: Untagged
@@ -2359,6 +2360,20 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 20
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &313384221
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 313384216}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: dfcbaa0ba1d92774ca00da47d3dd20c6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  malfManager: {fileID: 319273275}
+  tvAudio: {fileID: 539483198}
 --- !u!1 &318886109
 GameObject:
   m_ObjectHideFlags: 0
@@ -2486,11 +2501,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   timer: {fileID: 1088099856}
-  tvAudio: {fileID: 0}
-  wobbleSpeed: 5
-  wobbleIntensity: 1
+  tvAudio: {fileID: 539483198}
+  audioDistortionMin: 0.5
+  audioDistortionMax: 2
+  audioPitchLow: 0
   secondsPassed: 0
   audioBroken: 0
+  isAdPlaying: 0
 --- !u!4 &319273276
 Transform:
   m_ObjectHideFlags: 0
@@ -3801,11 +3818,11 @@ AudioSource:
   m_Enabled: 1
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
-  m_audioClip: {fileID: 0}
+  m_audioClip: {fileID: 8300000, guid: 411f0aaf8565f7042adb8893b87b96d0, type: 3}
   m_PlayOnAwake: 0
   m_Volume: 1
-  m_Pitch: -3
-  Loop: 0
+  m_Pitch: 1
+  Loop: 1
   Mute: 0
   Spatialize: 0
   SpatializePostEffects: 0
@@ -4288,7 +4305,7 @@ VideoPlayer:
   m_AspectRatio: 5
   m_DataSource: 0
   m_PlaybackSpeed: 1
-  m_AudioOutputMode: 1
+  m_AudioOutputMode: 0
   m_TargetAudioSources:
   - {fileID: 539483198}
   m_DirectAudioVolumes:
@@ -4397,7 +4414,10 @@ MonoBehaviour:
   tv: {fileID: 586788163}
   newsChannel: {fileID: 32900000, guid: 8cb7fbe2d14b48344b032a44079ffa95, type: 3}
   adChannel: {fileID: 32900000, guid: 532bcf5a86b6e554da59da4dc38cc341, type: 3}
+  audioSource: {fileID: 539483198}
+  malfManager: {fileID: 319273275}
   savedTime: 0
+  savedAudio: 0
 --- !u!1 &608960676
 GameObject:
   m_ObjectHideFlags: 0
@@ -4582,7 +4602,10 @@ MonoBehaviour:
   tv: {fileID: 233110616}
   newsChannel: {fileID: 32900000, guid: 8cb7fbe2d14b48344b032a44079ffa95, type: 3}
   adChannel: {fileID: 32900000, guid: 3703eb8ebb82195449358f1d308d85f0, type: 3}
+  audioSource: {fileID: 0}
+  malfManager: {fileID: 0}
   savedTime: 0
+  savedAudio: 0
 --- !u!65 &661665816
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -4839,6 +4862,11 @@ Light:
   m_UseViewFrustumForShadowCasterCull: 1
   m_ShadowRadius: 0
   m_ShadowAngle: 0
+--- !u!1 &753909354 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 919132149155446097, guid: 75090cdb08246e748ac628d6d1a7a07c, type: 3}
+  m_PrefabInstance: {fileID: 289104875}
+  m_PrefabAsset: {fileID: 0}
 --- !u!43 &791961215
 Mesh:
   m_ObjectHideFlags: 0
@@ -5304,12 +5332,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ab07337ae3402a04a9da13ac57b75859, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  malfManager: {fileID: 0}
+  malfManager: {fileID: 319273275}
   reporter: {fileID: 148523326}
   desk: {fileID: 5842926}
   stage: {fileID: 1531402275}
   eyes: {fileID: 2002314685}
-  lights: {fileID: 0}
+  lights: {fileID: 753909354}
 --- !u!1001 &876715437
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -8218,7 +8246,6 @@ GameObject:
   m_Component:
   - component: {fileID: 1253404491}
   - component: {fileID: 1253404492}
-  - component: {fileID: 1253404493}
   m_Layer: 0
   m_Name: Point Light
   m_TagString: Untagged
@@ -8303,22 +8330,6 @@ Light:
   m_UseViewFrustumForShadowCasterCull: 1
   m_ShadowRadius: 0
   m_ShadowAngle: 0
---- !u!123 &1253404493
-LensFlare:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1253404490}
-  m_Enabled: 1
-  m_Flare: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 0}
-  m_Brightness: 1
-  m_FadeSpeed: 3
-  m_IgnoreLayers:
-    serializedVersion: 2
-    m_Bits: 6
-  m_Directional: 0
 --- !u!1 &1352957271
 GameObject:
   m_ObjectHideFlags: 0
@@ -8423,7 +8434,6 @@ GameObject:
   m_Component:
   - component: {fileID: 1360654970}
   - component: {fileID: 1360654969}
-  - component: {fileID: 1360654971}
   m_Layer: 0
   m_Name: Point Light
   m_TagString: Untagged
@@ -8508,22 +8518,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 13
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!123 &1360654971
-LensFlare:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1360654968}
-  m_Enabled: 1
-  m_Flare: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 0}
-  m_Brightness: 1
-  m_FadeSpeed: 3
-  m_IgnoreLayers:
-    serializedVersion: 2
-    m_Bits: 6
-  m_Directional: 0
 --- !u!1 &1390138326
 GameObject:
   m_ObjectHideFlags: 0
@@ -11275,6 +11269,7 @@ MonoBehaviour:
   adChannel_1: {fileID: 32900000, guid: 532bcf5a86b6e554da59da4dc38cc341, type: 3}
   adChannel_2: {fileID: 32900000, guid: e02e5e128f74a9448a4543f6ceceadfa, type: 3}
   adChannel_3: {fileID: 32900000, guid: e35fa78151179ae40801f8a7b516e5ec, type: 3}
+  audioSource: {fileID: 539483198}
   tvScript: {fileID: 586788168}
 --- !u!1 &1906816335
 GameObject:
