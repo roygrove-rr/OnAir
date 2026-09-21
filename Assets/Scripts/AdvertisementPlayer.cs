@@ -81,7 +81,7 @@ public class AdvertisementPlayer : MonoBehaviour, IInteractable
                 }
 
                 audioSource.clip = adMusic;
-                malfManager.isAdPlaying = true;
+                tvScript.isAdPlaying = true;
             }
         }
     }

@@ -28,8 +28,6 @@ public class MalfManager : MonoBehaviour
 
     public bool audioBroken = false;
     public bool lightsBroken = false;
-
-    public bool isAdPlaying = false;
     
     // Start is called before the first frame update
     void Start()
@@ -53,8 +51,8 @@ public class MalfManager : MonoBehaviour
         switch (timer.section)
         {
             case 1:
-                malfTrigger = 10;
-                maxMalfunctions = 5;
+                malfTrigger = 5;
+                maxMalfunctions = 2;
                 break;
 
             case 2:
@@ -82,7 +80,11 @@ public class MalfManager : MonoBehaviour
             malfRandom = Random.value;
 
             while (malfTriggered < 1)
-                if (malfRandom <= (1 / totalMalfunctions))
+                if (malfNum >= maxMalfunctions)
+                {
+                    break;
+                }
+                else if (malfRandom <= (1 / totalMalfunctions))
                 {
                     if (audioBroken == false)
                     {
@@ -96,7 +98,8 @@ public class MalfManager : MonoBehaviour
                     else
                     {
                         Debug.Log("There is already a malfunction of type audio");
-                        malfTriggered++;
+                        malfRandom = Random.Range(0, 2);
+                        //malfTriggered++;
                     }
                 }
                 else if (malfRandom > (1 / totalMalfunctions))
@@ -113,7 +116,8 @@ public class MalfManager : MonoBehaviour
                     else
                     {
                         Debug.Log("There is already a malfunction of type lighting");
-                        malfTriggered++;
+                        malfRandom = Random.Range(0, 2);
+                        //malfTriggered++;
                     }
                 }
                 else

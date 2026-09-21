@@ -13,6 +13,8 @@ public class TVPlayer : MonoBehaviour
     public MalfManager malfManager;
     public double savedTime = 0.0;
     public float savedAudio = 0.0f;
+
+    public bool isAdPlaying = false;
     
     // Start is called before the first frame update
     void Start()
@@ -40,20 +42,20 @@ public class TVPlayer : MonoBehaviour
             tv.playbackSpeed = 1f;
         }
 
-        if (malfManager.isAdPlaying == true)
+        if (isAdPlaying == true)
         {
-            tv.audioOutputMode = VideoAudioOutputMode.AudioSource;
+            //tv.audioOutputMode = VideoAudioOutputMode.AudioSource;
         }
         else
         {
-            tv.audioOutputMode = VideoAudioOutputMode.None;
+            //tv.audioOutputMode = VideoAudioOutputMode.None;
         }
     }
 
     void OnVideoFinished(VideoPlayer vp)
     {
         // After the ad is finished the videoplayer returns to playing the news channel
-        malfManager.isAdPlaying = false;
+        isAdPlaying = false;
 
         tv.clip = newsChannel;
         tv.time = savedTime;

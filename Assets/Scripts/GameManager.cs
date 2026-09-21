@@ -45,6 +45,10 @@ public class GameManager : MonoBehaviour
                 HandleMainMenu();
                 break;
 
+            case GameState.Tutorial:
+                HandleTutorial();
+                break;
+
             case GameState.Gameplay:
                 HandleGameplay();
                 break;
@@ -66,6 +70,11 @@ public class GameManager : MonoBehaviour
     }
 
     private void HandleMainMenu()
+    {
+
+    }
+
+    private void HandleTutorial()
     {
 
     }
@@ -100,6 +109,7 @@ public class GameManager : MonoBehaviour
 public enum GameState
 {
     MainMenu,
+    Tutorial,
     Gameplay,
     Paused,
     GameOver,
