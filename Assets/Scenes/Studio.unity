@@ -2486,7 +2486,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   timer: {fileID: 1088099856}
+  tvAudio: {fileID: 0}
+  wobbleSpeed: 5
+  wobbleIntensity: 1
   secondsPassed: 0
+  audioBroken: 0
 --- !u!4 &319273276
 Transform:
   m_ObjectHideFlags: 0
@@ -3800,7 +3804,7 @@ AudioSource:
   m_audioClip: {fileID: 0}
   m_PlayOnAwake: 0
   m_Volume: 1
-  m_Pitch: 1
+  m_Pitch: -3
   Loop: 0
   Mute: 0
   Spatialize: 0
@@ -5300,10 +5304,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ab07337ae3402a04a9da13ac57b75859, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  malfManager: {fileID: 0}
   reporter: {fileID: 148523326}
   desk: {fileID: 5842926}
   stage: {fileID: 1531402275}
   eyes: {fileID: 2002314685}
+  lights: {fileID: 0}
 --- !u!1001 &876715437
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -8212,6 +8218,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1253404491}
   - component: {fileID: 1253404492}
+  - component: {fileID: 1253404493}
   m_Layer: 0
   m_Name: Point Light
   m_TagString: Untagged
@@ -8296,6 +8303,22 @@ Light:
   m_UseViewFrustumForShadowCasterCull: 1
   m_ShadowRadius: 0
   m_ShadowAngle: 0
+--- !u!123 &1253404493
+LensFlare:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1253404490}
+  m_Enabled: 1
+  m_Flare: {fileID: 0}
+  m_Color: {r: 1, g: 1, b: 1, a: 0}
+  m_Brightness: 1
+  m_FadeSpeed: 3
+  m_IgnoreLayers:
+    serializedVersion: 2
+    m_Bits: 6
+  m_Directional: 0
 --- !u!1 &1352957271
 GameObject:
   m_ObjectHideFlags: 0
@@ -8400,6 +8423,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1360654970}
   - component: {fileID: 1360654969}
+  - component: {fileID: 1360654971}
   m_Layer: 0
   m_Name: Point Light
   m_TagString: Untagged
@@ -8484,6 +8508,22 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 13
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!123 &1360654971
+LensFlare:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1360654968}
+  m_Enabled: 1
+  m_Flare: {fileID: 0}
+  m_Color: {r: 1, g: 1, b: 1, a: 0}
+  m_Brightness: 1
+  m_FadeSpeed: 3
+  m_IgnoreLayers:
+    serializedVersion: 2
+    m_Bits: 6
+  m_Directional: 0
 --- !u!1 &1390138326
 GameObject:
   m_ObjectHideFlags: 0

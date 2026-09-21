@@ -8,8 +8,8 @@ public class MalfManager : MonoBehaviour
     public Timer timer;
     
     public AudioSource tvAudio;
-    public float wobbleSpeed = 5f;
-    public float wobbleIntensity = 1f;
+    public float audioDistortionMin = 0.5f;
+    public float audioDistortionMax = 2f;
     
     private float timef = 0f;
     public int secondsPassed = 0;
@@ -17,6 +17,8 @@ public class MalfManager : MonoBehaviour
     private int malfNum = 0;
 
     public bool audioBroken = false;
+
+    public bool isAdPlaying = false;
     
     // Start is called before the first frame update
     void Start()
@@ -56,17 +58,17 @@ public class MalfManager : MonoBehaviour
 
         if (secondsPassed == malfTrigger)
         {
-            Debug.Log("Audio Malfunction Occured");
             if (audioBroken == false)
             {
+                Debug.Log("Audio Malfunction Occured");
+                AudioMalfunction();
                 audioBroken = true;
             }
-            timef = 0;
-        }
-
-        while (audioBroken == true)
-        {
-            AudioMalfunction();
+            else
+            {
+                Debug.Log("No possible malfunction");
+            }
+                timef = 0;
         }
     }
 
@@ -79,8 +81,15 @@ public class MalfManager : MonoBehaviour
     {
         if (tvAudio != null)
         {
-            float sineWobble = Mathf.Sin(Time.time * wobbleSpeed) * wobbleIntensity;
-            tvAudio.pitch = 1.0f + sineWobble;
+            if (Random.value < 0.5)
+            {
+                tvAudio.pitch = audioDistortionMin;
+            }
+            else
+            {
+                tvAudio.pitch = audioDistortionMax;
+            }
+            audioBroken = true;
         }
     }
 }

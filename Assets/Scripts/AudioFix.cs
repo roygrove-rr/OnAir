@@ -31,12 +31,7 @@ public class AudioFix : MonoBehaviour, IInteractable
         {
             if (tvAudio != null)
             {
-                distortionFilter = tvAudio.gameObject.GetComponent<AudioDistortionFilter>();
-
-                distortionFilter.enabled = false;
-                tvAudio.volume = 1;
-
-                malfManager.audioBroken = false;
+                tvAudio.pitch = 1;
             }
         }
     }
