@@ -21,6 +21,7 @@ public class MalfManager : MonoBehaviour
     private float timef = 0f;
     public int secondsPassed = 0;
     private int malfTrigger = 0;
+    private float totalMalfunctions = 2f;
     public int malfNum = 0;
     public float malfRandom = 0f;
 
@@ -69,9 +70,9 @@ public class MalfManager : MonoBehaviour
         {
             var malfTriggered = 0;
             malfRandom = Random.value;
-            
+
             while (malfTriggered < 1)
-                if (malfRandom <= 0.5)
+                if (malfRandom <= (1 / totalMalfunctions))
                 {
                     if (audioBroken == false)
                     {
@@ -87,7 +88,7 @@ public class MalfManager : MonoBehaviour
                         Debug.Log("There is already a malfunction of this type");
                     }
                 }
-                else if (malfRandom > 0.5)
+                else if (malfRandom > (1 / totalMalfunctions))
                 {
                     if (lightsBroken == false)
                     {
