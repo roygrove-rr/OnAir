@@ -38,6 +38,7 @@ public class SimonSays : MonoBehaviour
     public bool awaitingInput;
     public int[] userInput = new int[4];
     public int inputLength;
+    public int whichIndexOn;
     public bool inputCooldown;
     public float inputCooldownTime = 0.5f;
     public float cooldownTimer = 0.0f;
@@ -45,10 +46,10 @@ public class SimonSays : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        randomOrder[0] = UnityEngine.Random.Range(4, 0);
-        randomOrder[1] = UnityEngine.Random.Range(4, 0);
-        randomOrder[2] = UnityEngine.Random.Range(4, 0);
-        randomOrder[3] = UnityEngine.Random.Range(4, 0);
+        randomOrder[0] = UnityEngine.Random.Range(0, 3);
+        randomOrder[1] = UnityEngine.Random.Range(0, 3);
+        randomOrder[2] = UnityEngine.Random.Range(0, 3);
+        randomOrder[3] = UnityEngine.Random.Range(0, 3);
         codeLength = randomOrder.Length;
 
         Debug.Log(randomOrder);
@@ -90,6 +91,11 @@ public class SimonSays : MonoBehaviour
                         isDelaying = false;
                         isDisplaying = false;
                         awaitingInput = true;
+                        inputLength = 0;
+                        userInput[0] = 5;
+                        userInput[1] = 5;
+                        userInput[2] = 5;
+                        userInput[3] = 5;
 
                         Debug.Log("Display complete");
                     }
@@ -102,7 +108,7 @@ public class SimonSays : MonoBehaviour
             {
                 displayTimer += Time.deltaTime;
 
-                switch (randomOrder[displayNum] - 1)
+                switch (randomOrder[displayNum])
                 {
                     case 0:
                         redMesh.material = redMaterial;
@@ -133,18 +139,29 @@ public class SimonSays : MonoBehaviour
         
         if (awaitingInput == true)
         {
-            inputLength = 0;
-            
             redMesh.material = redMaterial;
             blueMesh.material = blueMaterial;
             greenMesh.material = greenMaterial;
             yellowMesh.material = yellowMaterial;
 
 
-                if (userInput == randomOrder)
+                if (inputLength == randomOrder.Length)
                 {
-                    awaitingInput = false;
-                    success();
+                    if (userInput[0] == randomOrder[0] &&
+                        userInput[1] == randomOrder[1] &&
+                        userInput[2] == randomOrder[2] &&
+                        userInput[3] == randomOrder[3])
+                    {
+                        Debug.Log("Success!");
+                        awaitingInput = false;
+                        success();
+                    }
+                    else
+                    {
+                        Debug.Log("Wrong");
+                        awaitingInput = false;
+                        failure();
+                    }
                 }
         }
 
@@ -167,11 +184,17 @@ public class SimonSays : MonoBehaviour
 
     public void success()
     {
-        Debug.Log("success!");
+        redMesh.material = greenMaterial;
+        blueMesh.material = greenMaterial;
+        greenMesh.material = greenMaterial;
+        yellowMesh.material = greenMaterial;
     }
 
     public void failure()
     {
-        Debug.Log("failure...");
+        redMesh.material = redMaterial;
+        blueMesh.material = redMaterial;
+        greenMesh.material = redMaterial;
+        yellowMesh.material = redMaterial;
     }
 }

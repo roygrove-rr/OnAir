@@ -28,22 +28,12 @@ public class SimonSaysButton : MonoBehaviour, IInteractable
     {  
         if (simonSaysScript.awaitingInput == true)
         {
-            for (int i = 0; i <= simonSaysScript.inputLength;)
-            {
-                if (i == simonSaysScript.inputLength)
-                {
-                    Debug.Log(i);
-                    addInput(i);
-                    
-                    simonSaysScript.awaitingInput = false;
-                    simonSaysScript.inputCooldown = true;
-                    simonSaysScript.cooldownTimer = 0;
-                }
-
-                i++;
-            }
-
+            addInput(simonSaysScript.inputLength);
             simonSaysScript.inputLength++;
+
+            simonSaysScript.awaitingInput = false;
+            simonSaysScript.inputCooldown = true;
+            simonSaysScript.cooldownTimer = 0;
         }
 
         Debug.Log("interacted with!");

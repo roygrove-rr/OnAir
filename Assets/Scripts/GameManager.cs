@@ -85,7 +85,7 @@ public class GameManager : MonoBehaviour
 
     private void HandleGameplay()
     {
-
+        malfManager.active = true;
     }
 
     private void HandlePaused()

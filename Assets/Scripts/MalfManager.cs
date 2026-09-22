@@ -7,6 +7,8 @@ using UnityEngine.Video;
 
 public class MalfManager : MonoBehaviour
 {
+    public bool active = false;
+    
     public TextMeshProUGUI malfunctionUI;
 
     public Timer timer;
@@ -53,14 +55,16 @@ public class MalfManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (malfNum < maxMalfunctions)
+        if (active == true)
+        {
+            if (malfNum < maxMalfunctions)
         {
             timef += Time.deltaTime;
             secondsPassed = Mathf.FloorToInt(timef);
         }
         else
         {
-            //Debug.Log("Waiting for malfunction to be fixed");
+            
         }
 
         switch (timer.section)
@@ -216,6 +220,7 @@ public class MalfManager : MonoBehaviour
             malfHappening = true;
         }
         malfunctionUI.text = malfNum.ToString();
+        }
     }
 
     void LightingMalfunction()

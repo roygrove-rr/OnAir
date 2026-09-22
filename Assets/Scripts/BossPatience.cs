@@ -76,6 +76,6 @@ public class BossPatience : MonoBehaviour
 
     void kill()
     {
-        
+        malfManager.active = false;
     }
 }
