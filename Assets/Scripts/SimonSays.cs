@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -20,8 +21,8 @@ public class SimonSays : MonoBehaviour
     private MeshRenderer greenMesh;
     private MeshRenderer yellowMesh;
 
-    public float displayLength = 1f;
-    public float delayLength = 1f;
+    public float displayLength = 5f;
+    public float delayLength = 5f;
     public float timer = 0.0f;
 
     private int[] randomOrder = new int[4];
@@ -33,59 +34,31 @@ public class SimonSays : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        randomOrder[0] = Random.Range(4, 0);
-        randomOrder[1] = Random.Range(4, 0);
-        randomOrder[2] = Random.Range(4, 0);
-        randomOrder[3] = Random.Range(4, 0);
+        randomOrder[0] = UnityEngine.Random.Range(4, 0);
+        randomOrder[1] = UnityEngine.Random.Range(4, 0);
+        randomOrder[2] = UnityEngine.Random.Range(4, 0);
+        randomOrder[3] = UnityEngine.Random.Range(4, 0);
 
         redMesh = redButton.GetComponent<MeshRenderer>();
         blueMesh = blueButton.GetComponent<MeshRenderer>();
         greenMesh = greenButton.GetComponent<MeshRenderer>();
         yellowMesh = yellowButton.GetComponent<MeshRenderer>();
+
+        isDisplaying = false;
     }
 
     // Update is called once per frame
     void Update()
     {
-        if (active == true)
+        if (active == true) 
         {
-            DisplayCode();
-        }
-    }
+            isDisplaying = true;
+            isDelaying = false;
 
-    public void DisplayCode ()
-    {
-        isDisplaying = true;
-        isDelaying = false;
-
-        var displayTime = 0;
-        var delayTime = 0;
-
-        for (int i = 0; i < randomOrder.Length; i++)
-        {
-            if (isDisplaying == true)
+            for (int i = 0; i < 2; i++)
             {
-                while (displayTime < 1)
+                if (isDisplaying == true)
                 {
-                    switch (randomOrder[i])
-                    {
-                        case 0:
-                            redMesh.material = redMaterial;
-                            break;
-
-                        case 1:
-                            blueMesh.material = blueMaterial;
-                            break;
-
-                        case 2:
-                            greenMesh.material = greenMaterial;
-                            break;
-
-                        case 3:
-                            greenMesh.material = greenMaterial;
-                            break;
-                    }
-
                     timer += Time.deltaTime;
                     Debug.Log("Displaying");
                     if (timer >= displayLength)
@@ -94,20 +67,10 @@ public class SimonSays : MonoBehaviour
                         isDelaying = true;
 
                         timer = 0;
-                        displayTime++;
                     }
                 }
-                displayTime = 0;
-            }
-            else
-            {
-                while (delayTime < 1)
+                else
                 {
-                    redMesh.material = defaultMaterial;
-                    blueMesh.material = defaultMaterial;
-                    greenMesh.material = defaultMaterial;
-                    yellowMesh.material = defaultMaterial;
-
                     timer += Time.deltaTime;
                     Debug.Log("Cooldown");
                     if (timer >= delayLength)
@@ -116,15 +79,71 @@ public class SimonSays : MonoBehaviour
                         isDelaying = false;
 
                         timer = 0;
-                        displayTime++;
                     }
                 }
-                delayTime = 0;
             }
-
-
         }
+        
+        //if (active == true)
+        //{
+        //    isDisplaying = true;
+        //    isDelaying = false;
 
-        active = false;
+        //    for (int i = 0; i < randomOrder.Length; i++)
+        //    {
+        //        if (isDisplaying == true)
+        //        {
+        //            switch (randomOrder[i])
+        //            {
+        //                case 0:
+        //                    redMesh.material = redMaterial;
+        //                    break;
+
+        //                case 1:
+        //                    blueMesh.material = blueMaterial;
+        //                    break;
+
+        //                case 2:
+        //                    greenMesh.material = greenMaterial;
+        //                    break;
+
+        //                case 3:
+        //                    greenMesh.material = greenMaterial;
+        //                    break;
+        //            }
+
+        //            timer += Time.deltaTime;
+        //            Debug.Log("Displaying");
+        //            if (timer >= displayLength)
+        //            {
+        //                isDisplaying = false;
+        //                isDelaying = true;
+
+        //                timer = 0;
+        //            }
+        //        }
+                
+        //        if (isDelaying == true)
+        //        {
+        //            redMesh.material = defaultMaterial;
+        //            blueMesh.material = defaultMaterial;
+        //            greenMesh.material = defaultMaterial;
+        //            yellowMesh.material = defaultMaterial;
+
+        //            timer += Time.deltaTime;
+        //            Debug.Log("Cooldown");
+        //            if (timer >= delayLength)
+        //            {
+        //                isDisplaying = true;
+        //                isDelaying = false;
+
+        //                timer = 0;
+        //            }
+        //        }
+        //    }
+
+        //    isDisplaying = false;
+        //    active = false;
+        //}
     }
 }

@@ -32,7 +32,7 @@ Material:
     - _Metallic: 0
     - _Noise: 1
     - _Speed: 5
-    - _Strength: 0.9
+    - _Strength: 0.6
     m_Colors:
     - _Color: {r: 1, g: 1, b: 1, a: 1}
   m_BuildTextureStacks: []
