@@ -42,6 +42,7 @@ public class MalfManager : MonoBehaviour
     public bool lightsBroken = false;
     public bool videoBroken = false;
     public bool offScript = false;
+    public bool malfHappening = false;
     
     // Start is called before the first frame update
     void Start()
@@ -59,7 +60,7 @@ public class MalfManager : MonoBehaviour
         }
         else
         {
-            Debug.Log("Waiting for malfunction to be fixed");
+            //Debug.Log("Waiting for malfunction to be fixed");
         }
 
         switch (timer.section)
@@ -154,8 +155,8 @@ public class MalfManager : MonoBehaviour
                     if (videoBroken == false)
                     {
                         Debug.Log("Video Malfunction Occured");
-                        tvOverlay.SetActive(true);
-                        VideoMalfunction();
+                        //tvOverlay.SetActive(true);
+                        //VideoMalfunction();
 
                         malfNum++;
 
@@ -174,7 +175,7 @@ public class MalfManager : MonoBehaviour
                     if (offScript == false)
                     {
                         Debug.Log("Off Script Malfunction Occured");
-                        OffScriptMalfunction();
+                        //OffScriptMalfunction();
 
                         malfNum++;
 
@@ -195,6 +196,25 @@ public class MalfManager : MonoBehaviour
                 timef = 0;
         }
 
+        if (offScript == true)
+        {
+            tvOverlayPlayer.clip = tvOffScript;
+        }
+        
+        if (lightsBroken == true)
+        {
+            tvOverlayPlayer.clip = tvDark;
+        }
+
+        if (videoBroken == true)
+        {
+            tvOverlayPlayer.clip = tvStatic;
+        }
+
+        if (malfNum >0)
+        {
+            malfHappening = true;
+        }
         malfunctionUI.text = malfNum.ToString();
     }
 
@@ -202,7 +222,6 @@ public class MalfManager : MonoBehaviour
     {
         stage.SetActive(false);
         eyes.SetActive(true);
-        tvOverlayPlayer.clip = tvStatic;
 
         lightsBroken = true;
     }
@@ -227,8 +246,6 @@ public class MalfManager : MonoBehaviour
 
     void VideoMalfunction()
     {
-        tvOverlayPlayer.clip = tvStatic;
-
         videoBroken = true;
     }
 
