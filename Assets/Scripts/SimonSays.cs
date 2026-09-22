@@ -29,6 +29,8 @@ public class SimonSays : MonoBehaviour
 
     private int[] randomOrder = new int[4];
 
+    public bool needsFixing = false;
+
     public bool active;
     public bool isDisplaying;
     public bool isDelaying;
@@ -188,6 +190,11 @@ public class SimonSays : MonoBehaviour
         blueMesh.material = greenMaterial;
         greenMesh.material = greenMaterial;
         yellowMesh.material = greenMaterial;
+
+        randomOrder[0] = UnityEngine.Random.Range(0, 3);
+        randomOrder[1] = UnityEngine.Random.Range(0, 3);
+        randomOrder[2] = UnityEngine.Random.Range(0, 3);
+        randomOrder[3] = UnityEngine.Random.Range(0, 3);
     }
 
     public void failure()
