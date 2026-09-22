@@ -10,6 +10,7 @@ public class SimonSays : MonoBehaviour
     public GameObject blueButton;
     public GameObject greenButton;
     public GameObject yellowButton;
+    public GameObject indicator;
 
     public Material redMaterial;
     public Material blueMaterial;
@@ -17,10 +18,11 @@ public class SimonSays : MonoBehaviour
     public Material yellowMaterial;
     public Material defaultMaterial;
 
-    private MeshRenderer redMesh;
-    private MeshRenderer blueMesh;
-    private MeshRenderer greenMesh;
-    private MeshRenderer yellowMesh;
+    public MeshRenderer redMesh;
+    public MeshRenderer blueMesh;
+    public MeshRenderer greenMesh;
+    public MeshRenderer yellowMesh;
+    public MeshRenderer indicatorMesh;
 
     public float displayLength = 5f;
     public float delayLength = 5f;
@@ -30,6 +32,7 @@ public class SimonSays : MonoBehaviour
     private int[] randomOrder = new int[4];
 
     public bool needsFixing = false;
+    public bool successCooldown = false;
 
     public bool active;
     public bool isDisplaying;
@@ -60,6 +63,7 @@ public class SimonSays : MonoBehaviour
         blueMesh = blueButton.GetComponent<MeshRenderer>();
         greenMesh = greenButton.GetComponent<MeshRenderer>();
         yellowMesh = yellowButton.GetComponent<MeshRenderer>();
+        indicatorMesh = indicator.GetComponent<MeshRenderer>();
 
         isDisplaying = false;
         isDelaying = false;
@@ -87,7 +91,7 @@ public class SimonSays : MonoBehaviour
                     isDelaying = false;
                     isDisplaying = true;
 
-                    if (displayNum >= codeLength - 1)
+                    if (displayNum >= codeLength)
                     {
                         active = false;
                         isDelaying = false;
@@ -101,8 +105,6 @@ public class SimonSays : MonoBehaviour
 
                         Debug.Log("Display complete");
                     }
-
-                    displayNum++;
                     delayTimer = 0;
                 }
             }
@@ -133,7 +135,7 @@ public class SimonSays : MonoBehaviour
                 {
                     isDelaying = true;
                     isDisplaying = false;
-
+                    displayNum++;
                     displayTimer = 0;
                 }
             }
@@ -186,15 +188,14 @@ public class SimonSays : MonoBehaviour
 
     public void success()
     {
-        redMesh.material = greenMaterial;
-        blueMesh.material = greenMaterial;
-        greenMesh.material = greenMaterial;
-        yellowMesh.material = greenMaterial;
+        indicatorMesh.material = greenMaterial;
 
         randomOrder[0] = UnityEngine.Random.Range(0, 3);
         randomOrder[1] = UnityEngine.Random.Range(0, 3);
         randomOrder[2] = UnityEngine.Random.Range(0, 3);
         randomOrder[3] = UnityEngine.Random.Range(0, 3);
+
+        successCooldown = true;
     }
 
     public void failure()

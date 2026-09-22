@@ -25,17 +25,14 @@ public class SimonSaysStartButton : MonoBehaviour, IInteractable
 
     public void Interact()
     {
+        simonSaysScript.redMesh.material = simonSaysScript.defaultMaterial;
+        simonSaysScript.blueMesh.material = simonSaysScript.defaultMaterial;
+        simonSaysScript.greenMesh.material = simonSaysScript.defaultMaterial;
+        simonSaysScript.yellowMesh.material = simonSaysScript.defaultMaterial;
+
         simonSaysScript.active = true;
-        if (simonSaysScript.awaitingInput == true)
-        {
-            simonSaysScript.isDelaying = true;
-            simonSaysScript.isDisplaying = false;
-        }
-        else
-        {
-            simonSaysScript.isDisplaying = true;
-            simonSaysScript.isDelaying = false;
-        }
+        simonSaysScript.isDisplaying = true;
+        simonSaysScript.isDelaying = false;
         
         simonSaysScript.awaitingInput = false;
 
