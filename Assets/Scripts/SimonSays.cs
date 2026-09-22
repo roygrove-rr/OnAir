@@ -152,6 +152,11 @@ public class SimonSays : MonoBehaviour
         {
             cooldownTimer += Time.deltaTime;
 
+            redMesh.material = defaultMaterial;
+            blueMesh.material = defaultMaterial;
+            greenMesh.material = defaultMaterial;
+            yellowMesh.material = defaultMaterial;
+
             if (cooldownTimer >= inputCooldownTime)
             {
                 awaitingInput = true;
