@@ -169,6 +169,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e37a458487133ed4ca407494cc4e900d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  color: green
+  simonSaysScript: {fileID: 681628677}
 --- !u!65 &115180894
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -549,6 +551,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e37a458487133ed4ca407494cc4e900d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  color: red
+  simonSaysScript: {fileID: 681628677}
 --- !u!65 &363999820
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -681,10 +685,16 @@ MonoBehaviour:
   defaultMaterial: {fileID: 2100000, guid: 20dfc28d2b96d0d479dabebbf1982cc2, type: 2}
   displayLength: 0.8
   delayLength: 0.8
-  timer: 0
+  displayTimer: 0
+  delayTimer: 0
   active: 0
   isDisplaying: 0
   isDelaying: 0
+  displayNum: 0
+  codeLength: 4
+  awaitingInput: 0
+  userInput: 00000000000000000000000000000000
+  inputLength: 0
 --- !u!1 &705507993
 GameObject:
   m_ObjectHideFlags: 0
@@ -1031,6 +1041,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e37a458487133ed4ca407494cc4e900d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  color: yellow
+  simonSaysScript: {fileID: 681628677}
 --- !u!65 &1320439276
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -1141,6 +1153,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e37a458487133ed4ca407494cc4e900d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  color: blue
+  simonSaysScript: {fileID: 681628677}
 --- !u!65 &1322447528
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -1440,7 +1454,7 @@ Transform:
   m_GameObject: {fileID: 2096014919}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 1.37, z: 11.5}
-  m_LocalScale: {x: 1, y: 6.7975, z: 1}
+  m_LocalScale: {x: 12.89913, y: 6.7975, z: 2.6817}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 2009064245}
@@ -1574,6 +1588,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 2616999763809477585, guid: edc0b0f269a7c7b4bb7b4b152b294cd1, type: 3}
+      propertyPath: timerInterval
+      value: 0.08
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: edc0b0f269a7c7b4bb7b4b152b294cd1, type: 3}
 --- !u!1001 &3294631867049222020
@@ -1656,6 +1674,10 @@ PrefabInstance:
       propertyPath: interactionText
       value: 
       objectReference: {fileID: 1914754662}
+    - target: {fileID: 3598561486141422352, guid: 18776425532ef134c976759b4c3b4121, type: 3}
+      propertyPath: interactionDistance
+      value: 3
+      objectReference: {fileID: 0}
     - target: {fileID: 3598561486716180197, guid: 18776425532ef134c976759b4c3b4121, type: 3}
       propertyPath: m_RootOrder
       value: 2

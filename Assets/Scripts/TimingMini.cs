@@ -256,7 +256,6 @@ public class TimingMini : MonoBehaviour
         updateMaterial(display10, litMaterial);
 
         PauseTimer();
-        Debug.Log("Success!");
     }
 
     public void failure()
@@ -273,7 +272,6 @@ public class TimingMini : MonoBehaviour
         updateMaterial(display10, targetMaterial);
 
         PauseTimer();
-        Debug.Log("Failure...");
     }
 
     private void PauseTimer()

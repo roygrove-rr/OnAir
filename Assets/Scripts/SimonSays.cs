@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using static UnityEditor.Experimental.AssetDatabaseExperimental.AssetDatabaseCounters;
 
 public class SimonSays : MonoBehaviour
 {
@@ -23,13 +24,23 @@ public class SimonSays : MonoBehaviour
 
     public float displayLength = 5f;
     public float delayLength = 5f;
-    public float timer = 0.0f;
+    public float displayTimer = 0.0f;
+    public float delayTimer = 0.0f;
 
     private int[] randomOrder = new int[4];
 
     public bool active;
     public bool isDisplaying;
     public bool isDelaying;
+    public int displayNum;
+    public int codeLength = 4;
+
+    public bool awaitingInput;
+    public int[] userInput = new int[4];
+    public int inputLength;
+    public bool inputCooldown;
+    public float inputCooldownTime = 0.5f;
+    public float cooldownTimer = 0.0f;
     
     // Start is called before the first frame update
     void Start()
@@ -38,6 +49,9 @@ public class SimonSays : MonoBehaviour
         randomOrder[1] = UnityEngine.Random.Range(4, 0);
         randomOrder[2] = UnityEngine.Random.Range(4, 0);
         randomOrder[3] = UnityEngine.Random.Range(4, 0);
+        codeLength = randomOrder.Length;
+
+        Debug.Log(randomOrder);
 
         redMesh = redButton.GetComponent<MeshRenderer>();
         blueMesh = blueButton.GetComponent<MeshRenderer>();
@@ -45,6 +59,9 @@ public class SimonSays : MonoBehaviour
         yellowMesh = yellowButton.GetComponent<MeshRenderer>();
 
         isDisplaying = false;
+        isDelaying = false;
+        awaitingInput = false;
+        inputCooldown = false;
     }
 
     // Update is called once per frame
@@ -52,98 +69,104 @@ public class SimonSays : MonoBehaviour
     {
         if (active == true) 
         {
-            isDisplaying = true;
-            isDelaying = false;
-
-            for (int i = 0; i < 2; i++)
+            if (isDelaying == true)
             {
-                if (isDisplaying == true)
-                {
-                    timer += Time.deltaTime;
-                    Debug.Log("Displaying");
-                    if (timer >= displayLength)
-                    {
-                        isDisplaying = false;
-                        isDelaying = true;
+                delayTimer += Time.deltaTime;
 
-                        timer = 0;
-                    }
-                }
-                else
+                redMesh.material = defaultMaterial;
+                blueMesh.material = defaultMaterial;
+                greenMesh.material = defaultMaterial;
+                yellowMesh.material = defaultMaterial;
+
+
+                if (delayTimer >= delayLength)
                 {
-                    timer += Time.deltaTime;
-                    Debug.Log("Cooldown");
-                    if (timer >= delayLength)
+                    isDelaying = false;
+                    isDisplaying = true;
+
+                    if (displayNum >= codeLength - 1)
                     {
-                        isDisplaying = true;
+                        active = false;
                         isDelaying = false;
+                        isDisplaying = false;
+                        awaitingInput = true;
 
-                        timer = 0;
+                        Debug.Log("Display complete");
                     }
+
+                    displayNum++;
+                    delayTimer = 0;
+                }
+            }
+            else
+            {
+                displayTimer += Time.deltaTime;
+
+                switch (randomOrder[displayNum] - 1)
+                {
+                    case 0:
+                        redMesh.material = redMaterial;
+                        break;
+
+                    case 1:
+                        blueMesh.material = blueMaterial;
+                        break;
+
+                    case 2:
+                        greenMesh.material = greenMaterial;
+                        break;
+
+                    case 3:
+                        yellowMesh.material = yellowMaterial;
+                        break;
+                }
+
+                if (displayTimer >= displayLength)
+                {
+                    isDelaying = true;
+                    isDisplaying = false;
+
+                    displayTimer = 0;
                 }
             }
         }
         
-        //if (active == true)
-        //{
-        //    isDisplaying = true;
-        //    isDelaying = false;
+        if (awaitingInput == true)
+        {
+            inputLength = 0;
+            
+            redMesh.material = redMaterial;
+            blueMesh.material = blueMaterial;
+            greenMesh.material = greenMaterial;
+            yellowMesh.material = yellowMaterial;
 
-        //    for (int i = 0; i < randomOrder.Length; i++)
-        //    {
-        //        if (isDisplaying == true)
-        //        {
-        //            switch (randomOrder[i])
-        //            {
-        //                case 0:
-        //                    redMesh.material = redMaterial;
-        //                    break;
 
-        //                case 1:
-        //                    blueMesh.material = blueMaterial;
-        //                    break;
+                if (userInput == randomOrder)
+                {
+                    awaitingInput = false;
+                    success();
+                }
+        }
 
-        //                case 2:
-        //                    greenMesh.material = greenMaterial;
-        //                    break;
+        if (inputCooldown == true)
+        {
+            cooldownTimer += Time.deltaTime;
 
-        //                case 3:
-        //                    greenMesh.material = greenMaterial;
-        //                    break;
-        //            }
+            if (cooldownTimer >= inputCooldownTime)
+            {
+                awaitingInput = true;
+                inputCooldown = false;
+            }
+        }
+    }
 
-        //            timer += Time.deltaTime;
-        //            Debug.Log("Displaying");
-        //            if (timer >= displayLength)
-        //            {
-        //                isDisplaying = false;
-        //                isDelaying = true;
+    public void success()
+    {
+        Debug.Log("success!");
+    }
 
-        //                timer = 0;
-        //            }
-        //        }
-                
-        //        if (isDelaying == true)
-        //        {
-        //            redMesh.material = defaultMaterial;
-        //            blueMesh.material = defaultMaterial;
-        //            greenMesh.material = defaultMaterial;
-        //            yellowMesh.material = defaultMaterial;
-
-        //            timer += Time.deltaTime;
-        //            Debug.Log("Cooldown");
-        //            if (timer >= delayLength)
-        //            {
-        //                isDisplaying = true;
-        //                isDelaying = false;
-
-        //                timer = 0;
-        //            }
-        //        }
-        //    }
-
-        //    isDisplaying = false;
-        //    active = false;
-        //}
+    public void failure()
+    {
+        Debug.Log("failure...");
     }
 }

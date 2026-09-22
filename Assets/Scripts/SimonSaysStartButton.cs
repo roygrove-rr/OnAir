@@ -26,6 +26,20 @@ public class SimonSaysStartButton : MonoBehaviour, IInteractable
     public void Interact()
     {
         simonSaysScript.active = true;
+        if (simonSaysScript.awaitingInput == true)
+        {
+            simonSaysScript.isDelaying = true;
+            simonSaysScript.isDisplaying = false;
+        }
+        else
+        {
+            simonSaysScript.isDisplaying = true;
+            simonSaysScript.isDelaying = false;
+        }
+        
+        simonSaysScript.awaitingInput = false;
+
+        simonSaysScript.displayNum = 0;
     }
         
 }
