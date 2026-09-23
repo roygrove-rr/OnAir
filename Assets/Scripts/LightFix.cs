@@ -1,10 +1,12 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Diagnostics;
 using UnityEngine;
 
 public class LightFix : MonoBehaviour, IInteractable
 {
     public MalfManager malfManager;
+    public BossPatience boss;
 
     public GameObject stage;
     public GameObject eyes;
@@ -36,6 +38,7 @@ public class LightFix : MonoBehaviour, IInteractable
             eyes.SetActive(false);
 
             malfManager.lightsBroken = false;
+            boss.killCounter = boss.killCounter - 3;
             malfManager.malfNum--;
         }
         else

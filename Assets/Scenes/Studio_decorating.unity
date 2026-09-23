@@ -4726,6 +4726,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   malfManager: {fileID: 319273275}
+  boss: {fileID: 469074619}
   stage: {fileID: 1964963699}
   eyes: {fileID: 2002314685}
 --- !u!65 &642832294
@@ -6959,6 +6960,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   malfManager: {fileID: 319273275}
+  boss: {fileID: 469074619}
 --- !u!65 &1025513874
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -11113,6 +11115,11 @@ Transform:
   m_Father: {fileID: 682116511}
   m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1820689898 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 947799181, guid: 33e4ceed0ca1d0b4dbc1e200a05b304e, type: 3}
+  m_PrefabInstance: {fileID: 5489356697476149048}
+  m_PrefabAsset: {fileID: 0}
 --- !u!43 &1822354571
 Mesh:
   m_ObjectHideFlags: 0
@@ -11462,6 +11469,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   malfManager: {fileID: 319273275}
+  boss: {fileID: 469074619}
   tvAudio: {fileID: 5489356697476149049}
 --- !u!65 &1926286835
 BoxCollider:
@@ -13639,6 +13647,19 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 5450663591471871379, guid: 33e4ceed0ca1d0b4dbc1e200a05b304e, type: 3}
   m_PrefabInstance: {fileID: 5489356697476149048}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &5489356697476149054
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1820689898}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6f22a457af76bab47b1aec915db1e350, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  audioSource: {fileID: 5489356697476149049}
 --- !u!328 &5489356697476149055 stripped
 VideoPlayer:
   m_CorrespondingSourceObject: {fileID: 366107802, guid: 33e4ceed0ca1d0b4dbc1e200a05b304e, type: 3}

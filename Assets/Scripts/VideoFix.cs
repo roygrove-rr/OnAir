@@ -5,6 +5,7 @@ using UnityEngine;
 public class VideoFix : MonoBehaviour, IInteractable
 {
     public MalfManager malfManager;
+    public BossPatience boss;
     
     // Start is called before the first frame update
     void Start()
@@ -26,6 +27,7 @@ public class VideoFix : MonoBehaviour, IInteractable
     public void Interact()
     {
         malfManager.videoBroken = false;
+        boss.killCounter = boss.killCounter - 3;
         malfManager.malfNum--;
     }
 }
