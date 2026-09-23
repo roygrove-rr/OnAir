@@ -215,6 +215,10 @@ public class MalfManager : MonoBehaviour
         {
             malfHappening = true;
         }
+        else
+        {
+            malfHappening = false;
+        }
         malfunctionUI.text = malfNum.ToString();
         }
     }

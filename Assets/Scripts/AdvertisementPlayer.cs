@@ -17,6 +17,8 @@ public class AdvertisementPlayer : MonoBehaviour, IInteractable
     private VideoPlayer tvPlayer;
     private int randomAd = 1;
     public TVPlayer tvScript;
+
+    public BossPatience boss;
     
     // Start is called before the first frame update
     void Start()
@@ -63,6 +65,7 @@ public class AdvertisementPlayer : MonoBehaviour, IInteractable
                             tvPlayer.clip = adChannel_1;
                             audioSource.clip = adMusic;
                             audioSource.Play();
+                            FixOffScript();
                             tvScript.isAdPlaying = true;
                             adPlayed++;
                             break;
@@ -71,6 +74,7 @@ public class AdvertisementPlayer : MonoBehaviour, IInteractable
                             tvPlayer.clip = adChannel_2;
                             audioSource.clip = adMusic;
                             audioSource.Play();
+                            FixOffScript();
                             tvScript.isAdPlaying = true;
                             adPlayed++;
                             break;
@@ -79,6 +83,7 @@ public class AdvertisementPlayer : MonoBehaviour, IInteractable
                             tvPlayer.clip = adChannel_3;
                             audioSource.clip = adMusic;
                             audioSource.Play();
+                            FixOffScript();
                             tvScript.isAdPlaying = true;
                             adPlayed++;
                             break;
@@ -91,7 +96,16 @@ public class AdvertisementPlayer : MonoBehaviour, IInteractable
 
                 
             }
+        }
+    }
+
+    void FixOffScript()
+    {
+        if (malfManager.offScript == true)
+        {
+            boss.killCounter = boss.killCounter - 3;
             malfManager.offScript = false;
+            malfManager.malfNum--;
         }
     }
 }

@@ -11,6 +11,7 @@ public class PlayerInteraction : MonoBehaviour
     public float interactionDistance = 2f;
 
     public GameObject interactionUI;
+    public GameObject crosshair;
     public TextMeshProUGUI interactionText;
     
     // Start is called before the first frame update
@@ -52,5 +53,6 @@ public class PlayerInteraction : MonoBehaviour
         }
 
         interactionUI.SetActive(hitSomething);
+        crosshair.SetActive(!hitSomething);
     }
 }

@@ -52,6 +52,11 @@ public class TVPlayer : MonoBehaviour
             audioSource.pitch = 1f;
             tv.playbackSpeed = 1f;
         }
+        else
+        {
+            audioSource.pitch = 1f;
+            tv.playbackSpeed = 1f;
+        }
 
         if (malfManager.videoBroken == true)
         {
