@@ -9,6 +9,7 @@ public class TVPlayer : MonoBehaviour
     public VideoPlayer tv;
     public VideoClip newsChannel;
     public AudioClip audioChannel;
+    public AudioClip adMusic;
     public AudioSource audioSource;
     public MalfManager malfManager;
     public double savedTime = 0.0;
@@ -26,7 +27,7 @@ public class TVPlayer : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (malfManager.audioBroken == true)
+        if (malfManager.audioBroken == true && isAdPlaying == false)
         {
             if (malfManager.audioPitchLow == true)
             {
@@ -37,18 +38,10 @@ public class TVPlayer : MonoBehaviour
                 tv.playbackSpeed = 2f;
             }
         }
-        else
+        else if (isAdPlaying)
         {
+            audioSource.pitch = 1f;
             tv.playbackSpeed = 1f;
-        }
-
-        if (isAdPlaying == true)
-        {
-            //tv.audioOutputMode = VideoAudioOutputMode.AudioSource;
-        }
-        else
-        {
-            //tv.audioOutputMode = VideoAudioOutputMode.None;
         }
     }
 
@@ -62,6 +55,10 @@ public class TVPlayer : MonoBehaviour
 
         audioSource.clip = audioChannel;
         audioSource.time = savedAudio;
+
+        audioSource.pitch = malfManager.lastDistortion;
+
+        audioSource.Play();
     }
 
     private void OnDestroy()

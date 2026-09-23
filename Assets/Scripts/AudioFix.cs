@@ -32,6 +32,7 @@ public class AudioFix : MonoBehaviour, IInteractable
             if (tvAudio != null)
             {
                 tvAudio.pitch = 1;
+                malfManager.lastDistortion = tvAudio.pitch;
             }
             malfManager.audioBroken = false;
             malfManager.malfNum--;

@@ -61,16 +61,25 @@ public class AdvertisementPlayer : MonoBehaviour, IInteractable
                     {
                         case 0:
                             tvPlayer.clip = adChannel_1;
+                            audioSource.clip = adMusic;
+                            audioSource.Play();
+                            tvScript.isAdPlaying = true;
                             adPlayed++;
                             break;
 
                         case 1:
                             tvPlayer.clip = adChannel_2;
+                            audioSource.clip = adMusic;
+                            audioSource.Play();
+                            tvScript.isAdPlaying = true;
                             adPlayed++;
                             break;
 
                         case 2:
                             tvPlayer.clip = adChannel_3;
+                            audioSource.clip = adMusic;
+                            audioSource.Play();
+                            tvScript.isAdPlaying = true;
                             adPlayed++;
                             break;
                     }
@@ -80,8 +89,7 @@ public class AdvertisementPlayer : MonoBehaviour, IInteractable
                     randomAd = Random.Range(0, 3);
                 }
 
-                audioSource.clip = adMusic;
-                tvScript.isAdPlaying = true;
+                
             }
         }
     }

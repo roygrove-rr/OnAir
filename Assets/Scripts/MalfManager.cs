@@ -12,16 +12,21 @@ public class MalfManager : MonoBehaviour
     public TextMeshProUGUI malfunctionUI;
 
     public Timer timer;
+    public TVPlayer tvPlayer;
     
     // Audio malfunction resources
     public AudioSource tvAudio;
     public float audioDistortionMin = 0.5f;
     public float audioDistortionMax = 2f;
     public bool audioPitchLow = false;
+    public float lastDistortion = 1f;
 
     // Lighting malfunction resources
     public GameObject stage;
     public GameObject eyes;
+
+    private MeshRenderer tvMesh;
+    private MeshRenderer overlayMesh;
 
     public GameObject tvOverlay;
     public VideoPlayer tvOverlayPlayer;
@@ -49,7 +54,10 @@ public class MalfManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        
+        tvMesh = tvPlayer.GetComponent<MeshRenderer>();
+        overlayMesh = tvOverlayPlayer.GetComponent<MeshRenderer>();
+
+        overlayMesh.enabled = false;
     }
 
     // Update is called once per frame
@@ -123,12 +131,15 @@ public class MalfManager : MonoBehaviour
                 {
                     if (audioBroken == false)
                     {
-                        Debug.Log("Audio Malfunction Occured");
-                        AudioMalfunction();
+                        if (tvPlayer.isAdPlaying == false)
+                        {
+                            Debug.Log("Audio Malfunction Occured");
+                            AudioMalfunction();
 
-                        malfNum++;
+                            malfNum++;
 
-                        malfTriggered++;
+                            malfTriggered++;
+                        }
                     }
                     else
                     {
@@ -200,22 +211,32 @@ public class MalfManager : MonoBehaviour
                 timef = 0;
         }
 
-        if (offScript == true)
-        {
-            tvOverlayPlayer.clip = tvOffScript;
-        }
+        // if (offScript == true)
+        // {
+        //     overlayMesh.enabled = true;
+        //     tvOverlayPlayer.clip = tvOffScript;
+        // }
         
-        if (lightsBroken == true)
-        {
-            tvOverlayPlayer.clip = tvDark;
-        }
+        // if (lightsBroken == true)
+        // {
+        //     overlayMesh.enabled = true;
+        //     tvOverlayPlayer.clip = tvDark;
+        // }
 
-        if (videoBroken == true)
-        {
-            tvOverlayPlayer.clip = tvStatic;
-        }
+        // if (videoBroken == true)
+        // {
+        //     overlayMesh.enabled = true;
+        //     tvOverlayPlayer.clip = tvStatic;
+        // }
 
-        if (malfNum >0)
+        // if (offScript == false &&
+        //     lightsBroken == false &&
+        //     videoBroken == false)
+        // {
+        //      tvOverlay.SetActive(false);   
+        // }
+
+        if (malfNum > 0)
         {
             malfHappening = true;
         }
@@ -223,7 +244,7 @@ public class MalfManager : MonoBehaviour
         }
     }
 
-    void LightingMalfunction()
+    public void LightingMalfunction()
     {
         stage.SetActive(false);
         eyes.SetActive(true);
@@ -231,30 +252,36 @@ public class MalfManager : MonoBehaviour
         lightsBroken = true;
     }
 
-    void AudioMalfunction()
+    public void AudioMalfunction()
     {
-        if (tvAudio != null)
+        if (tvAudio != null && tvPlayer.isAdPlaying == false)
         {
             if (Random.value < 0.5)
             {
                 tvAudio.pitch = audioDistortionMin;
+                lastDistortion = tvAudio.pitch;
                 audioPitchLow = true;
             }
             else
             {
                 tvAudio.pitch = audioDistortionMax;
+                lastDistortion = tvAudio.pitch;
                 audioPitchLow = false;
             }
             audioBroken = true;
         }
     }
 
-    void VideoMalfunction()
+    public void VideoMalfunction()
     {
+        tvMesh.enabled = false;
+        overlayMesh.enabled = true;
+        tvOverlayPlayer.clip = tvStatic;
+        
         videoBroken = true;
     }
 
-    void OffScriptMalfunction()
+    public void OffScriptMalfunction()
     {
         offScript = true;
     }
