@@ -25,7 +25,7 @@ public class MalfManager : MonoBehaviour
     public GameObject stage;
     public GameObject eyes;
 
-    private MeshRenderer tvMesh;
+    public MeshRenderer tvMesh;
     private MeshRenderer overlayMesh;
 
     public GameObject tvOverlay;
@@ -57,7 +57,7 @@ public class MalfManager : MonoBehaviour
         tvMesh = tvPlayer.GetComponent<MeshRenderer>();
         overlayMesh = tvOverlayPlayer.GetComponent<MeshRenderer>();
 
-        overlayMesh.enabled = false;
+        //overlayMesh.enabled = false;
     }
 
     // Update is called once per frame
@@ -274,7 +274,6 @@ public class MalfManager : MonoBehaviour
 
     public void VideoMalfunction()
     {
-        tvMesh.enabled = false;
         overlayMesh.enabled = true;
         tvOverlayPlayer.clip = tvStatic;
         
