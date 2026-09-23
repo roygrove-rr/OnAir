@@ -254,6 +254,7 @@ public class TimingMini : MonoBehaviour
         updateMaterial(display8, litMaterial);
         updateMaterial(display9, litMaterial);
         updateMaterial(display10, litMaterial);
+        counter = 0;
 
         PauseTimer();
     }
@@ -270,6 +271,7 @@ public class TimingMini : MonoBehaviour
         updateMaterial(display8, targetMaterial);
         updateMaterial(display9, targetMaterial);
         updateMaterial(display10, targetMaterial);
+        counter = 0;
 
         PauseTimer();
     }
