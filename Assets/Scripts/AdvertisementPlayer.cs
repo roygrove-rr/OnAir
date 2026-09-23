@@ -39,9 +39,9 @@ public class AdvertisementPlayer : MonoBehaviour, IInteractable
     {
         
         // If the tv is not already playing an ad, it starts playing one
-        if (tvPlayer.clip == null || tvPlayer.clip == newsChannel)
+        if (tvPlayer.clip == newsChannel || malfManager.offScript == true)
         {
-            if (tvPlayer.clip == newsChannel)
+            if (tvPlayer.clip == newsChannel && malfManager.offScript == false)
             {
                 tvScript.savedTime = tvPlayer.time;
                 tvScript.savedAudio = audioSource.time;
@@ -91,6 +91,7 @@ public class AdvertisementPlayer : MonoBehaviour, IInteractable
 
                 
             }
+            malfManager.offScript = false;
         }
     }
 }

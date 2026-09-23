@@ -13,6 +13,7 @@ public class MalfManager : MonoBehaviour
 
     public Timer timer;
     public TVPlayer tvPlayer;
+    public VideoPlayer tvVideoPlayer;
     
     // Audio malfunction resources
     public AudioSource tvAudio;
@@ -33,6 +34,7 @@ public class MalfManager : MonoBehaviour
     public VideoClip tvStatic;
     public VideoClip tvDark;
     public VideoClip tvOffScript;
+    public AudioClip audioOffScript;
     
     private float timef = 0f;
     public int secondsPassed = 0;
@@ -56,8 +58,7 @@ public class MalfManager : MonoBehaviour
     {
         tvMesh = tvPlayer.GetComponent<MeshRenderer>();
         overlayMesh = tvOverlayPlayer.GetComponent<MeshRenderer>();
-
-        //overlayMesh.enabled = false;
+        tvVideoPlayer = tvPlayer.GetComponent<VideoPlayer>();
     }
 
     // Update is called once per frame
@@ -170,8 +171,7 @@ public class MalfManager : MonoBehaviour
                     if (videoBroken == false)
                     {
                         Debug.Log("Video Malfunction Occured");
-                        //tvOverlay.SetActive(true);
-                        //VideoMalfunction();
+                        VideoMalfunction();
 
                         malfNum++;
 
@@ -190,7 +190,7 @@ public class MalfManager : MonoBehaviour
                     if (offScript == false)
                     {
                         Debug.Log("Off Script Malfunction Occured");
-                        //OffScriptMalfunction();
+                        OffScriptMalfunction();
 
                         malfNum++;
 
@@ -210,31 +210,6 @@ public class MalfManager : MonoBehaviour
 
                 timef = 0;
         }
-
-        // if (offScript == true)
-        // {
-        //     overlayMesh.enabled = true;
-        //     tvOverlayPlayer.clip = tvOffScript;
-        // }
-        
-        // if (lightsBroken == true)
-        // {
-        //     overlayMesh.enabled = true;
-        //     tvOverlayPlayer.clip = tvDark;
-        // }
-
-        // if (videoBroken == true)
-        // {
-        //     overlayMesh.enabled = true;
-        //     tvOverlayPlayer.clip = tvStatic;
-        // }
-
-        // if (offScript == false &&
-        //     lightsBroken == false &&
-        //     videoBroken == false)
-        // {
-        //      tvOverlay.SetActive(false);   
-        // }
 
         if (malfNum > 0)
         {
@@ -274,14 +249,31 @@ public class MalfManager : MonoBehaviour
 
     public void VideoMalfunction()
     {
-        overlayMesh.enabled = true;
-        tvOverlayPlayer.clip = tvStatic;
-        
         videoBroken = true;
+        Debug.Log("Video malfunction");
     }
 
     public void OffScriptMalfunction()
     {
         offScript = true;
+        Debug.Log("Off Script malfunction");
+
+        tvPlayer.savedTime = tvVideoPlayer.time;
+        tvPlayer.savedAudio = tvAudio.time;
+
+        var randomOffScript = Random.Range(2, 0);
+
+        if (randomOffScript == 1)
+        {
+            tvVideoPlayer.clip = tvOffScript;
+            tvAudio.clip = audioOffScript;
+            tvAudio.Play();
+        }
+        else
+        {
+            tvVideoPlayer.clip = tvOffScript;
+            tvAudio.clip = audioOffScript;
+            tvAudio.Play();
+        }
     }
 }

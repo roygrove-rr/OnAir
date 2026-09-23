@@ -6,8 +6,16 @@ using UnityEngine.Video;
 
 public class TVPlayer : MonoBehaviour
 {
+    public GameObject tvOverlay;
+    private VideoPlayer tvOverlayPlayer;
+
     public VideoPlayer tv;
+
     public VideoClip newsChannel;
+    public VideoClip tvStatic;
+    public VideoClip tvDark;
+    public VideoClip tvOffScript;
+
     public AudioClip audioChannel;
     public AudioClip adMusic;
     public AudioSource audioSource;
@@ -22,6 +30,7 @@ public class TVPlayer : MonoBehaviour
     {
         // Event that detects when the advertisement has finished
         tv.loopPointReached += OnVideoFinished;
+        tvOverlayPlayer = tvOverlay.GetComponent<VideoPlayer>();
     }
 
     // Update is called once per frame
@@ -42,6 +51,26 @@ public class TVPlayer : MonoBehaviour
         {
             audioSource.pitch = 1f;
             tv.playbackSpeed = 1f;
+        }
+
+        if (malfManager.videoBroken == true)
+        {
+            tvOverlay.SetActive(true);
+            tvOverlayPlayer.clip = tvStatic;
+        }
+        else if (malfManager.lightsBroken == true && isAdPlaying == false)
+        {
+            tvOverlay.SetActive(true);
+            tvOverlayPlayer.clip = tvDark;
+        }
+        else if (malfManager.offScript == true && isAdPlaying == false)
+        {
+            tvOverlay.SetActive(true);
+            tvOverlayPlayer.clip = tvOffScript;
+        }
+        else
+        {
+            tvOverlay.SetActive(false);
         }
     }
 
