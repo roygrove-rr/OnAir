@@ -25,11 +25,12 @@ public class GameManager : MonoBehaviour
 
     public Timer timerScript;
     public MalfManager malfManager;
+    public TutorialManager tutorialManager;
     public TextMeshProUGUI gameStateUI;
     
     private void Start()
     {
-        UpdateGameState(GameState.Gameplay);
+        UpdateGameState(GameState.Tutorial);
     }
 
     private void Update()
@@ -79,7 +80,7 @@ public class GameManager : MonoBehaviour
 
     private void HandleTutorial()
     {
-        
+        tutorialManager.tutorialActive = true;
     }
 
 

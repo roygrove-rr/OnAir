@@ -188,7 +188,7 @@ public class MalfManager : MonoBehaviour
                     }
                         
                 }
-                else if (malfRandom == 4)
+                else if (malfRandom == 4 && tvPlayer.isAdPlaying == false)
                 {
                     if (offScript == false)
                     {

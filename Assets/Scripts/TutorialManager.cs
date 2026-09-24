@@ -7,7 +7,8 @@ public class TutorialManager : MonoBehaviour
 {
     public MalfManager malfManager;
     public TextMeshProUGUI tutorialText;
-    public int delay = 1;
+    public int gap = 1;
+    public int delay = 2;
 
     private bool lightingTutorial = false;
     private bool audioTutorial = false;
@@ -16,6 +17,8 @@ public class TutorialManager : MonoBehaviour
     private bool batteryTutorial = false;
     private bool resetTutorial = false;
     private bool attackTutorial = false;
+
+    public bool tutorialActive = false;
     
     // Start is called before the first frame update
     void Start()
@@ -26,7 +29,10 @@ public class TutorialManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+        if (tutorialActive = true)
+        {
+
+        }
     }
 
     void LightingTutorial()
