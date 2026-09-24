@@ -27,6 +27,7 @@ public class InOrderMini : MonoBehaviour
     public Material blueMaterial;
     public Material yellowMaterial;
     public Material defaultMaterial;
+    public Material successMaterial;
 
     public float delayLength = 0.3f;
     private float displayTimer = 0.0f;
@@ -34,11 +35,21 @@ public class InOrderMini : MonoBehaviour
 
     public int[] randomCode = new int[3];
     public int[] userInput = new int[3];
+    public int inputCounter = 0;
+
+    public bool isInactive = true;
+    public bool isPaused = false;
+    public bool isCorrect = false;
+    public bool isWrong = false;
+    public float pauseLength = 0.8f;
+    public float pauseCounter = 0.0f;
     
     // Start is called before the first frame update
     void Start()
     {
-indicatorMesh1 = indicator1.GetComponent<MeshRenderer>();
+        GenerateCode();
+        
+        indicatorMesh1 = indicator1.GetComponent<MeshRenderer>();
         indicatorMesh2 = indicator2.GetComponent<MeshRenderer>();
         indicatorMesh3 = indicator3.GetComponent<MeshRenderer>();
 
@@ -46,6 +57,10 @@ indicatorMesh1 = indicator1.GetComponent<MeshRenderer>();
         codeMesh2 = codeLight2.GetComponent<MeshRenderer>();
         codeMesh3 = codeLight3.GetComponent<MeshRenderer>();
 
+        indicatorMesh1.material = defaultMaterial;
+        indicatorMesh2.material = defaultMaterial;
+        indicatorMesh3.material = defaultMaterial;
+        
         codeMesh1.material = defaultMaterial;
         codeMesh2.material = defaultMaterial;
         codeMesh3.material = defaultMaterial;   
@@ -54,8 +69,67 @@ indicatorMesh1 = indicator1.GetComponent<MeshRenderer>();
     // Update is called once per frame
     void Update()
     {
+        if (isInactive == true)
+        {
+            indicatorMesh1.material = defaultMaterial;
+            indicatorMesh2.material = defaultMaterial;
+            indicatorMesh3.material = defaultMaterial;
+        
+            codeMesh1.material = defaultMaterial;
+            codeMesh2.material = defaultMaterial;
+            codeMesh3.material = defaultMaterial;
+        }
+
+        if (isPaused == true)
+        {
+            if (isCorrect == true)
+            {
+                codeMesh1.material = successMaterial;
+                codeMesh2.material = successMaterial;
+                codeMesh3.material = successMaterial;
+
+                indicatorMesh1.material = successMaterial;
+                indicatorMesh2.material = successMaterial;
+                indicatorMesh3.material = successMaterial;
+                
+                pauseCounter += Time.deltaTime;
+
+                if (pauseCounter >= pauseLength)
+                {
+                    isPaused = false;
+                    isCorrect = false;
+
+                    awaitingInput = false;
+                    isInactive = true;
+                }
+            }
+            else if (isWrong == true)
+            {
+                codeMesh1.material = redMaterial;
+                codeMesh2.material = redMaterial;
+                codeMesh3.material = redMaterial;
+
+                indicatorMesh1.material = redMaterial;
+                indicatorMesh2.material = redMaterial;
+                indicatorMesh3.material = redMaterial;
+                
+                pauseCounter += Time.deltaTime;
+
+                if (pauseCounter >= pauseLength)
+                {
+                    isPaused = false;
+                    isCorrect = false;
+
+                    awaitingInput = false;
+                    isInactive = true;
+                }
+            }
+        }
+        
         if (isDisplaying == true)
         {
+            isInactive = false;
+            
             var codeTry = Random.Range(0, 2);
             displayTimer += Time.deltaTime;
 
@@ -67,10 +141,7 @@ indicatorMesh1 = indicator1.GetComponent<MeshRenderer>();
                         codeMesh1.material = redMaterial;
                         codeMesh2.material = defaultMaterial;
                         codeMesh3.material = defaultMaterial;
-                        randomCode[0] = codeTry;
-                        codeTry = Random.Range(0, 2);
 
-                        Debug.Log(randomCode[0]);
                         displayTimer = 0;
                         displaySect++;
                         break;
@@ -79,14 +150,7 @@ indicatorMesh1 = indicator1.GetComponent<MeshRenderer>();
                         codeMesh1.material = defaultMaterial;
                         codeMesh2.material = redMaterial;
                         codeMesh3.material = defaultMaterial;
-                        while(codeTry == randomCode[0])
-                        {
-                            codeTry = Random.Range(0, 2);
-                        }
-                        randomCode[1] = codeTry;
-                        codeTry = Random.Range(0, 2);
-
-                        Debug.Log(randomCode[1]);
+                        
                         displayTimer = 0;
                         displaySect++;
                         break;
@@ -95,14 +159,7 @@ indicatorMesh1 = indicator1.GetComponent<MeshRenderer>();
                         codeMesh1.material = defaultMaterial;
                         codeMesh2.material = defaultMaterial;
                         codeMesh3.material = redMaterial;
-                        while(codeTry == randomCode[0] || codeTry == randomCode[1])
-                        {
-                            codeTry = Random.Range(0, 2);
-                        }
-                        randomCode[2] = codeTry;
-                        codeTry = Random.Range(0, 2);
 
-                        Debug.Log(randomCode[2]);
                         displayTimer = 0;
                         displaySect++;
                         break;
@@ -111,9 +168,20 @@ indicatorMesh1 = indicator1.GetComponent<MeshRenderer>();
                         lightUp(codeMesh1, 0);
                         lightUp(codeMesh2, 1);
                         lightUp(codeMesh3, 2);
-                        Debug.Log(randomCode[0] + " " + randomCode[1] + " " + randomCode[2]);
 
                         displayTimer = 0;
+                        displaySect++;
+                        break;
+
+                    case 4:
+                        indicatorMesh1.material = redMaterial;
+                        indicatorMesh2.material = blueMaterial;
+                        indicatorMesh3.material = yellowMaterial;
+
+                        Debug.Log("Finished displaying");
+
+                        displayTimer = 0;
+                        displaySect = 0;
                         isDisplaying = false;
                         awaitingInput = true;
                         break;
@@ -123,22 +191,63 @@ indicatorMesh1 = indicator1.GetComponent<MeshRenderer>();
 
         if (awaitingInput == true)
         {
-            
+            if (inputCounter >= 3)
+            {
+                if (userInput[0] == randomCode[0] &&
+                    userInput[1] == randomCode[1] &&
+                    userInput[2] == randomCode[2])
+                {
+                    success();
+                }
+                else
+                {
+                    failure();
+                }
+            }
         }
     }
 
     void GenerateCode()
     {
-        randomCode[0] = Random.Range(0, 2);
-        Debug.Log("1: " + randomCode[0]);
-
-        var _codeTry = Random.Range(0, 2);
-        while (_codeTry == randomCode[0])
+        var RNG = Random.Range(6, 0);
+        switch (RNG)
         {
-            Debug.Log("2: " + _codeTry);
-            _codeTry = Random.Range(0, 2);
+            case 1:
+                randomCode[0] = 0;
+                randomCode[1] = 1;
+                randomCode[2] = 2;
+                break;
+
+            case 2:
+                randomCode[0] = 0;
+                randomCode[1] = 2;
+                randomCode[2] = 1;
+                break;
+
+            case 3:
+                randomCode[0] = 1;
+                randomCode[1] = 0;
+                randomCode[2] = 2;
+                break;
+
+            case 4:
+                randomCode[0] = 1;
+                randomCode[1] = 2;
+                randomCode[2] = 0;
+                break;
+
+            case 5:
+                randomCode[0] = 2;
+                randomCode[1] = 0;
+                randomCode[2] = 1;
+                break;
+
+            case 6:
+                randomCode[0] = 2;
+                randomCode[1] = 1;
+                randomCode[2] = 0;
+                break;
         }
-        randomCode[1] = _codeTry;
     }
 
     void lightUp(MeshRenderer codeMesh, int i)
@@ -161,15 +270,36 @@ indicatorMesh1 = indicator1.GetComponent<MeshRenderer>();
 
     void success()
     {
+        Debug.Log("Success!");
+        Debug.Log(userInput[0] + " " + userInput[1] + " " + userInput[2]);
+        Debug.Log(randomCode[0] + " " + randomCode[1] + " " + randomCode[2]);
+        
+        randomCode[0] = 5;
         randomCode[1] = 5;
         randomCode[2] = 5;
-        randomCode[3] = 5;
         GenerateCode();
-        awaitingInput = false;
+
+        userInput[0] = 5;
+        userInput[1] = 5;
+        userInput[2] = 5;
+        inputCounter = 0;
+
+        isPaused = true;
+        isCorrect = true;
     }
 
     void failure()
     {
-        
+        Debug.Log("Failure");
+        Debug.Log(userInput[0] + " " + userInput[1] + " " + userInput[2]);
+        Debug.Log(randomCode[0] + " " + randomCode[1] + " " + randomCode[2]);
+
+        userInput[0] = 5;
+        userInput[1] = 5;
+        userInput[2] = 5;
+        inputCounter = 0;
+
+        isPaused = true;
+        isWrong = true;
     }
 }

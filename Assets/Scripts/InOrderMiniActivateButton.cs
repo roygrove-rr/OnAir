@@ -25,10 +25,15 @@ public class InOrderMiniActivateButton : MonoBehaviour, IInteractable
 
     public void Interact()
     {
-        inOrder.codeMesh1.material = inOrder.defaultMaterial;
-        inOrder.codeMesh2.material = inOrder.defaultMaterial;
-        inOrder.codeMesh3.material = inOrder.defaultMaterial;
-        
-        inOrder.isDisplaying = true;
+        if (inOrder.isInactive == true)
+        {
+            inOrder.codeMesh1.material = inOrder.defaultMaterial;
+            inOrder.codeMesh2.material = inOrder.defaultMaterial;
+            inOrder.codeMesh3.material = inOrder.defaultMaterial;
+            
+            inOrder.inputCounter = 0;
+            inOrder.isDisplaying = true;
+            inOrder.isInactive = false;
+        }
     }
 }
