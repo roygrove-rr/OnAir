@@ -41,7 +41,7 @@ public class BossPatience : MonoBehaviour
             if (killCounter >= killMeter)
             {
                 killCounterUI.text = "Dead";
-                kill();
+                //kill();
             }
         }
         else

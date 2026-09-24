@@ -7,6 +7,7 @@ public class ProgressTracker : MonoBehaviour
     public GameObject progressTracker;
 
     public int progressCount = 0;
+    public int progressMax = 18;
     public bool isAdding = false;
 
     public Material litMaterial;
@@ -21,17 +22,20 @@ public class ProgressTracker : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (isAdding == true)
+        if (progressCount < progressMax)
         {
-            for (int i = 0; i <= progressCount - 1; i++)
+            if (isAdding == true)
             {
-                var latestIndicator = progressTracker.transform.GetChild(i).gameObject;
-                var indicatorMesh = latestIndicator.GetComponent<MeshRenderer>();
+                for (int i = 0; i <= progressCount - 1; i++)
+                {
+                    var latestIndicator = progressTracker.transform.GetChild(i).gameObject;
+                    var indicatorMesh = latestIndicator.GetComponent<MeshRenderer>();
 
-                indicatorMesh.material = litMaterial;
+                    indicatorMesh.material = litMaterial;
+                }
+
+                isAdding =  false;
             }
-
-            isAdding =  false;
         }
     }
 }
