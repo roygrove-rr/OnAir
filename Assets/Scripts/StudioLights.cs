@@ -4,7 +4,14 @@ using UnityEngine;
 
 public class StudioLights : MonoBehaviour, IInteractable
 {
+    public GameObject lampLight1;
+    public GameObject lampLight2;
+    public GameObject lampLight3;
+    public GameObject lampLight4;
+    public GameObject lampLight5;
+    public GameObject lampLight6;
     public GameObject studioLight;
+
     public bool lightsOn;
     
     // Start is called before the first frame update
@@ -29,11 +36,23 @@ public class StudioLights : MonoBehaviour, IInteractable
         if (lightsOn == true)
         {
             studioLight.SetActive(false);
+            lampLight1.SetActive(false);
+            lampLight2.SetActive(false);
+            lampLight3.SetActive(false);
+            lampLight4.SetActive(false);
+            lampLight5.SetActive(false);
+            lampLight6.SetActive(false);
             lightsOn = false;
         }
         else
         {
             studioLight.SetActive(true);
+            lampLight1.SetActive(true);
+            lampLight2.SetActive(true);
+            lampLight3.SetActive(true);
+            lampLight4.SetActive(true);
+            lampLight5.SetActive(true);
+            lampLight6.SetActive(true);
             lightsOn = true;
         }
     }
