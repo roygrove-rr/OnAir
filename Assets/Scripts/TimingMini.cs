@@ -15,6 +15,8 @@ public class TimingMini : MonoBehaviour
     private GameObject display9;
     private GameObject display10;
 
+    public ProgressTracker progressTracker;
+
     public int randomTarget;
     public int currentTarget;
     private GameObject currentLight;
@@ -243,6 +245,9 @@ public class TimingMini : MonoBehaviour
     public void success()
     {
         randomTarget = Random.Range(10, 0);
+
+        progressTracker.isAdding = true;
+        progressTracker.progressCount++;
 
         updateMaterial(display1, litMaterial);
         updateMaterial(display2, litMaterial);
