@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: 8ad378f8745c5744792068f40e76f39d
+guid: 1cd6021779d0de345b970ac78a7411cb
 ModelImporter:
   serializedVersion: 21300
   internalIDToNameTable: []
@@ -7,13 +7,13 @@ ModelImporter:
   - first:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
-      name: black_MAT
-    second: {fileID: 2100000, guid: f586a2b75ff56c84ea69ea5cd8fe9935, type: 2}
+      name: glowRed_MAT
+    second: {fileID: 2100000, guid: 6850b81221245d14a8da75bc9f55f1f1, type: 2}
   - first:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
-      name: light_MAT
-    second: {fileID: 2100000, guid: 62c76ccf739b7134cb7e6a4a7db24bbf, type: 2}
+      name: glowWhite_MAT
+    second: {fileID: 2100000, guid: dabd80aed6d2af14387e4e805200ba64, type: 2}
   - first:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
