@@ -2867,12 +2867,12 @@ MonoBehaviour:
   indicator1: {fileID: 2041305508}
   indicator2: {fileID: 1749442561}
   indicator3: {fileID: 545865239}
-  indicatorMesh1: {fileID: 0}
-  indicatorMesh2: {fileID: 0}
-  indicatorMesh3: {fileID: 0}
-  codeMesh1: {fileID: 0}
-  codeMesh2: {fileID: 0}
-  codeMesh3: {fileID: 0}
+  indicatorMesh1: {fileID: 2041305511}
+  indicatorMesh2: {fileID: 1749442564}
+  indicatorMesh3: {fileID: 545865242}
+  codeMesh1: {fileID: 1098327505}
+  codeMesh2: {fileID: 181450724}
+  codeMesh3: {fileID: 416028260}
   redMaterial: {fileID: 2100000, guid: d3db80fc832ba3f489ee043751f67b49, type: 2}
   blueMaterial: {fileID: 2100000, guid: 12f4fa7e6d7f8dc4e99dd70bde692cfa, type: 2}
   yellowMaterial: {fileID: 2100000, guid: 48b42d9fa16c615489b98888297219e8, type: 2}
@@ -3511,6 +3511,11 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 9
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1553667204 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 3902009609991103131, guid: ae67bd9c2d46da44fb15a1c05e1851f0, type: 3}
+  m_PrefabInstance: {fileID: 3902009611871445962}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1576796010
 GameObject:
   m_ObjectHideFlags: 0
@@ -3946,7 +3951,7 @@ MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 3902009609991103128, guid: ae67bd9c2d46da44fb15a1c05e1851f0, type: 3}
   m_PrefabInstance: {fileID: 3902009611871445962}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
+  m_GameObject: {fileID: 1553667204}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
@@ -4384,6 +4389,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 3598561486141422352, guid: 18776425532ef134c976759b4c3b4121, type: 3}
+      propertyPath: crosshair
+      value: 
+      objectReference: {fileID: 1553667204}
     - target: {fileID: 3598561486141422352, guid: 18776425532ef134c976759b4c3b4121, type: 3}
       propertyPath: interactionUI
       value: 

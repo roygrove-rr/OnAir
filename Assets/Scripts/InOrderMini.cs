@@ -38,9 +38,7 @@ public class InOrderMini : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        GenerateCode();
-
-        indicatorMesh1 = indicator1.GetComponent<MeshRenderer>();
+indicatorMesh1 = indicator1.GetComponent<MeshRenderer>();
         indicatorMesh2 = indicator2.GetComponent<MeshRenderer>();
         indicatorMesh3 = indicator3.GetComponent<MeshRenderer>();
 
@@ -50,7 +48,7 @@ public class InOrderMini : MonoBehaviour
 
         codeMesh1.material = defaultMaterial;
         codeMesh2.material = defaultMaterial;
-        codeMesh3.material = defaultMaterial;
+        codeMesh3.material = defaultMaterial;   
     }
 
     // Update is called once per frame
@@ -58,6 +56,7 @@ public class InOrderMini : MonoBehaviour
     {
         if (isDisplaying == true)
         {
+            var codeTry = Random.Range(0, 2);
             displayTimer += Time.deltaTime;
 
             if (displayTimer >= delayLength)
@@ -68,8 +67,10 @@ public class InOrderMini : MonoBehaviour
                         codeMesh1.material = redMaterial;
                         codeMesh2.material = defaultMaterial;
                         codeMesh3.material = defaultMaterial;
-                        Debug.Log("Display 1");
+                        randomCode[0] = codeTry;
+                        codeTry = Random.Range(0, 2);
 
+                        Debug.Log(randomCode[0]);
                         displayTimer = 0;
                         displaySect++;
                         break;
@@ -78,8 +79,14 @@ public class InOrderMini : MonoBehaviour
                         codeMesh1.material = defaultMaterial;
                         codeMesh2.material = redMaterial;
                         codeMesh3.material = defaultMaterial;
-                        Debug.Log("Display 2");
+                        while(codeTry == randomCode[0])
+                        {
+                            codeTry = Random.Range(0, 2);
+                        }
+                        randomCode[1] = codeTry;
+                        codeTry = Random.Range(0, 2);
 
+                        Debug.Log(randomCode[1]);
                         displayTimer = 0;
                         displaySect++;
                         break;
@@ -88,8 +95,14 @@ public class InOrderMini : MonoBehaviour
                         codeMesh1.material = defaultMaterial;
                         codeMesh2.material = defaultMaterial;
                         codeMesh3.material = redMaterial;
-                        Debug.Log("Display 3");
+                        while(codeTry == randomCode[0] || codeTry == randomCode[1])
+                        {
+                            codeTry = Random.Range(0, 2);
+                        }
+                        randomCode[2] = codeTry;
+                        codeTry = Random.Range(0, 2);
 
+                        Debug.Log(randomCode[2]);
                         displayTimer = 0;
                         displaySect++;
                         break;
@@ -98,8 +111,7 @@ public class InOrderMini : MonoBehaviour
                         lightUp(codeMesh1, 0);
                         lightUp(codeMesh2, 1);
                         lightUp(codeMesh3, 2);
-                        Debug.Log("Display 4");
-                        Debug.Log(randomCode[0] + randomCode[1] + randomCode[2]);
+                        Debug.Log(randomCode[0] + " " + randomCode[1] + " " + randomCode[2]);
 
                         displayTimer = 0;
                         isDisplaying = false;
@@ -115,71 +127,18 @@ public class InOrderMini : MonoBehaviour
         }
     }
 
-    void DisplayCode()
-    {
-        var displaySect = 0;
-
-        if (displayTimer == delayLength)
-        {
-            switch (displaySect)
-            {
-                case 1:
-                    codeMesh1.material = redMaterial;
-                    codeMesh2.material = defaultMaterial;
-                    codeMesh3.material = defaultMaterial;
-                    Debug.Log("Display 1");
-
-                    displayTimer = 0;
-                    displaySect++;
-                    break;
-
-                case 2:
-                    codeMesh1.material = defaultMaterial;
-                    codeMesh2.material = redMaterial;
-                    codeMesh3.material = defaultMaterial;
-                    Debug.Log("Display 2");
-
-                    displayTimer = 0;
-                    displaySect++;
-                    break;
-
-                case 3:
-                    codeMesh1.material = defaultMaterial;
-                    codeMesh2.material = defaultMaterial;
-                    codeMesh3.material = redMaterial;
-                    Debug.Log("Display 3");
-
-                    displayTimer = 0;
-                    displaySect++;
-                    break;
-
-                case 4:
-                    lightUp(codeMesh1, 0);
-                    lightUp(codeMesh2, 1);
-                    lightUp(codeMesh3, 2);
-                    Debug.Log("Display 4");
-
-                    displayTimer = 0;
-                    isDisplaying = false;
-                    awaitingInput = true;
-                    break;
-            }
-        }
-    }
-
     void GenerateCode()
     {
-        var storedCodeTry = 5;
-        
-        for (int i = 0; i < 3; i++)
+        randomCode[0] = Random.Range(0, 2);
+        Debug.Log("1: " + randomCode[0]);
+
+        var _codeTry = Random.Range(0, 2);
+        while (_codeTry == randomCode[0])
         {
-            var codeTry = Random.Range(0, 2);
-            if (codeTry != storedCodeTry)
-            {
-                randomCode[i] = codeTry;
-                storedCodeTry = codeTry;
-            }
+            Debug.Log("2: " + _codeTry);
+            _codeTry = Random.Range(0, 2);
         }
+        randomCode[1] = _codeTry;
     }
 
     void lightUp(MeshRenderer codeMesh, int i)
@@ -202,6 +161,9 @@ public class InOrderMini : MonoBehaviour
 
     void success()
     {
+        randomCode[1] = 5;
+        randomCode[2] = 5;
+        randomCode[3] = 5;
         GenerateCode();
         awaitingInput = false;
     }
