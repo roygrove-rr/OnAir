@@ -12,6 +12,16 @@ public class StudioLights : MonoBehaviour, IInteractable
     public GameObject lampLight6;
     public GameObject studioLight;
 
+    public GameObject switchLight;
+
+    public MeshRenderer lampShade1;
+    public MeshRenderer lampShade2;
+    public MeshRenderer lampShade3;
+    public GameObject ceilingLight;
+
+    public Material lampShadeOnMat;
+    public Material lampShadeOffMat;
+
     public bool lightsOn;
     
     // Start is called before the first frame update
@@ -42,6 +52,13 @@ public class StudioLights : MonoBehaviour, IInteractable
             lampLight4.SetActive(false);
             lampLight5.SetActive(false);
             lampLight6.SetActive(false);
+            switchLight.SetActive(true);
+
+            lampShade1.material = lampShadeOffMat;
+            lampShade2.material = lampShadeOffMat;
+            lampShade3.material = lampShadeOffMat;
+            ceilingLight.SetActive(false);
+
             lightsOn = false;
         }
         else
@@ -53,6 +70,13 @@ public class StudioLights : MonoBehaviour, IInteractable
             lampLight4.SetActive(true);
             lampLight5.SetActive(true);
             lampLight6.SetActive(true);
+            switchLight.SetActive(true);
+
+            lampShade1.material = lampShadeOnMat;
+            lampShade2.material = lampShadeOnMat;
+            lampShade3.material = lampShadeOnMat;
+            ceilingLight.SetActive(true);
+
             lightsOn = true;
         }
     }

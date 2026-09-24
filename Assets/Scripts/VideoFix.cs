@@ -26,8 +26,15 @@ public class VideoFix : MonoBehaviour, IInteractable
 
     public void Interact()
     {
-        malfManager.videoBroken = false;
-        boss.killCounter = boss.killCounter - 3;
-        malfManager.malfNum--;
+        if (malfManager.videoBroken == true)
+        {
+            malfManager.videoBroken = false;
+            boss.killCounter = boss.killCounter - 3;
+            malfManager.malfNum--;
+        }
+        else
+        {
+
+        }
     }
 }

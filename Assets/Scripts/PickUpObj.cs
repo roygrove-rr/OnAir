@@ -33,12 +33,13 @@ public class PickUpObj : MonoBehaviour, IInteractable
     public void  Interact()
     {
         // Assigns the object to the players heldObj and disables its physics
-        Physics.IgnoreCollision(this.GetComponent<Collider>(), player.GetComponent<Collider>(), true);
-        selfRigidbody.isKinematic = true;
-        this.layer = pickupScript.LayerNumber;
-        
         pickupScript.heldObj = this.gameObject;
         pickupScript.heldObjRb = selfRigidbody;
+        selfRigidbody.isKinematic = true;
+
+        pickupScript.heldObjRb.transform.parent = pickupScript.holdPos.transform;
+        pickupScript.heldObj.layer = 8;
+        Physics.IgnoreCollision(pickupScript.heldObj.GetComponent<Collider>(), player.GetComponent<Collider>(), true);
     }
 
     public void OnCollissionEnter(Collision collision)

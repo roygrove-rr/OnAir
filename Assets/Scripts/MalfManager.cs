@@ -33,9 +33,12 @@ public class MalfManager : MonoBehaviour
     public VideoPlayer tvOverlayPlayer;
     public VideoClip tvStatic;
     public VideoClip tvDark;
+
     public VideoClip tvOffScript;
-    public AudioClip audioOffScript;
-    
+    public AudioClip audioOffScript1;
+    public AudioClip audioOffScript2;
+    public AudioClip audioOffScript3;
+
     private float timef = 0f;
     public int secondsPassed = 0;
 
@@ -265,18 +268,24 @@ public class MalfManager : MonoBehaviour
         tvPlayer.savedTime = tvVideoPlayer.time;
         tvPlayer.savedAudio = tvAudio.time;
 
-        var randomOffScript = Random.Range(2, 0);
+        var randomOffScript = Random.Range(3, 0);
 
         if (randomOffScript == 1)
         {
             tvVideoPlayer.clip = tvOffScript;
-            tvAudio.clip = audioOffScript;
+            tvAudio.clip = audioOffScript1;
+            tvAudio.Play();
+        }
+        else if (randomOffScript == 2)
+        {
+            tvVideoPlayer.clip = tvOffScript;
+            tvAudio.clip = audioOffScript2;
             tvAudio.Play();
         }
         else
         {
             tvVideoPlayer.clip = tvOffScript;
-            tvAudio.clip = audioOffScript;
+            tvAudio.clip = audioOffScript3;
             tvAudio.Play();
         }
     }

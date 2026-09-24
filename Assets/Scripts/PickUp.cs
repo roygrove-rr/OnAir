@@ -8,8 +8,8 @@ public class PickUp : MonoBehaviour
     public GameObject holdPos;
     public GameObject heldObj;
     public Rigidbody heldObjRb;
-    public float throwSpeed = 500;
-    public int LayerNumber;
+    public float throwSpeed = 700;
+    public int LayerNumber = 8;
     private CharacterController controller;
     private float currentPlayerV;
     private Vector3 playerVelocity;
@@ -31,11 +31,13 @@ public class PickUp : MonoBehaviour
             
             if (Input.GetMouseButtonDown(1))
             {
+                //StopClipping();
                 DropObject();
             }
 
             if (Input.GetMouseButtonDown(2))
             {
+                //StopClipping();
                 ThrowObject();
             }
         }
@@ -53,7 +55,8 @@ public class PickUp : MonoBehaviour
         Physics.IgnoreCollision(heldObj.GetComponent<Collider>(), player.GetComponent<Collider>(), false);
         heldObj.layer = 0;
         heldObjRb.isKinematic = false;
-        
+        heldObj.transform.parent = null;
+
         heldObj = null;
     }
 
@@ -64,23 +67,20 @@ public class PickUp : MonoBehaviour
         heldObj.layer = 0;
         heldObjRb.isKinematic = false;
         heldObjRb.AddForce(transform.forward * throwSpeed);
+        heldObj.transform.parent = null;
 
         heldObj = null;
     }
     
-    void StopClipping() //function only called when dropping/throwing
+    void StopClipping()
     {
-        var clipRange = Vector3.Distance(heldObj.transform.position, transform.position); //distance from holdPos to the camera
-        //have to use RaycastAll as object blocks raycast in center screen
-        //RaycastAll returns array of all colliders hit within the cliprange
+        var clipRange = Vector3.Distance(heldObj.transform.position, transform.position);
         RaycastHit[] hits;
         hits = Physics.RaycastAll(transform.position, transform.TransformDirection(Vector3.forward), clipRange);
-        //if the array length is greater than 1, meaning it has hit more than just the object we are carrying
+
         if (hits.Length > 1)
         {
-            //change object position to camera position 
-            heldObj.transform.position = transform.position + new Vector3(0f, -0.5f, 0f); //offset slightly downward to stop object dropping above player 
-            //if your player is small, change the -0.5f to a smaller number (in magnitude) ie: -0.1f
+            heldObj.transform.position = transform.position + new Vector3(0f, -0.1f, 0f);
         }
     }
 }

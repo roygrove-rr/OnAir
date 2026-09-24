@@ -118,7 +118,7 @@ public class InOrderMini : MonoBehaviour
                 if (pauseCounter >= pauseLength)
                 {
                     isPaused = false;
-                    isCorrect = false;
+                    isWrong = false;
 
                     awaitingInput = false;
                     isInactive = true;
