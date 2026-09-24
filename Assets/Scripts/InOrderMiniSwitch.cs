@@ -38,18 +38,21 @@ public class InOrderMiniSwitch : MonoBehaviour, IInteractable
             case "red":
                 inOrder.userInput[i] = 0;
                 Debug.Log(inOrder.userInput[i]);
+                inOrder.indicatorMesh1.material = inOrder.defaultMaterial;
                 inOrder.inputCounter++;
                 break;
 
             case "blue":
-                inOrder.userInput[inOrder.inputCounter] = 1;
+                inOrder.userInput[i] = 1;
                 Debug.Log(inOrder.userInput[i]);
+                inOrder.indicatorMesh2.material = inOrder.defaultMaterial;
                 inOrder.inputCounter++;
                 break;
 
             case "yellow":
                 inOrder.userInput[i] = 2;
                 Debug.Log(inOrder.userInput[i]);
+                inOrder.indicatorMesh3.material = inOrder.defaultMaterial;
                 inOrder.inputCounter++;
                 break;
         }
