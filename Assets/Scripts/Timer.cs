@@ -7,13 +7,13 @@ public class Timer : MonoBehaviour
 {
     public TextMeshProUGUI timerText;
     public float sectionLength = 90f;
-    public bool isCountingDown = false;
+    public bool isCountingDown = true;
     public int section = 1;
     
     // Start is called before the first frame update
     void Start()
     {
-
+        isCountingDown = true;
     }
 
     // Update is called once per frame

@@ -17,6 +17,8 @@ public class AdvertisementPlayer : MonoBehaviour, IInteractable
     private VideoPlayer tvPlayer;
     private int randomAd = 1;
     public TVPlayer tvScript;
+
+    public BossPatience boss;
     
     // Start is called before the first frame update
     void Start()
@@ -39,9 +41,9 @@ public class AdvertisementPlayer : MonoBehaviour, IInteractable
     {
         
         // If the tv is not already playing an ad, it starts playing one
-        if (tvPlayer.clip == null || tvPlayer.clip == newsChannel)
+        if (tvPlayer.clip == newsChannel || malfManager.offScript == true)
         {
-            if (tvPlayer.clip == newsChannel)
+            if (tvPlayer.clip == newsChannel && malfManager.offScript == false)
             {
                 tvScript.savedTime = tvPlayer.time;
                 tvScript.savedAudio = audioSource.time;
@@ -61,16 +63,28 @@ public class AdvertisementPlayer : MonoBehaviour, IInteractable
                     {
                         case 0:
                             tvPlayer.clip = adChannel_1;
+                            audioSource.clip = adMusic;
+                            audioSource.Play();
+                            FixOffScript();
+                            tvScript.isAdPlaying = true;
                             adPlayed++;
                             break;
 
                         case 1:
                             tvPlayer.clip = adChannel_2;
+                            audioSource.clip = adMusic;
+                            audioSource.Play();
+                            FixOffScript();
+                            tvScript.isAdPlaying = true;
                             adPlayed++;
                             break;
 
                         case 2:
                             tvPlayer.clip = adChannel_3;
+                            audioSource.clip = adMusic;
+                            audioSource.Play();
+                            FixOffScript();
+                            tvScript.isAdPlaying = true;
                             adPlayed++;
                             break;
                     }
@@ -80,9 +94,18 @@ public class AdvertisementPlayer : MonoBehaviour, IInteractable
                     randomAd = Random.Range(0, 3);
                 }
 
-                audioSource.clip = adMusic;
-                malfManager.isAdPlaying = true;
+                
             }
+        }
+    }
+
+    void FixOffScript()
+    {
+        if (malfManager.offScript == true)
+        {
+            boss.killCounter = boss.killCounter - 3;
+            malfManager.offScript = false;
+            malfManager.malfNum--;
         }
     }
 }

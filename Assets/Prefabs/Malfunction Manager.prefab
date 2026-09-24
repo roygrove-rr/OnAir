@@ -1,0 +1,68 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1 &6743729619386425849
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 6743729619386425855}
+  - component: {fileID: 6743729619386425848}
+  m_Layer: 0
+  m_Name: Malfunction Manager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &6743729619386425855
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6743729619386425849}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 24.219704, y: -6.620119, z: -14.905489}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &6743729619386425848
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6743729619386425849}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7b366c31f4c2f9c4a9a64dea314d27d3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  active: 0
+  malfunctionUI: {fileID: 0}
+  timer: {fileID: 0}
+  tvAudio: {fileID: 0}
+  audioDistortionMin: 0.5
+  audioDistortionMax: 2
+  audioPitchLow: 0
+  stage: {fileID: 0}
+  eyes: {fileID: 0}
+  tvOverlay: {fileID: 0}
+  tvOverlayPlayer: {fileID: 0}
+  tvStatic: {fileID: 0}
+  tvDark: {fileID: 0}
+  tvOffScript: {fileID: 0}
+  secondsPassed: 0
+  malfNum: 0
+  malfRandom: 0
+  audioBroken: 0
+  lightsBroken: 0
+  videoBroken: 0
+  offScript: 0
+  malfHappening: 0

@@ -10,6 +10,8 @@ public class PickUpObj : MonoBehaviour, IInteractable
     public GameObject player;
     public LayerMask layer;
     private Rigidbody selfRigidbody;
+
+    public bool fuse = false;
     
     // Start is called before the first frame update
     void Start()
@@ -37,5 +39,17 @@ public class PickUpObj : MonoBehaviour, IInteractable
         
         pickupScript.heldObj = this.gameObject;
         pickupScript.heldObjRb = selfRigidbody;
+    }
+
+    public void OnCollissionEnter(Collision collision)
+    {
+        if (collision.gameObject.CompareTag("Collision Trigger"))
+        {
+            Physics.IgnoreCollision(this.GetComponent<Collider>(), player.GetComponent<Collider>(), false);
+            layer = 0;
+            selfRigidbody.isKinematic = false;
+
+            pickupScript.heldObj = null;
+        }
     }
 }

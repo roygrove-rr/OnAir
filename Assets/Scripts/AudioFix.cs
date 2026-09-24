@@ -5,6 +5,7 @@ using UnityEngine;
 public class AudioFix : MonoBehaviour, IInteractable
 {
     public MalfManager malfManager;
+    public BossPatience boss;
     public AudioSource tvAudio;
     private AudioDistortionFilter distortionFilter;
     
@@ -32,9 +33,15 @@ public class AudioFix : MonoBehaviour, IInteractable
             if (tvAudio != null)
             {
                 tvAudio.pitch = 1;
+                malfManager.lastDistortion = tvAudio.pitch;
             }
             malfManager.audioBroken = false;
+            boss.killCounter = boss.killCounter - 3;
             malfManager.malfNum--;
+        }
+        else
+        {
+
         }
     }
 }

@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Diagnostics.Tracing;
+using TMPro;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -23,6 +24,8 @@ public class GameManager : MonoBehaviour
     }
 
     public Timer timerScript;
+    public MalfManager malfManager;
+    public TextMeshProUGUI gameStateUI;
     
     private void Start()
     {
@@ -31,7 +34,7 @@ public class GameManager : MonoBehaviour
 
     private void Update()
     {
-        //Debug.Log(State);
+        gameStateUI.text = State.ToString();
     }
 
 
@@ -43,6 +46,10 @@ public class GameManager : MonoBehaviour
         {
             case GameState.MainMenu:
                 HandleMainMenu();
+                break;
+
+            case GameState.Tutorial:
+                HandleTutorial();
                 break;
 
             case GameState.Gameplay:
@@ -70,10 +77,15 @@ public class GameManager : MonoBehaviour
 
     }
 
+    private void HandleTutorial()
+    {
+        
+    }
+
 
     private void HandleGameplay()
     {
-
+        malfManager.active = true;
     }
 
     private void HandlePaused()
@@ -100,6 +112,7 @@ public class GameManager : MonoBehaviour
 public enum GameState
 {
     MainMenu,
+    Tutorial,
     Gameplay,
     Paused,
     GameOver,
