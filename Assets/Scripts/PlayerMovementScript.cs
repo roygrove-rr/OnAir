@@ -38,12 +38,6 @@ public class PlayerMovementScript : MonoBehaviour
 
         controller.Move(move * speed * Time.deltaTime);
 
-        // Makes the character jump when the space bar is pressed (Jumping is broken right now ignore this)
-        //if (Input.GetButtonDown("Jump") && isGrounded)
-        //{
-        //    velocity.y = Mathf.Sqrt(jumpHeight * -2f * gravity);
-        //}
-
         // Apply gravity 
         velocity.y += gravity * Time.deltaTime;
         controller.Move(velocity * Time.deltaTime);
