@@ -81,6 +81,7 @@ public class GameManager : MonoBehaviour
     private void HandleTutorial()
     {
         tutorialManager.tutorialActive = true;
+        tutorialManager.progressTutorial = true;
     }
 
 
