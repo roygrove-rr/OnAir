@@ -28,6 +28,7 @@ public class TimingMini : MonoBehaviour
     private float pauseLength = 1;
     private float pauseTimer;
     private bool isPaused;
+    public bool isActive;
 
     public Material litMaterial;
     public Material unlitMaterial;
@@ -52,6 +53,7 @@ public class TimingMini : MonoBehaviour
         randomTarget = Random.Range(10, 0);
 
         isPaused = false;
+        isActive = false;
     }
 
     // Update is called once per frame
@@ -98,7 +100,7 @@ public class TimingMini : MonoBehaviour
             }
         }
 
-        if (isPaused == false)
+        if (isPaused == false && isActive == true)
         {
             switch (counter)
             {
@@ -220,6 +222,19 @@ public class TimingMini : MonoBehaviour
             {
                 updateMaterial(currentLight, litMaterial);
             }
+        }
+        else
+        {
+            updateMaterial(display1, unlitMaterial);
+            updateMaterial(display2, unlitMaterial);
+            updateMaterial(display3, unlitMaterial);
+            updateMaterial(display4, unlitMaterial);
+            updateMaterial(display5, unlitMaterial);
+            updateMaterial(display6, unlitMaterial);
+            updateMaterial(display7, unlitMaterial);
+            updateMaterial(display8, unlitMaterial);
+            updateMaterial(display9, unlitMaterial);
+            updateMaterial(display10, unlitMaterial);
         }
     }
 

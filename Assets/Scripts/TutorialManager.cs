@@ -6,19 +6,24 @@ using UnityEngine;
 public class TutorialManager : MonoBehaviour
 {
     public MalfManager malfManager;
+    public GameManager gameManager;
     public TextMeshProUGUI tutorialText;
-    public int gap = 1;
-    public int delay = 2;
+    public float gap = 2.0f;
+    public float delay = 5.0f;
+    public float timer = 0.0f;
 
     private bool lightingTutorial = false;
     private bool audioTutorial = false;
     private bool videoTutorial = false;
     private bool offScriptTutorial = false;
     private bool batteryTutorial = false;
-    private bool resetTutorial = false;
+    public bool progressTutorial = false;
     private bool attackTutorial = false;
 
     public bool tutorialActive = false;
+
+    public TimingMini timingMini;
+    public ProgressTracker progressTracker;
     
     // Start is called before the first frame update
     void Start()
@@ -29,9 +34,30 @@ public class TutorialManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (tutorialActive = true)
+        if (tutorialActive == true)
         {
+            if (progressTutorial == true)
+            {
+                timer += Time.deltaTime;
 
+                if (timer >= delay)
+                {
+                    if (progressTracker.progressCount < 1)
+                    {
+                        timingMini.isActive = true;
+                    }
+                    else
+                    {
+                        timingMini.isActive = false;
+                        timer = 0;
+                        progressTutorial = false;
+                        batteryTutorial = true;
+
+                        gameManager.UpdateGameState(GameState.Gameplay);
+                    }
+                }
+                tutorialText.text = "Progress Meter Tutorial";
+            }
         }
     }
 
