@@ -146,8 +146,8 @@ MonoBehaviour:
   lampLight5: {fileID: 494406699}
   lampLight6: {fileID: 637007044}
   studioLight: {fileID: 1360654968}
-  illumination1: {fileID: 0}
-  illumination2: {fileID: 0}
+  illumination1: {fileID: 1815473485}
+  illumination2: {fileID: 1020383939}
   switchLight: {fileID: 1808100761}
   lampShade1: {fileID: 1198577016626945749}
   lampShade2: {fileID: 350187056}
@@ -156,9 +156,9 @@ MonoBehaviour:
   lampShadeOnMat: {fileID: 2100000, guid: 1b778a99c27e8fd4cbdde9b2feb7e1a4, type: 2}
   lampShadeOffMat: {fileID: 2100000, guid: 32a2aa64b86edb14ca51e490b0bd8e53, type: 2}
   lightsOn: 0
-  reporter: {fileID: 0}
-  boss: {fileID: 0}
-  malfManager: {fileID: 0}
+  reporter: {fileID: 784647323}
+  boss: {fileID: 469074619}
+  malfManager: {fileID: 319273275}
 --- !u!65 &42780942
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -13978,7 +13978,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &1058418916
 RectTransform:
   m_ObjectHideFlags: 0
