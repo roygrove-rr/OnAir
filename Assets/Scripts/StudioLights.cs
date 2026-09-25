@@ -11,6 +11,8 @@ public class StudioLights : MonoBehaviour, IInteractable
     public GameObject lampLight5;
     public GameObject lampLight6;
     public GameObject studioLight;
+    public GameObject illumination1;
+    public GameObject illumination2;
 
     public GameObject switchLight;
 
@@ -23,6 +25,10 @@ public class StudioLights : MonoBehaviour, IInteractable
     public Material lampShadeOffMat;
 
     public bool lightsOn;
+
+    public ReporterAnger reporter;
+    public BossPatience boss;
+    public MalfManager malfManager;
     
     // Start is called before the first frame update
     void Start()
@@ -58,6 +64,14 @@ public class StudioLights : MonoBehaviour, IInteractable
             lampShade2.material = lampShadeOffMat;
             lampShade3.material = lampShadeOffMat;
             ceilingLight.SetActive(false);
+
+            if (reporter.isOutOfPlace == true)
+            {
+                reporter.isOutOfPlace = false;
+                reporter.malfTriggered = false;
+                boss.killCounter = boss.killCounter - 3;
+                malfManager.malfNum--;
+            }
 
             lightsOn = false;
         }

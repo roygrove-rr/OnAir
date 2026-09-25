@@ -31,12 +31,12 @@ public class BossAppear : MonoBehaviour
     {
         if (isActive == true)
         {
-            myRenderer.material = invisMaterial;
+            myRenderer.material = darkMaterial;
             isActive = false;
         }
         else
         {
-            myRenderer.material = darkMaterial;
+            myRenderer.material = invisMaterial;
         }
     }
 }

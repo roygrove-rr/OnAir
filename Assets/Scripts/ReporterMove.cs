@@ -4,6 +4,11 @@ using UnityEngine;
 
 public class ReporterMove : MonoBehaviour
 {
+    public Timer timer;
+    public MalfManager malfManager;
+    public BossPatience boss;
+    public ReporterAnger reporterAI;
+    
     public Transform moveSpot1;
     public Transform moveSpot2;
     public Transform reporter;
@@ -19,20 +24,23 @@ public class ReporterMove : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+        if (reporterAI.isOutOfPlace == false)
+        {
+            reporter.transform.position = moveSpot1.transform.position;
+            pos1 = true;
+        }
     }
 
     private void OnBecameInvisible()
     {
-        if (pos1 == true)
+        if (reporterAI.isOutOfPlace == true)
         {
             reporter.transform.position = moveSpot2.transform.position;
             pos1 = false;
         }
         else
         {
-            reporter.transform.position = moveSpot1.transform.position;
-            pos1 = true;
+            
         }
     }
 }

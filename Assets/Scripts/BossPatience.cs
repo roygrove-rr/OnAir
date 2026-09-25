@@ -20,6 +20,9 @@ public class BossPatience : MonoBehaviour
     private float killMeter;
     public float killCounter;
 
+    public float lightCounter = 0.0f;
+    public float lightMax = 15.0f;
+
     private bool warned1 = false;
     private bool warned2 = false;
     
@@ -81,6 +84,16 @@ public class BossPatience : MonoBehaviour
             finalWarningUI.text = "warning 2";
             bossAppear.isActive = true;
             warned2 = true;
+        }
+
+        if (lightCounter >= 0)
+        {
+            lightCounter -= Time.deltaTime;
+        }
+        if (lightCounter >= lightMax)
+        {
+            killCounterUI.text = "Dead";
+            kill();
         }
     }
 
