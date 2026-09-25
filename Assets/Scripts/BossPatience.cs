@@ -36,10 +36,9 @@ public class BossPatience : MonoBehaviour
         
         if (malfManager.malfHappening == true && malfManager.active == true)
         {
-            if (simonSays.isDisplaying == true)
+            if (simonSays.isDisplaying == true || simonSays.isDelaying == true)
             {
-                patience -= (Time.deltaTime * malfManager.malfNum);
-                killCounter += Time.deltaTime;
+                   
             }
             else
             {
@@ -49,7 +48,7 @@ public class BossPatience : MonoBehaviour
             
             if (malfManager.offScript == true)
             {
-                killMeter = (patience * 0.03f - 5f);
+                killMeter = (patience * 0.03f);
             }
             else
             {
@@ -64,10 +63,6 @@ public class BossPatience : MonoBehaviour
         }
         else
         {
-            if (killCounter >= killMeter / 3)
-            {
-                bossAppear.isActive = true;
-            }
             killCounter = 0;
             killCounterUI.text = killCounter.ToString() + "/" + killMeter.ToString();
         }

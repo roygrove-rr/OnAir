@@ -78,7 +78,7 @@ public class SimonSays : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (active == true) 
+        if (active == true)
         {
             if (isDelaying == true)
             {
@@ -152,24 +152,24 @@ public class SimonSays : MonoBehaviour
             yellowMesh.material = yellowMaterial;
 
 
-                if (inputLength == randomOrder.Length)
+            if (inputLength == randomOrder.Length)
+            {
+                if (userInput[0] == randomOrder[0] &&
+                    userInput[1] == randomOrder[1] &&
+                    userInput[2] == randomOrder[2] &&
+                    userInput[3] == randomOrder[3])
                 {
-                    if (userInput[0] == randomOrder[0] &&
-                        userInput[1] == randomOrder[1] &&
-                        userInput[2] == randomOrder[2] &&
-                        userInput[3] == randomOrder[3])
-                    {
-                        Debug.Log("Success!");
-                        awaitingInput = false;
-                        success();
-                    }
-                    else
-                    {
-                        Debug.Log("Wrong");
-                        awaitingInput = false;
-                        failure();
-                    }
+                    Debug.Log("Success!");
+                    awaitingInput = false;
+                    success();
                 }
+                else
+                {
+                    Debug.Log("Wrong");
+                    awaitingInput = false;
+                    failure();
+                }
+            }
         }
         else if (inputCooldown == true)
         {
@@ -179,6 +179,18 @@ public class SimonSays : MonoBehaviour
             blueMesh.material = defaultMaterial;
             greenMesh.material = defaultMaterial;
             yellowMesh.material = defaultMaterial;
+
+            if (cooldownTimer >= inputCooldownTime)
+            {
+                awaitingInput = true;
+                inputCooldown = false;
+            }
+        }
+        else if (successCooldown == true)
+        {
+            cooldownTimer += Time.deltaTime;
+
+            indicatorMesh.material = greenMaterial;
 
             if (cooldownTimer >= inputCooldownTime)
             {

@@ -50,15 +50,8 @@ public class AdvertisementPlayer : MonoBehaviour, IInteractable
             }
 
             // Picks from a random ad to display, and checks to make sure that it's not the same as the last one
-            var previousAd = randomAd;
-            var adPlayed = 0;
-
-            while (adPlayed < 1)
-            {
-                randomAd = Random.Range(0, 3);
-
-                if (randomAd != previousAd)
-                {
+            randomAd = Random.Range(0, 3);
+                    
                     switch (randomAd)
                     {
                         case 0:
@@ -67,7 +60,6 @@ public class AdvertisementPlayer : MonoBehaviour, IInteractable
                             audioSource.Play();
                             FixOffScript();
                             tvScript.isAdPlaying = true;
-                            adPlayed++;
                             break;
 
                         case 1:
@@ -76,7 +68,6 @@ public class AdvertisementPlayer : MonoBehaviour, IInteractable
                             audioSource.Play();
                             FixOffScript();
                             tvScript.isAdPlaying = true;
-                            adPlayed++;
                             break;
 
                         case 2:
@@ -85,17 +76,8 @@ public class AdvertisementPlayer : MonoBehaviour, IInteractable
                             audioSource.Play();
                             FixOffScript();
                             tvScript.isAdPlaying = true;
-                            adPlayed++;
                             break;
                     }
-                }
-                else
-                {
-                    randomAd = Random.Range(0, 3);
-                }
-
-                
-            }
         }
     }
 
