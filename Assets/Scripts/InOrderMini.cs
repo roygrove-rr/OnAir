@@ -5,6 +5,10 @@ using UnityEngine;
 
 public class InOrderMini : MonoBehaviour
 {
+    public MalfManager malfManager;
+    public BossPatience boss;
+    public AudioSource tvAudio;
+    
     public bool isDisplaying = false;
     public bool awaitingInput = false;
 
@@ -16,12 +20,15 @@ public class InOrderMini : MonoBehaviour
     public GameObject indicator2;
     public GameObject indicator3;
 
+    public GameObject errorIndicator;
+
     public MeshRenderer indicatorMesh1;
     public MeshRenderer indicatorMesh2;
     public MeshRenderer indicatorMesh3;
     public MeshRenderer codeMesh1;
     public MeshRenderer codeMesh2;
     public MeshRenderer codeMesh3;
+    public MeshRenderer errorMesh;
 
     public Material redMaterial;
     public Material blueMaterial;
@@ -57,13 +64,17 @@ public class InOrderMini : MonoBehaviour
         codeMesh2 = codeLight2.GetComponent<MeshRenderer>();
         codeMesh3 = codeLight3.GetComponent<MeshRenderer>();
 
+        errorMesh = errorIndicator.GetComponent<MeshRenderer>();
+
         indicatorMesh1.material = defaultMaterial;
         indicatorMesh2.material = defaultMaterial;
         indicatorMesh3.material = defaultMaterial;
         
         codeMesh1.material = defaultMaterial;
         codeMesh2.material = defaultMaterial;
-        codeMesh3.material = defaultMaterial;   
+        codeMesh3.material = defaultMaterial;  
+        
+        errorMesh.material = defaultMaterial;
     }
 
     // Update is called once per frame
@@ -101,6 +112,8 @@ public class InOrderMini : MonoBehaviour
 
                     awaitingInput = false;
                     isInactive = true;
+
+                    pauseCounter = 0;
                 }
             }
             else if (isWrong == true)
@@ -122,6 +135,8 @@ public class InOrderMini : MonoBehaviour
 
                     awaitingInput = false;
                     isInactive = true;
+
+                    pauseCounter = 0;
                 }
             }
         }
@@ -205,6 +220,15 @@ public class InOrderMini : MonoBehaviour
                 }
             }
         }
+
+        if (malfManager.audioBroken == true)
+        {
+            errorMesh.material = redMaterial;
+        }
+        else
+        {
+            errorMesh.material = defaultMaterial;
+        }
     }
 
     void GenerateCode()
@@ -283,6 +307,15 @@ public class InOrderMini : MonoBehaviour
         userInput[1] = 5;
         userInput[2] = 5;
         inputCounter = 0;
+
+        if (tvAudio != null)
+        {
+            tvAudio.pitch = 1;
+            malfManager.lastDistortion = tvAudio.pitch;
+        }
+        malfManager.audioBroken = false;
+        boss.killCounter = boss.killCounter - 3;
+        malfManager.malfNum--;
 
         isPaused = true;
         isCorrect = true;

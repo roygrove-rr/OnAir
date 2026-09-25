@@ -5,6 +5,7 @@ using UnityEngine;
 public class InOrderMiniActivateButton : MonoBehaviour, IInteractable
 {
     public InOrderMini inOrder;
+    public MalfManager malfManager;
     
     // Start is called before the first frame update
     void Start()
@@ -27,13 +28,16 @@ public class InOrderMiniActivateButton : MonoBehaviour, IInteractable
     {
         if (inOrder.isInactive == true)
         {
-            inOrder.codeMesh1.material = inOrder.defaultMaterial;
-            inOrder.codeMesh2.material = inOrder.defaultMaterial;
-            inOrder.codeMesh3.material = inOrder.defaultMaterial;
-            
-            inOrder.inputCounter = 0;
-            inOrder.isDisplaying = true;
-            inOrder.isInactive = false;
+            if (malfManager.audioBroken == true)
+            {
+                inOrder.codeMesh1.material = inOrder.defaultMaterial;
+                inOrder.codeMesh2.material = inOrder.defaultMaterial;
+                inOrder.codeMesh3.material = inOrder.defaultMaterial;
+
+                inOrder.inputCounter = 0;
+                inOrder.isDisplaying = true;
+                inOrder.isInactive = false;
+            }
         }
     }
 }

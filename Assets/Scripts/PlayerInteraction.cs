@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
+using System.Security.Cryptography.X509Certificates;
 
 // This is the universal interaction code, none of what happens when you interact with objects is handled here, so leave this unchanged.
 
@@ -13,6 +14,8 @@ public class PlayerInteraction : MonoBehaviour
     public GameObject interactionUI;
     public GameObject crosshair;
     public TextMeshProUGUI interactionText;
+
+    public PickUp pickUp;
     
     // Start is called before the first frame update
     void Start()
@@ -53,6 +56,6 @@ public class PlayerInteraction : MonoBehaviour
         }
 
         interactionUI.SetActive(hitSomething);
-        crosshair.SetActive(!hitSomething);
+        crosshair.SetActive(!hitSomething && pickUp.heldObj == null);
     }
 }

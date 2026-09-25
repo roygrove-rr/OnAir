@@ -22,6 +22,8 @@ public class TutorialManager : MonoBehaviour
 
     public bool tutorialActive = false;
 
+    public bool tvBroken = false;
+
     public TimingMini timingMini;
     public ProgressTracker progressTracker;
     
@@ -70,8 +72,17 @@ public class TutorialManager : MonoBehaviour
 
                 if (timer >= gap)
                 {
-                    malfManager.VideoMalfunction();
-
+                    malfManager.videoBroken = true;
+                    if (malfManager.videoBroken == true)
+                    {
+                        malfManager.VideoMalfunction();
+                    }
+                    else
+                    {
+                        timer = 0;
+                        videoTutorial = false;
+                        audioTutorial = true;
+                    }
                     tutorialText.text = "Video Malfunction Tutorial";
                 }
             }

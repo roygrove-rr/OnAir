@@ -7,6 +7,7 @@ public class PickUp : MonoBehaviour
     public GameObject player;
     public GameObject holdPos;
     public GameObject heldObj;
+    public GameObject interactionUI;
     public Rigidbody heldObjRb;
     public float throwSpeed = 700;
     public int LayerNumber = 8;
@@ -33,13 +34,17 @@ public class PickUp : MonoBehaviour
             {
                 //StopClipping();
                 DropObject();
+                StopClipping();
             }
 
             if (Input.GetMouseButtonDown(2))
             {
                 //StopClipping();
                 ThrowObject();
+                StopClipping();
             }
+
+            interactionUI.SetActive(false);
         }
     }
 

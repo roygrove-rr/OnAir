@@ -14,6 +14,9 @@ public class BossPatience : MonoBehaviour
     public TextMeshProUGUI finalWarningUI;
     public TextMeshProUGUI killCounterUI;
 
+    public BossAppear bossAppear;
+    public SimonSays simonSays;
+
     private float killMeter;
     public float killCounter;
 
@@ -31,13 +34,28 @@ public class BossPatience : MonoBehaviour
     {
         patienceUI.text = patience.ToString();
         
-        if (malfManager.malfHappening == true)
+        if (malfManager.malfHappening == true && malfManager.active == true)
         {
-            patience -= (Time.deltaTime * malfManager.malfNum);
-
-            killCounter += Time.deltaTime;
-            killMeter = (patience * 0.03f + 5f);
-            killCounterUI.text = killCounter.ToString() + "/" + killMeter.ToString();
+            if (simonSays.isDisplaying == true)
+            {
+                patience -= (Time.deltaTime * malfManager.malfNum);
+                killCounter += Time.deltaTime;
+            }
+            else
+            {
+                patience -= (Time.deltaTime * malfManager.malfNum);
+                killCounter += Time.deltaTime;
+            }
+            
+            if (malfManager.offScript == true)
+            {
+                killMeter = (patience * 0.03f - 5f);
+            }
+            else
+            {
+                killMeter = (patience * 0.03f + 5f);
+            }
+                killCounterUI.text = killCounter.ToString() + "/" + killMeter.ToString();
             if (killCounter >= killMeter)
             {
                 killCounterUI.text = "Dead";
@@ -46,6 +64,10 @@ public class BossPatience : MonoBehaviour
         }
         else
         {
+            if (killCounter >= killMeter / 3)
+            {
+                bossAppear.isActive = true;
+            }
             killCounter = 0;
             killCounterUI.text = killCounter.ToString() + "/" + killMeter.ToString();
         }
@@ -54,6 +76,7 @@ public class BossPatience : MonoBehaviour
         {
             Debug.Log("First warning");
             firstWarningUI.text = "warning 1";
+            bossAppear.isActive = true;
             warned1 = true;
         }
 
@@ -61,6 +84,7 @@ public class BossPatience : MonoBehaviour
         {
             Debug.Log("Final warning");
             finalWarningUI.text = "warning 2";
+            bossAppear.isActive = true;
             warned2 = true;
         }
     }
