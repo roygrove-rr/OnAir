@@ -68,6 +68,7 @@ public class StudioLights : MonoBehaviour, IInteractable
             if (reporter.isOutOfPlace == true)
             {
                 reporter.isOutOfPlace = false;
+                reporter.malfTriggered = false;
                 boss.killCounter = boss.killCounter - 3;
                 malfManager.malfNum--;
             }

@@ -6826,6 +6826,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 5489356697476149049}
     - target: {fileID: 2973544434236180680, guid: 76ecc8b108c450249a64f32e71c4041e, type: 3}
+      propertyPath: errorMesh
+      value: 
+      objectReference: {fileID: 725135288}
+    - target: {fileID: 2973544434236180680, guid: 76ecc8b108c450249a64f32e71c4041e, type: 3}
       propertyPath: malfManager
       value: 
       objectReference: {fileID: 319273275}
@@ -6933,6 +6937,10 @@ PrefabInstance:
       propertyPath: m_Materials.Array.data[0]
       value: 
       objectReference: {fileID: 2100000, guid: 14f56298c5003654b9c2d154ea492a80, type: 2}
+    - target: {fileID: 2973544434377207609, guid: 76ecc8b108c450249a64f32e71c4041e, type: 3}
+      propertyPath: malfManager
+      value: 
+      objectReference: {fileID: 319273275}
     - target: {fileID: 2973544434377207610, guid: 76ecc8b108c450249a64f32e71c4041e, type: 3}
       propertyPath: m_LocalPosition.x
       value: -0.37700006
@@ -10528,6 +10536,11 @@ PrefabInstance:
 --- !u!1 &725135286 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 2973544435094473537, guid: 76ecc8b108c450249a64f32e71c4041e, type: 3}
+  m_PrefabInstance: {fileID: 478938066}
+  m_PrefabAsset: {fileID: 0}
+--- !u!23 &725135288 stripped
+MeshRenderer:
+  m_CorrespondingSourceObject: {fileID: 2973544435094473566, guid: 76ecc8b108c450249a64f32e71c4041e, type: 3}
   m_PrefabInstance: {fileID: 478938066}
   m_PrefabAsset: {fileID: 0}
 --- !u!1 &766206284
