@@ -536,7 +536,7 @@ MeshCollider:
   serializedVersion: 4
   m_Convex: 0
   m_CookingOptions: 30
-  m_Mesh: {fileID: 353013899}
+  m_Mesh: {fileID: 1407196215}
 --- !u!33 &107118560
 MeshFilter:
   m_ObjectHideFlags: 10
@@ -2392,7 +2392,7 @@ MeshCollider:
   serializedVersion: 4
   m_Convex: 0
   m_CookingOptions: 30
-  m_Mesh: {fileID: 802556187}
+  m_Mesh: {fileID: 667169408}
 --- !u!33 &217828511
 MeshFilter:
   m_ObjectHideFlags: 10
@@ -3102,6 +3102,7 @@ MonoBehaviour:
   State: 0
   timerScript: {fileID: 1088099856}
   malfManager: {fileID: 319273275}
+  timingMini: {fileID: 0}
   tutorialManager: {fileID: 1935381215}
   gameStateUI: {fileID: 1225517282}
 --- !u!4 &261630115
@@ -3152,7 +3153,7 @@ MeshCollider:
   serializedVersion: 4
   m_Convex: 0
   m_CookingOptions: 30
-  m_Mesh: {fileID: 353013899}
+  m_Mesh: {fileID: 1183227905}
 --- !u!33 &263279512
 MeshFilter:
   m_ObjectHideFlags: 10
@@ -3989,6 +3990,8 @@ MonoBehaviour:
   boss: {fileID: 327486721}
   darkMaterial: {fileID: 0}
   invisMaterial: {fileID: 0}
+  isActive: 0
+  isNotActive: 1
 --- !u!114 &327486723
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4004,6 +4007,8 @@ MonoBehaviour:
   boss: {fileID: 327486721}
   darkMaterial: {fileID: 2100000, guid: aa77cd4a6c52e42429d59cf15ef149c1, type: 2}
   invisMaterial: {fileID: 2100000, guid: b43b033b5d9025b40a89390e97e0ea34, type: 2}
+  isActive: 0
+  isNotActive: 1
 --- !u!1 &333511628
 GameObject:
   m_ObjectHideFlags: 0
@@ -4816,7 +4821,7 @@ MeshCollider:
   serializedVersion: 4
   m_Convex: 0
   m_CookingOptions: 30
-  m_Mesh: {fileID: 894345938}
+  m_Mesh: {fileID: 690725031}
 --- !u!33 &350594651
 MeshFilter:
   m_ObjectHideFlags: 10
@@ -6705,6 +6710,8 @@ MonoBehaviour:
   firstWarningUI: {fileID: 288946795}
   finalWarningUI: {fileID: 1850563201}
   killCounterUI: {fileID: 493360103}
+  bossAppear: {fileID: 327486722}
+  simonSays: {fileID: 1678577425}
   killCounter: 0
 --- !u!135 &469074620
 SphereCollider:
@@ -6803,6 +6810,22 @@ PrefabInstance:
       propertyPath: m_LocalPosition.z
       value: -2.463
       objectReference: {fileID: 0}
+    - target: {fileID: 2973544434236180680, guid: 76ecc8b108c450249a64f32e71c4041e, type: 3}
+      propertyPath: boss
+      value: 
+      objectReference: {fileID: 469074619}
+    - target: {fileID: 2973544434236180680, guid: 76ecc8b108c450249a64f32e71c4041e, type: 3}
+      propertyPath: tvAudio
+      value: 
+      objectReference: {fileID: 5489356697476149049}
+    - target: {fileID: 2973544434236180680, guid: 76ecc8b108c450249a64f32e71c4041e, type: 3}
+      propertyPath: malfManager
+      value: 
+      objectReference: {fileID: 319273275}
+    - target: {fileID: 2973544434236180680, guid: 76ecc8b108c450249a64f32e71c4041e, type: 3}
+      propertyPath: errorIndicator
+      value: 
+      objectReference: {fileID: 725135286}
     - target: {fileID: 2973544434236180681, guid: 76ecc8b108c450249a64f32e71c4041e, type: 3}
       propertyPath: m_RootOrder
       value: 2
@@ -8604,7 +8627,7 @@ MeshCollider:
   serializedVersion: 4
   m_Convex: 0
   m_CookingOptions: 30
-  m_Mesh: {fileID: 1537276184}
+  m_Mesh: {fileID: 584934509}
 --- !u!33 &613089872
 MeshFilter:
   m_ObjectHideFlags: 10
@@ -9108,7 +9131,7 @@ MeshCollider:
   serializedVersion: 4
   m_Convex: 0
   m_CookingOptions: 30
-  m_Mesh: {fileID: 1641036430}
+  m_Mesh: {fileID: 1980478457}
 --- !u!33 &634983123
 MeshFilter:
   m_ObjectHideFlags: 10
@@ -10422,6 +10445,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 679350365849f454a9c93cce25b750b9, type: 3}
+--- !u!1 &725135286 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 2973544435094473537, guid: 76ecc8b108c450249a64f32e71c4041e, type: 3}
+  m_PrefabInstance: {fileID: 478938066}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &766206284
 GameObject:
   m_ObjectHideFlags: 0
@@ -11262,7 +11290,7 @@ MeshCollider:
   serializedVersion: 4
   m_Convex: 0
   m_CookingOptions: 30
-  m_Mesh: {fileID: 530335010}
+  m_Mesh: {fileID: 1934931648}
 --- !u!33 &820510895
 MeshFilter:
   m_ObjectHideFlags: 10
@@ -15975,7 +16003,7 @@ MeshCollider:
   serializedVersion: 4
   m_Convex: 0
   m_CookingOptions: 30
-  m_Mesh: {fileID: 894345938}
+  m_Mesh: {fileID: 1633228285}
 --- !u!33 &1367684114
 MeshFilter:
   m_ObjectHideFlags: 10
@@ -18040,6 +18068,10 @@ PrefabInstance:
     m_TransformParent: {fileID: 0}
     m_Modifications:
     - target: {fileID: 3598561486141422352, guid: 18776425532ef134c976759b4c3b4121, type: 3}
+      propertyPath: pickUp
+      value: 
+      objectReference: {fileID: 820607865}
+    - target: {fileID: 3598561486141422352, guid: 18776425532ef134c976759b4c3b4121, type: 3}
       propertyPath: crosshair
       value: 
       objectReference: {fileID: 2116219171}
@@ -18232,7 +18264,7 @@ MeshCollider:
   serializedVersion: 4
   m_Convex: 0
   m_CookingOptions: 30
-  m_Mesh: {fileID: 400970220}
+  m_Mesh: {fileID: 1984345919}
 --- !u!33 &1595516894
 MeshFilter:
   m_ObjectHideFlags: 10
@@ -19464,6 +19496,17 @@ MeshCollider:
   m_Convex: 0
   m_CookingOptions: 30
   m_Mesh: {fileID: 0}
+--- !u!114 &1678577425 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 4577535646389242627, guid: cf8338bb8b97dac41b9a3a167fb08cfb, type: 3}
+  m_PrefabInstance: {fileID: 705248608}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1678577421}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 344db1cdcbb6e6c45bb97912ffbf14a0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1688143594
 GameObject:
   m_ObjectHideFlags: 0
@@ -20105,7 +20148,7 @@ MeshCollider:
   serializedVersion: 4
   m_Convex: 0
   m_CookingOptions: 30
-  m_Mesh: {fileID: 690725031}
+  m_Mesh: {fileID: 810551178}
 --- !u!33 &1747578906
 MeshFilter:
   m_ObjectHideFlags: 10
@@ -21705,7 +21748,7 @@ MeshCollider:
   serializedVersion: 4
   m_Convex: 0
   m_CookingOptions: 30
-  m_Mesh: {fileID: 402616141}
+  m_Mesh: {fileID: 1756871697}
 --- !u!33 &1840109285
 MeshFilter:
   m_ObjectHideFlags: 10
@@ -22323,7 +22366,7 @@ MeshCollider:
   serializedVersion: 4
   m_Convex: 0
   m_CookingOptions: 30
-  m_Mesh: {fileID: 802556187}
+  m_Mesh: {fileID: 1641036430}
 --- !u!33 &1875799556
 MeshFilter:
   m_ObjectHideFlags: 10
@@ -23020,6 +23063,7 @@ MonoBehaviour:
   timer: 0
   progressTutorial: 0
   tutorialActive: 0
+  tvBroken: 0
   timingMini: {fileID: 704447899}
   progressTracker: {fileID: 1342799317}
 --- !u!4 &1935381216
