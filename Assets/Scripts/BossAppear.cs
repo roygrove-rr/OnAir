@@ -8,11 +8,12 @@ public class BossAppear : MonoBehaviour
     private MeshRenderer myRenderer;
 
     public GameObject boss;
+    
     public Material darkMaterial;
     public Material invisMaterial;
 
-    private bool isActive = true;
-    private bool isNotActive = false;
+    public bool isActive = false;
+    public bool isNotActive = true;
 
     // Start is called before the first frame update
     void Start()
@@ -36,7 +37,6 @@ public class BossAppear : MonoBehaviour
         else
         {
             myRenderer.material = darkMaterial;
-            isActive = true;
         }
     }
 }

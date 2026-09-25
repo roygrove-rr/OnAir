@@ -25,12 +25,13 @@ public class GameManager : MonoBehaviour
 
     public Timer timerScript;
     public MalfManager malfManager;
+    public TimingMini timingMini;
     public TutorialManager tutorialManager;
     public TextMeshProUGUI gameStateUI;
     
     private void Start()
     {
-        UpdateGameState(GameState.Tutorial);
+        UpdateGameState(GameState.Gameplay);
     }
 
     private void Update()
@@ -88,6 +89,7 @@ public class GameManager : MonoBehaviour
     private void HandleGameplay()
     {
         malfManager.active = true;
+        timingMini.isActive = true;
     }
 
     private void HandlePaused()

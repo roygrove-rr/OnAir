@@ -8,6 +8,7 @@ public class SimonSays : MonoBehaviour
 {
     public MalfManager malfManager;
     public BossPatience boss;
+    public TutorialManager tutorial;
     
     public GameObject redButton;
     public GameObject blueButton;
@@ -143,8 +144,7 @@ public class SimonSays : MonoBehaviour
                 }
             }
         }
-        
-        if (awaitingInput == true)
+        else if (awaitingInput == true)
         {
             redMesh.material = redMaterial;
             blueMesh.material = blueMaterial;
@@ -171,8 +171,7 @@ public class SimonSays : MonoBehaviour
                     }
                 }
         }
-
-        if (inputCooldown == true)
+        else if (inputCooldown == true)
         {
             cooldownTimer += Time.deltaTime;
 
@@ -186,6 +185,19 @@ public class SimonSays : MonoBehaviour
                 awaitingInput = true;
                 inputCooldown = false;
             }
+        }
+        else
+        {
+            redMesh.material = defaultMaterial;
+            blueMesh.material = defaultMaterial;
+            greenMesh.material = defaultMaterial;
+            yellowMesh.material = defaultMaterial;
+            indicatorMesh.material = defaultMaterial;
+        }
+
+        if (malfManager.videoBroken)
+        {
+            indicatorMesh.material = redMaterial;
         }
     }
 
