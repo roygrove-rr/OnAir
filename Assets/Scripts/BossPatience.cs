@@ -57,7 +57,8 @@ public class BossPatience : MonoBehaviour
             {
                 killMeter = (patience * 0.03f + 5f);
             }
-                killCounterUI.text = killCounter.ToString() + "/" + killMeter.ToString();
+            
+            //killCounterUI.text = killCounter.ToString() + "/" + killMeter.ToString();
             if (killCounter >= killMeter)
             {
                 killCounterUI.text = "Dead";
@@ -67,7 +68,7 @@ public class BossPatience : MonoBehaviour
         else
         {
             killCounter = 0;
-            killCounterUI.text = killCounter.ToString() + "/" + killMeter.ToString();
+            //killCounterUI.text = killCounter.ToString() + "/" + killMeter.ToString();
         }
 
         if (patience <= (patienceInit / 2) && warned1 == false)

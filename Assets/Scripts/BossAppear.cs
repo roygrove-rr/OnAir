@@ -19,6 +19,7 @@ public class BossAppear : MonoBehaviour
     void Start()
     {
         myRenderer = GetComponent<MeshRenderer>();
+        myRenderer.material = invisMaterial;
     }
 
     // Update is called once per frame
