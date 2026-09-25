@@ -4058,6 +4058,10 @@ PrefabInstance:
       propertyPath: m_Materials.Array.data[0]
       value: 
       objectReference: {fileID: 2100000, guid: 14f56298c5003654b9c2d154ea492a80, type: 2}
+    - target: {fileID: 2973544434377207609, guid: 76ecc8b108c450249a64f32e71c4041e, type: 3}
+      propertyPath: malfManager
+      value: 
+      objectReference: {fileID: 319273275}
     - target: {fileID: 2973544434377207610, guid: 76ecc8b108c450249a64f32e71c4041e, type: 3}
       propertyPath: m_LocalPosition.x
       value: -0.37700006
