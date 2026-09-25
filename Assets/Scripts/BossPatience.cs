@@ -55,7 +55,7 @@ public class BossPatience : MonoBehaviour
             }
             else
             {
-                killMeter = (patience * 0.03f + 5f);
+                killMeter = (patience * 0.03f + 7f);
             }
             
             //killCounterUI.text = killCounter.ToString() + "/" + killMeter.ToString();
