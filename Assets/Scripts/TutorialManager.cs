@@ -52,11 +52,28 @@ public class TutorialManager : MonoBehaviour
                         timer = 0;
                         progressTutorial = false;
                         batteryTutorial = true;
-
-                        gameManager.UpdateGameState(GameState.Gameplay);
                     }
+                    tutorialText.text = "Progress Meter Tutorial";
                 }
-                tutorialText.text = "Progress Meter Tutorial";
+                
+            }
+
+            if (batteryTutorial == true)
+            {
+                batteryTutorial = true;
+                videoTutorial = true;
+            }
+
+            if (videoTutorial == true)
+            {
+                timer += Time.deltaTime;
+
+                if (timer >= gap)
+                {
+                    malfManager.VideoMalfunction();
+
+                    tutorialText.text = "Video Malfunction Tutorial";
+                }
             }
         }
     }

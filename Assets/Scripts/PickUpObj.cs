@@ -11,12 +11,17 @@ public class PickUpObj : MonoBehaviour, IInteractable
     public LayerMask layer;
     private Rigidbody selfRigidbody;
 
-    public bool fuse = false;
+    public bool door;
     
     // Start is called before the first frame update
     void Start()
     {
         selfRigidbody = this.GetComponent<Rigidbody>();
+
+        if (door == true)
+        {
+            selfRigidbody.isKinematic = true;
+        }
     }
 
     // Update is called once per frame
@@ -40,17 +45,5 @@ public class PickUpObj : MonoBehaviour, IInteractable
         pickupScript.heldObjRb.transform.parent = pickupScript.holdPos.transform;
         pickupScript.heldObj.layer = 8;
         Physics.IgnoreCollision(pickupScript.heldObj.GetComponent<Collider>(), player.GetComponent<Collider>(), true);
-    }
-
-    public void OnCollissionEnter(Collision collision)
-    {
-        if (collision.gameObject.CompareTag("Collision Trigger"))
-        {
-            Physics.IgnoreCollision(this.GetComponent<Collider>(), player.GetComponent<Collider>(), false);
-            layer = 0;
-            selfRigidbody.isKinematic = false;
-
-            pickupScript.heldObj = null;
-        }
     }
 }

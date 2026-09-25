@@ -223,19 +223,19 @@ public class TimingMini : MonoBehaviour
                 updateMaterial(currentLight, litMaterial);
             }
         }
-        else
-        {
-            updateMaterial(display1, unlitMaterial);
-            updateMaterial(display2, unlitMaterial);
-            updateMaterial(display3, unlitMaterial);
-            updateMaterial(display4, unlitMaterial);
-            updateMaterial(display5, unlitMaterial);
-            updateMaterial(display6, unlitMaterial);
-            updateMaterial(display7, unlitMaterial);
-            updateMaterial(display8, unlitMaterial);
-            updateMaterial(display9, unlitMaterial);
-            updateMaterial(display10, unlitMaterial);
-        }
+        //else
+        //{
+        //    updateMaterial(display1, unlitMaterial);
+        //    updateMaterial(display2, unlitMaterial);
+        //    updateMaterial(display3, unlitMaterial);
+        //    updateMaterial(display4, unlitMaterial);
+        //    updateMaterial(display5, unlitMaterial);
+        //    updateMaterial(display6, unlitMaterial);
+        //    updateMaterial(display7, unlitMaterial);
+        //    updateMaterial(display8, unlitMaterial);
+        //    updateMaterial(display9, unlitMaterial);
+        //    updateMaterial(display10, unlitMaterial);
+        //}
     }
 
     void updateMaterial(GameObject display, Material matType)

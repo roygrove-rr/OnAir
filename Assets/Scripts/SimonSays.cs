@@ -6,6 +6,9 @@ using static UnityEditor.Experimental.AssetDatabaseExperimental.AssetDatabaseCou
 
 public class SimonSays : MonoBehaviour
 {
+    public MalfManager malfManager;
+    public BossPatience boss;
+    
     public GameObject redButton;
     public GameObject blueButton;
     public GameObject greenButton;
@@ -195,7 +198,12 @@ public class SimonSays : MonoBehaviour
         randomOrder[2] = UnityEngine.Random.Range(0, 3);
         randomOrder[3] = UnityEngine.Random.Range(0, 3);
 
+        malfManager.videoBroken = false;
+        boss.killCounter = boss.killCounter - 3;
+        malfManager.malfNum--;
+
         successCooldown = true;
+        active = false;
     }
 
     public void failure()

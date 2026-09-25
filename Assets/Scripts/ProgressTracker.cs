@@ -11,12 +11,20 @@ public class ProgressTracker : MonoBehaviour
     public bool isAdding = false;
 
     public Material litMaterial;
+    public Material redMaterial;
     public Material unlitMaterial;
+
+    public int scrollCounter;
+
+    private float scrollTimer = 0.0f;
+    private float scrollSpeed = 0.1f;
+    private GameObject scrollIndicatorLast;
+    private MeshRenderer scrollMeshLast;
     
     // Start is called before the first frame update
     void Start()
     {
-        
+        scrollCounter = progressCount;
     }
 
     // Update is called once per frame
@@ -35,6 +43,39 @@ public class ProgressTracker : MonoBehaviour
                 }
 
                 isAdding =  false;
+            }
+
+            if (scrollCounter < progressMax)
+            {
+                scrollTimer += Time.deltaTime;
+
+                if (scrollTimer >= scrollSpeed)
+                {
+                    var scrollIndicator = progressTracker.transform.GetChild(scrollCounter).gameObject;
+                    var scrollMesh = scrollIndicator.GetComponent<MeshRenderer>();
+
+                    if (scrollCounter != 0)
+                    {
+                        scrollIndicatorLast = progressTracker.transform.GetChild(scrollCounter - 1).gameObject;
+                        scrollMeshLast = scrollIndicatorLast.GetComponent<MeshRenderer>();
+                    }
+                    else
+                    {
+                        scrollIndicatorLast = progressTracker.transform.GetChild(progressMax - 1).gameObject;
+                        scrollMeshLast = scrollIndicatorLast.GetComponent<MeshRenderer>();
+                    }
+
+                    scrollMesh.material = redMaterial;
+                    scrollIndicatorLast = progressTracker.transform.GetChild(progressMax - 1).gameObject;
+                    scrollMeshLast = scrollIndicatorLast.GetComponent<MeshRenderer>();
+                    Debug.Log("scroll");
+                    scrollTimer = 0;
+                    scrollCounter++;
+                }
+            }
+            else
+            {
+                scrollCounter = progressCount;
             }
         }
     }
