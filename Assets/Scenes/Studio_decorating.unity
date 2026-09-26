@@ -31627,6 +31627,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 8300000, guid: 481c098faa3da8046bf5877858e88aaa, type: 3}
     - target: {fileID: 366107801, guid: 33e4ceed0ca1d0b4dbc1e200a05b304e, type: 3}
+      propertyPath: reporter
+      value: 
+      objectReference: {fileID: 3469287837695767462}
+    - target: {fileID: 366107801, guid: 33e4ceed0ca1d0b4dbc1e200a05b304e, type: 3}
       propertyPath: tvStatic
       value: 
       objectReference: {fileID: 32900000, guid: e91ca1cb3e46bc042ae1839547b02521, type: 3}
@@ -31634,6 +31638,10 @@ PrefabInstance:
       propertyPath: newsIntro
       value: 
       objectReference: {fileID: 32900000, guid: b5ecc4e47e4850d44bbad04b95e57186, type: 3}
+    - target: {fileID: 366107801, guid: 33e4ceed0ca1d0b4dbc1e200a05b304e, type: 3}
+      propertyPath: tvMissing
+      value: 
+      objectReference: {fileID: 32900000, guid: cda037982630d1b4e870b958cb4edf33, type: 3}
     - target: {fileID: 366107801, guid: 33e4ceed0ca1d0b4dbc1e200a05b304e, type: 3}
       propertyPath: tvOverlay
       value: 
