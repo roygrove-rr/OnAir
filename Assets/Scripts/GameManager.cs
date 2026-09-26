@@ -28,6 +28,7 @@ public class GameManager : MonoBehaviour
     public TimingMini timingMini;
     public TutorialManager tutorialManager;
     public TextMeshProUGUI gameStateUI;
+    public AudioSource phone;
     
     private void Start()
     {

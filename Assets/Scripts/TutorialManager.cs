@@ -8,8 +8,8 @@ public class TutorialManager : MonoBehaviour
     public MalfManager malfManager;
     public GameManager gameManager;
     public TextMeshProUGUI tutorialText;
-    public float gap = 2.0f;
-    public float delay = 5.0f;
+    public float gap = 15.0f;
+    public float delay = 15.0f;
     public float timer = 0.0f;
 
     private bool lightingTutorial = false;
@@ -23,14 +23,20 @@ public class TutorialManager : MonoBehaviour
     public bool tutorialActive = false;
 
     public bool tvBroken = false;
+    public bool stereoBroken = false;
+    public bool spotBroken = false;
 
     public TimingMini timingMini;
     public ProgressTracker progressTracker;
+    public AudioSource phone;
+
+    public AudioClip tutorialVoice;
     
     // Start is called before the first frame update
     void Start()
     {
-        
+        phone.clip = tutorialVoice;
+        phone.Play();
     }
 
     // Update is called once per frame
@@ -52,6 +58,9 @@ public class TutorialManager : MonoBehaviour
                     {
                         timingMini.isActive = false;
                         timer = 0;
+                        phone.clip = tutorialVoice;
+                        phone.Play();
+
                         progressTutorial = false;
                         batteryTutorial = true;
                     }
@@ -72,18 +81,75 @@ public class TutorialManager : MonoBehaviour
 
                 if (timer >= gap)
                 {
-                    malfManager.videoBroken = true;
-                    if (malfManager.videoBroken == true)
+                    if (tvBroken == false)
                     {
                         malfManager.VideoMalfunction();
+                        tvBroken = true;
                     }
-                    else
+
+                    if (tvBroken == true && malfManager.videoBroken == false)
                     {
                         timer = 0;
+                        malfManager.malfNum++;
+                        phone.clip = tutorialVoice;
+                        phone.Play();
+
                         videoTutorial = false;
                         audioTutorial = true;
                     }
                     tutorialText.text = "Video Malfunction Tutorial";
+                }
+            }
+
+            if (audioTutorial == true)
+            {
+                timer += Time.deltaTime;
+
+                if (timer >= gap)
+                {
+                    if (stereoBroken == false)
+                    {
+                        malfManager.AudioMalfunction();
+                        stereoBroken = true;
+                    }
+
+                    if (stereoBroken == true && malfManager.audioBroken == false)
+                    {
+                        timer = 0;
+                        malfManager.malfNum++;
+                        phone.clip = tutorialVoice;
+                        phone.Play();
+
+                        audioTutorial = false;
+                        lightingTutorial = true;
+                    }
+                    tutorialText.text = "Audio Malfunction Tutorial";
+                }
+            }
+
+            if (lightingTutorial == true)
+            {
+                timer += Time.deltaTime;
+
+                if (timer >= gap)
+                {
+                    if (spotBroken == false)
+                    {
+                        malfManager.LightingMalfunction();
+                        spotBroken = true;
+                    }
+
+                    if (spotBroken == true && malfManager.lightsBroken == false)
+                    {
+                        timer = 0;
+                        malfManager.malfNum++;
+                        phone.clip = tutorialVoice;
+                        phone.Play();
+
+                        lightingTutorial = false;
+                        attackTutorial = true;
+                    }
+                    tutorialText.text = "Lighting Malfunction Tutorial";
                 }
             }
         }
