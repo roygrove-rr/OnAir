@@ -53,7 +53,7 @@ public class TimingMini : MonoBehaviour
         randomTarget = Random.Range(10, 0);
 
         isPaused = false;
-        isActive = false;
+        isActive = true;
     }
 
     // Update is called once per frame

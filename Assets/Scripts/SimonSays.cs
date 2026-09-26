@@ -195,7 +195,8 @@ public class SimonSays : MonoBehaviour
             if (cooldownTimer >= inputCooldownTime)
             {
                 awaitingInput = true;
-                inputCooldown = false;
+                successCooldown = false;
+                inputCooldownTime = 1;
             }
         }
         else
@@ -210,6 +211,10 @@ public class SimonSays : MonoBehaviour
         if (malfManager.videoBroken)
         {
             indicatorMesh.material = redMaterial;
+        }
+        else
+        {
+            indicatorMesh.material = greenMaterial;
         }
     }
 
@@ -226,6 +231,7 @@ public class SimonSays : MonoBehaviour
         boss.killCounter = boss.killCounter - 3;
         malfManager.malfNum--;
 
+        inputCooldownTime = 1;
         successCooldown = true;
         active = false;
     }

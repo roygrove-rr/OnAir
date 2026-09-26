@@ -70,148 +70,150 @@ public class MalfManager : MonoBehaviour
         if (active == true)
         {
             if (malfNum < maxMalfunctions)
-        {
+            {
             timef += Time.deltaTime;
             secondsPassed = Mathf.FloorToInt(timef);
-        }
-        else
-        {
+            }
+            else
+            {
             
-        }
+            }
 
-        switch (timer.section)
-        {
-            case 1:
-                malfTriggerMax = 20;
-                malfTriggerMin = 15;
-                maxMalfunctions = 1;
-                break;
-
-            case 2:
-                malfTriggerMax = 15;
-                malfTriggerMin = 10;
-                maxMalfunctions = 1;
-                break;
-
-            case 3:
-                malfTriggerMax = 15;
-                malfTriggerMin = 10;
-                maxMalfunctions = 2;
-                break;
-
-            case 4:
-                malfTriggerMax = 12;
-                malfTriggerMin = 7;
-                maxMalfunctions = 2;
-                break;
-
-            case 5:
-                malfTriggerMax = 12;
-                malfTriggerMin = 7;
-                maxMalfunctions = 3;
-                break;
-
-            default:
-                malfTriggerMax = 10;
-                malfTriggerMin = 5;
-                maxMalfunctions = 3;
-                break;
-
-        }
-
-        malfTrigger = Random.Range(malfTriggerMax, malfTriggerMin);
-        
-        if (secondsPassed >= malfTrigger && malfNum < maxMalfunctions)
-        {
-            var malfTriggered = 0;
-            malfRandom = Random.Range(4, 0);
-
-            while (malfTriggered < 1)
-                if (malfNum >= maxMalfunctions)
-                {
+            switch (timer.section)
+            {
+                case 1:
+                    malfTriggerMax = 20;
+                    malfTriggerMin = 15;
+                    maxMalfunctions = 1;
                     break;
-                }
-                else if (malfRandom == 1)
+
+                case 2:
+                    malfTriggerMax = 15;
+                    malfTriggerMin = 10;
+                    maxMalfunctions = 1;
+                    break;
+
+                case 3:
+                    malfTriggerMax = 15;
+                    malfTriggerMin = 10;
+                    maxMalfunctions = 2;
+                    break;
+
+                case 4:
+                    malfTriggerMax = 12;
+                    malfTriggerMin = 7;
+                    maxMalfunctions = 2;
+                    break;
+
+                case 5:
+                    malfTriggerMax = 12;
+                    malfTriggerMin = 7;
+                    maxMalfunctions = 3;
+                    break;
+
+                default:
+                    malfTriggerMax = 10;
+                    malfTriggerMin = 5;
+                    maxMalfunctions = 3;
+                    break;
+            }
+
+            malfTrigger = Random.Range(malfTriggerMax, malfTriggerMin);
+
+            if (secondsPassed >= malfTrigger && malfNum < maxMalfunctions)
+            {
+                var malfTriggered = 0;
+                malfRandom = Random.Range(4, 0);
+
+                if (malfTriggered < 1)
                 {
-                    if (audioBroken == false)
+                    if (malfNum <= maxMalfunctions)
                     {
-                        if (tvPlayer.isAdPlaying == false)
+
+                        if (malfRandom == 1)
                         {
-                            Debug.Log("Audio Malfunction Occured");
-                            AudioMalfunction();
+                            if (audioBroken == false)
+                            {
+                                if (tvPlayer.isAdPlaying == false)
+                                {
+                                    Debug.Log("Audio Malfunction Occured");
+                                    AudioMalfunction();
 
-                            malfNum++;
+                                    malfNum++;
 
-                            malfTriggered++;
+                                    malfTriggered++;
+                                }
+                            }
+                            else
+                            {
+                                Debug.Log("There is already a malfunction of type audio");
+                                malfRandom = Random.Range(4, 0);
+                            }
                         }
-                    }
-                    else
-                    {
-                        Debug.Log("There is already a malfunction of type audio");
-                        malfRandom = Random.Range(4, 0);
+                        else if (malfRandom == 2)
+                        {
+                            if (lightsBroken == false)
+                            {
+                                Debug.Log("Lighting Malfunction Occured");
+                                tvOverlay.SetActive(true);
+                                LightingMalfunction();
+
+                                malfNum++;
+
+                                malfTriggered++;
+                            }
+                            else
+                            {
+                                Debug.Log("There is already a malfunction of type lighting");
+                                malfRandom = Random.Range(4, 0);
+                            }
+                        }
+                        else if (malfRandom == 3)
+                        {
+                            if (videoBroken == false)
+                            {
+                                Debug.Log("Video Malfunction Occured");
+                                VideoMalfunction();
+
+                                malfNum++;
+
+                                malfTriggered++;
+                            }
+                            else
+                            {
+                                Debug.Log("There is already a malfunction of type video");
+                                tvOverlay.SetActive(true);
+                                malfRandom = Random.Range(4, 0);
+                            }
+
+                        }
+                        else if (malfRandom == 4 && tvPlayer.isAdPlaying == false)
+                        {
+                            if (offScript == false)
+                            {
+                                Debug.Log("Off Script Malfunction Occured");
+                                OffScriptMalfunction();
+
+                                malfNum++;
+
+                                malfTriggered++;
+                            }
+                            else
+                            {
+                                Debug.Log("There is already a malfunction of type off script");
+                                malfRandom = Random.Range(4, 0);
+                            }
+
+                        }
+                        else
+                        {
+                            malfRandom = Random.Range(4, 0);
+                        }
+
+                        timef = 0;
                     }
                 }
-                else if (malfRandom == 2)
-                {
-                    if (lightsBroken == false)
-                    {
-                        Debug.Log("Lighting Malfunction Occured");
-                        tvOverlay.SetActive(true);
-                        LightingMalfunction();
-
-                        malfNum++;
-
-                        malfTriggered++;
-                    }
-                    else
-                    {
-                        Debug.Log("There is already a malfunction of type lighting");
-                        malfRandom = Random.Range(4, 0);
-                    }
-                }
-                else if (malfRandom == 3)
-                {
-                    if (videoBroken == false)
-                    {
-                        Debug.Log("Video Malfunction Occured");
-                        VideoMalfunction();
-
-                        malfNum++;
-
-                        malfTriggered++;
-                    }
-                    else
-                    {
-                        Debug.Log("There is already a malfunction of type video");
-                        tvOverlay.SetActive(true);
-                        malfRandom = Random.Range(4, 0);
-                    }
-                        
-                }
-                else if (malfRandom == 4 && tvPlayer.isAdPlaying == false)
-                {
-                    if (offScript == false)
-                    {
-                        Debug.Log("Off Script Malfunction Occured");
-                        OffScriptMalfunction();
-
-                        malfNum++;
-
-                        malfTriggered++;
-                    }
-                    else
-                    {
-                        Debug.Log("There is already a malfunction of type off script");
-                        malfRandom = Random.Range(4, 0);
-                    }
-                        
-                }
-                else
-                {
-                    malfRandom = Random.Range(4, 0);
-                }
-
-                timef = 0;
+            }
         }
 
         if (malfNum > 0)
@@ -223,7 +225,6 @@ public class MalfManager : MonoBehaviour
             malfHappening = false;
         }
         malfunctionUI.text = malfNum.ToString();
-        }
     }
 
     public void LightingMalfunction()

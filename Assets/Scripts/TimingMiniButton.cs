@@ -25,13 +25,16 @@ public class TimingMiniButton : MonoBehaviour, IInteractable
 
     public void Interact()
     {
-        if (timingMini.currentTarget == timingMini.randomTarget)
+        if (timingMini.isActive == true)
         {
-            timingMini.success();
-        }
-        else
-        {
-            timingMini.failure();
+            if (timingMini.currentTarget == timingMini.randomTarget)
+            {
+                timingMini.success();
+            }
+            else
+            {
+                timingMini.failure();
+            }
         }
     }
 }
