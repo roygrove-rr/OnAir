@@ -99,7 +99,8 @@ public class GameManager : MonoBehaviour
 
     private void HandleGameOver()
     {
-
+        Debug.Log("GAME OVER TRIGGERED");
+        SceneManager.LoadScene("GameOverMenu");
     }
 
     private void HandleGameWin()
