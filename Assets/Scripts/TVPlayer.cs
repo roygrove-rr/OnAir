@@ -77,7 +77,7 @@ public class TVPlayer : MonoBehaviour
             tvOverlay.SetActive(true);
             tvOverlayPlayer.clip = tvDark;
         }
-        else if (reporter.isOutOfPlace)
+        else if (reporter.isOutOfPlace == true)
         {
             tvOverlay.SetActive(true);
             tvOverlayPlayer.clip = tvMissing;
