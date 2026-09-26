@@ -5,6 +5,7 @@ using UnityEngine;
 public class PlayerMovementScript : MonoBehaviour
 {
     public CharacterController controller;
+    public AudioSource footsteps;
 
     public float speed = 12f;
     public float gravity = -9.81f;
@@ -41,5 +42,14 @@ public class PlayerMovementScript : MonoBehaviour
         // Apply gravity 
         velocity.y += gravity * Time.deltaTime;
         controller.Move(velocity * Time.deltaTime);
+
+        if (controller.velocity.magnitude > 0.1f)
+        {
+            footsteps.enabled = true;
+        }
+        else
+        {
+            footsteps.enabled = false;
+        }
     }
 }
