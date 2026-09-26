@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Diagnostics.Tracing;
 using UnityEngine;
 
 public class StudioLights : MonoBehaviour, IInteractable
@@ -29,6 +30,9 @@ public class StudioLights : MonoBehaviour, IInteractable
     public ReporterAnger reporter;
     public BossPatience boss;
     public MalfManager malfManager;
+
+    private float counter = 0.0f;
+    private float trigger = 10.0f;
     
     // Start is called before the first frame update
     void Start()
@@ -39,7 +43,14 @@ public class StudioLights : MonoBehaviour, IInteractable
     // Update is called once per frame
     void Update()
     {
-        
+        if (lightsOn == false)
+        {
+            counter += Time.deltaTime;
+            if (counter >= trigger)
+            {
+                boss.lightCounter = 20;
+            }
+        }
     }
 
     public string GetDescription()
@@ -93,5 +104,6 @@ public class StudioLights : MonoBehaviour, IInteractable
 
             lightsOn = true;
         }
+        boss.lightCounter++;
     }
 }

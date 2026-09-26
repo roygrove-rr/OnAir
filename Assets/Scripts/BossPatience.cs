@@ -17,6 +17,7 @@ public class BossPatience : MonoBehaviour
     public BossAppear bossAppear;
     public SimonSays simonSays;
     public InOrderMini inOrder;
+    public DeathScene death;
 
     private float killMeter;
     public float killCounter;
@@ -68,7 +69,7 @@ public class BossPatience : MonoBehaviour
             if (killCounter >= killMeter)
             {
                 killCounterUI.text = "Dead";
-                //kill();
+                kill();
             }
         }
         else
@@ -117,5 +118,7 @@ public class BossPatience : MonoBehaviour
     void kill()
     {
         malfManager.active = false;
+        death.active = true;
+
     }
 }
