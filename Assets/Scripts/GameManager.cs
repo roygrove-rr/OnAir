@@ -89,6 +89,8 @@ public class GameManager : MonoBehaviour
 
     private void HandleGameplay()
     {
+        tutorialManager.tutorialActive = false;
+        
         malfManager.active = true;
         timingMini.isActive = true;
     }

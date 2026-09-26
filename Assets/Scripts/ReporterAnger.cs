@@ -12,6 +12,7 @@ public class ReporterAnger : MonoBehaviour
     public Timer timer;
     public AdvertisementPlayer adPlayer;
     public MalfManager malfManager;
+    public TutorialManager tutorial;
 
     public bool malfTriggered = false;
     

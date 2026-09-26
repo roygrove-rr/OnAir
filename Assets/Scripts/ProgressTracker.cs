@@ -67,8 +67,8 @@ public class ProgressTracker : MonoBehaviour
 
                     scrollMesh.material = redMaterial;
                     scrollMeshLast.material = unlitMaterial;
-                    scrollIndicatorLast = progressTracker.transform.GetChild(progressMax - 1).gameObject;
-                    scrollMeshLast = scrollIndicatorLast.GetComponent<MeshRenderer>();
+                    //scrollIndicatorLast = progressTracker.transform.GetChild(progressMax - 1).gameObject;
+                    //scrollMeshLast = scrollIndicatorLast.GetComponent<MeshRenderer>();
                     scrollTimer = 0;
                     scrollCounter++;
                 }
