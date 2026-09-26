@@ -60,6 +60,7 @@ public class AdvertisementPlayer : MonoBehaviour, IInteractable
                             audioSource.Play();
                             FixOffScript();
                             tvScript.isAdPlaying = true;
+                            Debug.Log("Ad playing");
                             break;
 
                         case 1:
@@ -68,6 +69,7 @@ public class AdvertisementPlayer : MonoBehaviour, IInteractable
                             audioSource.Play();
                             FixOffScript();
                             tvScript.isAdPlaying = true;
+                            Debug.Log("Ad playing");
                             break;
 
                         case 2:
@@ -76,6 +78,7 @@ public class AdvertisementPlayer : MonoBehaviour, IInteractable
                             audioSource.Play();
                             FixOffScript();
                             tvScript.isAdPlaying = true;
+                            Debug.Log("Ad playing");
                             break;
                     }
         }
