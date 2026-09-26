@@ -1024,7 +1024,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9df4606960e3640e7a8481bf09ad48ef, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  on: 1
+  on: 0
   horizontal: 400
   vertical: 400
   material: {fileID: 2100000, guid: fee703b533e5e4d719b3a810b8e77f0e, type: 2}
@@ -16166,6 +16166,9 @@ MonoBehaviour:
   door: {fileID: 1613264184}
   rotationSpd: 30
   active: 0
+  opening: 0
+  doorCounter: 0
+  doorTimer: 3
 --- !u!4 &1146920494
 Transform:
   m_ObjectHideFlags: 0

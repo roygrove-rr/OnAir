@@ -31,7 +31,7 @@ public class GameManager : MonoBehaviour
     
     private void Start()
     {
-        UpdateGameState(GameState.Gameplay);
+        UpdateGameState(GameState.Tutorial);
     }
 
     private void Update()

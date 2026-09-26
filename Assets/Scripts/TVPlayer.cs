@@ -35,6 +35,7 @@ public class TVPlayer : MonoBehaviour
         tvOverlayPlayer = tvOverlay.GetComponent<VideoPlayer>();
 
         tv.clip = newsIntro;
+        tv.time = 1;
         audioSource.clip = newsIntroAudio;
         audioSource.Play();
     }
@@ -88,17 +89,21 @@ public class TVPlayer : MonoBehaviour
     void OnVideoFinished(VideoPlayer vp)
     {
         // After the ad is finished the videoplayer returns to playing the news channel
-        isAdPlaying = false;
+        
+        if (tv.clip != newsChannel)
+        {
+            isAdPlaying = false;
 
-        tv.clip = newsChannel;
-        tv.time = savedTime;
+            tv.clip = newsChannel;
+            tv.time = savedTime;
 
-        audioSource.clip = audioChannel;
-        audioSource.time = savedAudio;
+            audioSource.clip = audioChannel;
+            audioSource.time = savedAudio;
 
-        audioSource.pitch = malfManager.lastDistortion;
+            audioSource.pitch = malfManager.lastDistortion;
 
-        audioSource.Play();
+            audioSource.Play();
+        }
     }
 
     private void OnDestroy()
