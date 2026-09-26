@@ -14,6 +14,7 @@ public class MalfManager : MonoBehaviour
     public Timer timer;
     public TVPlayer tvPlayer;
     public VideoPlayer tvVideoPlayer;
+    public ReporterAnger reporter;
     
     // Audio malfunction resources
     public AudioSource tvAudio;
@@ -232,6 +233,13 @@ public class MalfManager : MonoBehaviour
         stage.SetActive(false);
         eyes.SetActive(true);
 
+        if (reporter.malfTriggered == true)
+        {
+            reporter.isOutOfPlace = false;
+            reporter.malfTriggered = false;
+            malfNum--;
+        }
+
         lightsBroken = true;
     }
 
@@ -269,7 +277,7 @@ public class MalfManager : MonoBehaviour
         tvPlayer.savedTime = tvVideoPlayer.time;
         tvPlayer.savedAudio = tvAudio.time;
 
-        var randomOffScript = Random.Range(3, 0);
+        var randomOffScript = Random.Range(2, 0);
 
         if (randomOffScript == 1)
         {
@@ -277,12 +285,12 @@ public class MalfManager : MonoBehaviour
             tvAudio.clip = audioOffScript1;
             tvAudio.Play();
         }
-        else if (randomOffScript == 2)
-        {
-            tvVideoPlayer.clip = tvOffScript;
-            tvAudio.clip = audioOffScript2;
-            tvAudio.Play();
-        }
+        //else if (randomOffScript == 2)
+        //{
+        //    tvVideoPlayer.clip = tvOffScript;
+        //    tvAudio.clip = audioOffScript2;
+        //    tvAudio.Play();
+        //}
         else
         {
             tvVideoPlayer.clip = tvOffScript;

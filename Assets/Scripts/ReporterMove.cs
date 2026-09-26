@@ -21,15 +21,16 @@ public class ReporterMove : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        
+        reporterWindow.transform.position = moveSpot1.position;
     }
 
     // Update is called once per frame
     void Update()
     {
-        if (reporterAI.isOutOfPlace == false)
+        if (reporterAI.isOutOfPlace == false || malfManager.lightsBroken == true)
         {
-            reporterWindow.SetActive(false);
+            reporterWindow.transform.position = moveSpot1.position;
+            
             reporterReset.SetActive(true);
             pos1 = true;
         }
@@ -37,9 +38,10 @@ public class ReporterMove : MonoBehaviour
 
     private void OnBecameInvisible()
     {
-        if (reporterAI.isOutOfPlace == true)
+        if (reporterAI.isOutOfPlace == true && malfManager.lightsBroken == false)
         {
-            reporterWindow.SetActive(true);
+            reporterWindow.transform.position = moveSpot2.position;
+
             reporterReset.SetActive(false);
             pos1 = false;
         }

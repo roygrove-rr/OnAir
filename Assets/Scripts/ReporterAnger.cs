@@ -26,7 +26,7 @@ public class ReporterAnger : MonoBehaviour
     {
         if (isOutOfPlace == false)
         {
-            if (timer.section > 0)
+            if (timer.section > 3)
             {
                 angerCounter += Time.deltaTime;
                 if (angerCounter >= angerTrigger)

@@ -12,11 +12,13 @@ public class TVPlayer : MonoBehaviour
     public VideoPlayer tv;
 
     public VideoClip newsChannel;
+    public VideoClip newsIntro;
     public VideoClip tvStatic;
     public VideoClip tvDark;
     public VideoClip tvOffScript;
 
     public AudioClip audioChannel;
+    public AudioClip newsIntroAudio;
     public AudioClip adMusic;
     public AudioSource audioSource;
     public MalfManager malfManager;
@@ -31,6 +33,10 @@ public class TVPlayer : MonoBehaviour
         // Event that detects when the advertisement has finished
         tv.loopPointReached += OnVideoFinished;
         tvOverlayPlayer = tvOverlay.GetComponent<VideoPlayer>();
+
+        tv.clip = newsIntro;
+        audioSource.clip = newsIntroAudio;
+        audioSource.Play();
     }
 
     // Update is called once per frame

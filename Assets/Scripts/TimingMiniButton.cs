@@ -5,6 +5,9 @@ using UnityEngine;
 public class TimingMiniButton : MonoBehaviour, IInteractable
 {
     public TimingMini timingMini;
+    public AudioSource timingAudio;
+    public AudioClip buttonPress;
+    public AudioClip correctInput;
     
     // Start is called before the first frame update
     void Start()
@@ -30,11 +33,13 @@ public class TimingMiniButton : MonoBehaviour, IInteractable
             if (timingMini.currentTarget == timingMini.randomTarget)
             {
                 timingMini.success();
+                timingAudio.PlayOneShot(correctInput);
             }
             else
             {
                 timingMini.failure();
             }
+            timingAudio.PlayOneShot(buttonPress);
         }
     }
 }

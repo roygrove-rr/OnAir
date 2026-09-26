@@ -55,10 +55,10 @@ public class SimonSays : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        randomOrder[0] = UnityEngine.Random.Range(0, 3);
-        randomOrder[1] = UnityEngine.Random.Range(0, 3);
-        randomOrder[2] = UnityEngine.Random.Range(0, 3);
-        randomOrder[3] = UnityEngine.Random.Range(0, 3);
+        randomOrder[0] = UnityEngine.Random.Range(0, 4);
+        randomOrder[1] = UnityEngine.Random.Range(0, 4);
+        randomOrder[2] = UnityEngine.Random.Range(0, 4);
+        randomOrder[3] = UnityEngine.Random.Range(0, 4);
         codeLength = randomOrder.Length;
 
         Debug.Log(randomOrder);
@@ -222,10 +222,10 @@ public class SimonSays : MonoBehaviour
     {
         indicatorMesh.material = greenMaterial;
 
-        randomOrder[0] = UnityEngine.Random.Range(0, 3);
-        randomOrder[1] = UnityEngine.Random.Range(0, 3);
-        randomOrder[2] = UnityEngine.Random.Range(0, 3);
-        randomOrder[3] = UnityEngine.Random.Range(0, 3);
+        randomOrder[0] = UnityEngine.Random.Range(0, 4);
+        randomOrder[1] = UnityEngine.Random.Range(0, 4);
+        randomOrder[2] = UnityEngine.Random.Range(0, 4);
+        randomOrder[3] = UnityEngine.Random.Range(0, 4);
 
         malfManager.videoBroken = false;
         boss.killCounter = boss.killCounter - 3;

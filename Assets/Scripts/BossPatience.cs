@@ -16,6 +16,7 @@ public class BossPatience : MonoBehaviour
 
     public BossAppear bossAppear;
     public SimonSays simonSays;
+    public InOrderMini inOrder;
 
     private float killMeter;
     public float killCounter;
@@ -29,7 +30,7 @@ public class BossPatience : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        killMeter = (patience * 0.03f + 5f);
+        killMeter = (patience * 0.03f + 7f);
     }
 
     // Update is called once per frame
@@ -39,7 +40,7 @@ public class BossPatience : MonoBehaviour
         
         if (malfManager.malfHappening == true && malfManager.active == true)
         {
-            if (simonSays.isDisplaying == true || simonSays.isDelaying == true)
+            if (simonSays.isDisplaying == true || simonSays.isDelaying == true || inOrder.isDisplaying == true)
             {
                    
             }
@@ -56,6 +57,11 @@ public class BossPatience : MonoBehaviour
             else
             {
                 killMeter = (patience * 0.03f + 7f);
+            }
+
+            if (killCounter >= killMeter / 4)
+            {
+                bossAppear.isActive = true;
             }
             
             //killCounterUI.text = killCounter.ToString() + "/" + killMeter.ToString();

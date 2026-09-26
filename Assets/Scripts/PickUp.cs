@@ -32,16 +32,14 @@ public class PickUp : MonoBehaviour
             
             if (Input.GetMouseButtonDown(1))
             {
-                //StopClipping();
                 DropObject();
-                StopClipping();
+                //StopClipping();
             }
 
             if (Input.GetMouseButtonDown(2))
             {
-                //StopClipping();
                 ThrowObject();
-                StopClipping();
+                //StopClipping();
             }
 
             interactionUI.SetActive(false);

@@ -15,9 +15,14 @@ public class BossAppear : MonoBehaviour
     public bool isActive = false;
     public bool isNotActive = true;
 
+    private float counter = 0.0f;
+    private float trigger = 120.0f;
+
     // Start is called before the first frame update
     void Start()
     {
+        counter = Random.Range(0, 90);
+        
         myRenderer = GetComponent<MeshRenderer>();
         myRenderer.material = invisMaterial;
     }
@@ -25,7 +30,19 @@ public class BossAppear : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-
+        if (isActive == false)
+        {
+            counter += Time.deltaTime;
+            
+            if (counter >= trigger)
+            {
+                isActive = true;
+            }
+        }
+        else
+        {
+            counter = Random.Range(0, 90);
+        }
     }
 
     private void OnBecameInvisible()
