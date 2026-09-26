@@ -16,12 +16,14 @@ public class TVPlayer : MonoBehaviour
     public VideoClip tvStatic;
     public VideoClip tvDark;
     public VideoClip tvOffScript;
+    public VideoClip tvMissing;
 
     public AudioClip audioChannel;
     public AudioClip newsIntroAudio;
     public AudioClip adMusic;
     public AudioSource audioSource;
     public MalfManager malfManager;
+    public ReporterAnger reporter;
     public double savedTime = 0.0;
     public float savedAudio = 0.0f;
 
@@ -74,6 +76,11 @@ public class TVPlayer : MonoBehaviour
         {
             tvOverlay.SetActive(true);
             tvOverlayPlayer.clip = tvDark;
+        }
+        else if (reporter.isOutOfPlace)
+        {
+            tvOverlay.SetActive(true);
+            tvOverlayPlayer.clip = tvMissing;
         }
         else if (malfManager.offScript == true && isAdPlaying == false)
         {
