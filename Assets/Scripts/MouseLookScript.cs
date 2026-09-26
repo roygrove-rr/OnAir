@@ -31,7 +31,5 @@ public class MouseLookScript : MonoBehaviour
         // Rotates the player left or right based on mouse movement
         transform.localRotation = Quaternion.Euler(xRotation, 0f, 0f);
         playerBody.Rotate(Vector3.up * mouseX);
-
-        Debug.Log(mouseSensitivity);
     }
 }
