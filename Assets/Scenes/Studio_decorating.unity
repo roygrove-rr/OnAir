@@ -13191,6 +13191,7 @@ MonoBehaviour:
   timer: {fileID: 1088099856}
   adPlayer: {fileID: 2143933821}
   malfManager: {fileID: 319273275}
+  tutorial: {fileID: 0}
   malfTriggered: 0
 --- !u!1 &791951256
 GameObject:
@@ -27068,7 +27069,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!114 &1827653551
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -27152,7 +27153,7 @@ MonoBehaviour:
   m_VertexBufferAutoSizeReduction: 0
   m_useMaxVisibleDescender: 1
   m_pageToDisplay: 1
-  m_margin: {x: 0, y: 0, z: 0, w: 0}
+  m_margin: {x: 0, y: 0, z: -228.17627, w: 0}
   m_isUsingLegacyAnimationComponent: 0
   m_isVolumetricText: 0
   m_hasFontAssetChanged: 0
@@ -27183,7 +27184,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 182, y: 448}
+  m_AnchoredPosition: {x: 182, y: 404.9}
   m_SizeDelta: {x: 200, y: 50}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &1837729729
@@ -29051,18 +29052,20 @@ MonoBehaviour:
   malfManager: {fileID: 319273275}
   gameManager: {fileID: 261630114}
   tutorialText: {fileID: 1827653551}
-  gap: 15
-  delay: 15
+  gap: 5
+  delay: 5
   timer: 0
   progressTutorial: 0
   tutorialActive: 0
   tvBroken: 0
   stereoBroken: 0
   spotBroken: 0
+  attacking: 0
   timingMini: {fileID: 704447899}
   progressTracker: {fileID: 7759617477812255996}
   phone: {fileID: 1972263493}
-  tutorialVoice: {fileID: 8300000, guid: 31bbae93154242a44bb9a468bb8f30a4, type: 3}
+  reporter: {fileID: 0}
+  tutorialVoice: {fileID: 8300000, guid: c7321fd5c76131f4b9e4ec33783fb479, type: 3}
 --- !u!4 &1935381216
 Transform:
   m_ObjectHideFlags: 0
@@ -32553,6 +32556,7 @@ MonoBehaviour:
   timer: {fileID: 1088099856}
   adPlayer: {fileID: 1947441926}
   malfManager: {fileID: 319273275}
+  tutorial: {fileID: 0}
   malfTriggered: 0
 --- !u!4 &3512743428364644441
 Transform:

@@ -21,9 +21,10 @@ public class TimingMini : MonoBehaviour
     public int currentTarget;
     private GameObject currentLight;
 
-    public float timerInterval;
+    private float timerInterval = 0.5f;
     private float timer = 0.0f;
     private int counter = 0;
+    private int level = 0;
 
     private float pauseLength = 1;
     private float pauseTimer;
@@ -58,7 +59,9 @@ public class TimingMini : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-
+        timerInterval = (0.5f - (level * 0.005f));
+        
+        
         if (isPaused == true)
         {
             pauseTimer += Time.deltaTime;
@@ -274,6 +277,7 @@ public class TimingMini : MonoBehaviour
         updateMaterial(display9, litMaterial);
         updateMaterial(display10, litMaterial);
         counter = 0;
+        level++;
 
         PauseTimer();
     }

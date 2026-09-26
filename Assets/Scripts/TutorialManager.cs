@@ -25,10 +25,12 @@ public class TutorialManager : MonoBehaviour
     public bool tvBroken = false;
     public bool stereoBroken = false;
     public bool spotBroken = false;
+    public bool attacking = false;
 
     public TimingMini timingMini;
     public ProgressTracker progressTracker;
     public AudioSource phone;
+    public ReporterAnger reporter;
 
     public AudioClip tutorialVoice;
     
@@ -61,18 +63,13 @@ public class TutorialManager : MonoBehaviour
                         phone.clip = tutorialVoice;
                         phone.Play();
 
+                        tutorialText.text = "Listening";
                         progressTutorial = false;
-                        batteryTutorial = true;
+                        videoTutorial = true;
                     }
                     tutorialText.text = "Progress Meter Tutorial";
                 }
                 
-            }
-
-            if (batteryTutorial == true)
-            {
-                batteryTutorial = true;
-                videoTutorial = true;
             }
 
             if (videoTutorial == true)
@@ -94,6 +91,7 @@ public class TutorialManager : MonoBehaviour
                         phone.clip = tutorialVoice;
                         phone.Play();
 
+                        tutorialText.text = "Listening";
                         videoTutorial = false;
                         audioTutorial = true;
                     }
@@ -120,6 +118,7 @@ public class TutorialManager : MonoBehaviour
                         phone.clip = tutorialVoice;
                         phone.Play();
 
+                        tutorialText.text = "Listening";
                         audioTutorial = false;
                         lightingTutorial = true;
                     }
@@ -143,15 +142,44 @@ public class TutorialManager : MonoBehaviour
                     {
                         timer = 0;
                         malfManager.malfNum++;
-                        phone.clip = tutorialVoice;
-                        phone.Play();
+                        //phone.clip = tutorialVoice;
+                        //phone.Play();
 
+                        tutorialText.text = "Listening";
+                        reporter.isOutOfPlace = true;
                         lightingTutorial = false;
                         attackTutorial = true;
                     }
                     tutorialText.text = "Lighting Malfunction Tutorial";
                 }
             }
+
+            if (attackTutorial == true)
+            {
+                timer += Time.deltaTime;
+
+                if (timer >= 0)
+                {
+                    if (attacking == false)
+                    {
+                        attacking = true;
+                    }
+
+                    if (attacking == true && reporter.isOutOfPlace == false)
+                    {
+                        timer = 0;
+                        malfManager.malfNum++;
+                        phone.clip = tutorialVoice;
+                        phone.Play();
+
+                        tutorialText.text = "Listening";
+                        attackTutorial = false;
+                        gameManager.UpdateGameState(GameState.Gameplay);
+                    }
+                    tutorialText.text = "Lighting Malfunction Tutorial";
+            }
+        }
+            Debug.Log(timer + "/" + gap);
         }
     }
 
