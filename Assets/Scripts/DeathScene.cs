@@ -1,6 +1,8 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Playables;
+using UnityEngine.Animations;
 
 public class DeathScene : MonoBehaviour
 {
@@ -10,9 +12,13 @@ public class DeathScene : MonoBehaviour
 
     public AudioClip load;
     public AudioClip shoot;
+    public AudioClip creak;
 
     public bool active = false;
     public bool shotgun = false;
+
+    public AnimationClip doorOpen;
+    private PlayableGraph graph;
 
     private float shotgunCounter = 0.0f;
     private float shotgunTrigger = 7.0f;
@@ -28,15 +34,10 @@ public class DeathScene : MonoBehaviour
     {
         if (active == true)
         {
-            door.GetComponent<Animator>().Play("DoorOpening", 0, 0.0f);
-            Debug.Log("Door Open");
+            GetComponent<Animator>().Play("DoorOpening", 0, 0.0f);
+            soundPlayer.PlayOneShot(creak);
             active = false;
-            shotgun = true;
-            shotgunCounter = Random.Range(0, 5);
-        }
-        else
-        {
-            door.GetComponent<Animator>().Play("Idle");
+            shotgun =  true;
         }
 
         if (shotgun == true)
@@ -47,6 +48,15 @@ public class DeathScene : MonoBehaviour
                 soundPlayer.PlayOneShot(shoot);
                 shotgun = false;
             }
+        }
+    }
+
+    void OnDestroy()
+    {
+        // Crucial: Destroy the graph to prevent memory leaks
+        if (graph.IsValid())
+        {
+            graph.Destroy();
         }
     }
 }
