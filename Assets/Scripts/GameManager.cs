@@ -93,6 +93,7 @@ public class GameManager : MonoBehaviour
         
         malfManager.active = true;
         timingMini.isActive = true;
+        timerScript.isCountingDown = true;
     }
 
     private void HandlePaused()
