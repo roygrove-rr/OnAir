@@ -43,7 +43,7 @@ public class PlayerMovementScript : MonoBehaviour
         velocity.y += gravity * Time.deltaTime;
         controller.Move(velocity * Time.deltaTime);
 
-        if (controller.velocity.magnitude > 0.1f)
+        if (controller.velocity.magnitude > 0f)
         {
             footsteps.enabled = true;
         }
