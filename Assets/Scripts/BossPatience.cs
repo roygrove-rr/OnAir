@@ -27,6 +27,7 @@ public class BossPatience : MonoBehaviour
 
     private bool warned1 = false;
     private bool warned2 = false;
+    private bool dead = false;
     
     // Start is called before the first frame update
     void Start()
@@ -69,7 +70,10 @@ public class BossPatience : MonoBehaviour
             if (killCounter >= killMeter)
             {
                 killCounterUI.text = "Dead";
-                kill();
+                if (dead == false)
+                {
+                    kill();
+                }
             }
         }
         else
@@ -101,7 +105,10 @@ public class BossPatience : MonoBehaviour
         if (lightCounter >= lightMax)
         {
             killCounterUI.text = "Dead";
-            kill();
+            if (dead == false)
+            {
+                kill();
+            }
         }
     }
 
@@ -119,6 +126,6 @@ public class BossPatience : MonoBehaviour
     {
         malfManager.active = false;
         death.active = true;
-
+        dead = true;
     }
 }
