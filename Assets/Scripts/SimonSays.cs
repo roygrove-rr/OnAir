@@ -196,7 +196,7 @@ public class SimonSays : MonoBehaviour
             {
                 awaitingInput = true;
                 successCooldown = false;
-                inputCooldownTime = 1;
+                inputCooldownTime = 0.5f;
             }
         }
         else
