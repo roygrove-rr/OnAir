@@ -8,6 +8,9 @@ public class ReporterMove : MonoBehaviour
     public MalfManager malfManager;
     public BossPatience boss;
     public ReporterAnger reporterAI;
+
+    public GameObject reporterReset;
+    public GameObject reporterWindow;
     
     public Transform moveSpot1;
     public Transform moveSpot2;
@@ -26,7 +29,8 @@ public class ReporterMove : MonoBehaviour
     {
         if (reporterAI.isOutOfPlace == false)
         {
-            reporter.transform.position = moveSpot1.transform.position;
+            reporterWindow.SetActive(false);
+            reporterReset.SetActive(true);
             pos1 = true;
         }
     }
@@ -35,7 +39,8 @@ public class ReporterMove : MonoBehaviour
     {
         if (reporterAI.isOutOfPlace == true)
         {
-            reporter.transform.position = moveSpot2.transform.position;
+            reporterWindow.SetActive(true);
+            reporterReset.SetActive(false);
             pos1 = false;
         }
         else

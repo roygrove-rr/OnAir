@@ -5,7 +5,7 @@ using UnityEngine;
 public class ReporterAnger : MonoBehaviour
 {
     public float angerCounter = 0.0f;
-    public float angerTrigger = 25.0f;
+    public float angerTrigger = 35.0f;
 
     public bool isOutOfPlace = false;
     
@@ -26,7 +26,7 @@ public class ReporterAnger : MonoBehaviour
     {
         if (isOutOfPlace == false)
         {
-            if (timer.section > 3)
+            if (timer.section > 0)
             {
                 angerCounter += Time.deltaTime;
                 if (angerCounter >= angerTrigger)
