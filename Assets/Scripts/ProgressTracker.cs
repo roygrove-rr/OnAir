@@ -54,21 +54,19 @@ public class ProgressTracker : MonoBehaviour
                     var scrollIndicator = progressTracker.transform.GetChild(scrollCounter).gameObject;
                     var scrollMesh = scrollIndicator.GetComponent<MeshRenderer>();
 
-                    if (scrollCounter != 0)
+                    if (scrollCounter != progressCount)
                     {
                         scrollIndicatorLast = progressTracker.transform.GetChild(scrollCounter - 1).gameObject;
                         scrollMeshLast = scrollIndicatorLast.GetComponent<MeshRenderer>();
                     }
                     else
                     {
-                        scrollIndicatorLast = progressTracker.transform.GetChild(progressMax - 1).gameObject;
+                        scrollIndicatorLast = progressTracker.transform.GetChild(71).gameObject;
                         scrollMeshLast = scrollIndicatorLast.GetComponent<MeshRenderer>();
                     }
 
                     scrollMesh.material = redMaterial;
                     scrollMeshLast.material = unlitMaterial;
-                    //scrollIndicatorLast = progressTracker.transform.GetChild(progressMax - 1).gameObject;
-                    //scrollMeshLast = scrollIndicatorLast.GetComponent<MeshRenderer>();
                     scrollTimer = 0;
                     scrollCounter++;
                 }
@@ -78,5 +76,15 @@ public class ProgressTracker : MonoBehaviour
                 scrollCounter = progressCount;
             }
         }
+
+        if (progressCount >= progressMax)
+        {
+            Win();
+        }
+    }
+
+    public void Win()
+    {
+
     }
 }

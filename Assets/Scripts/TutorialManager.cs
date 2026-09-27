@@ -19,6 +19,7 @@ public class TutorialManager : MonoBehaviour
     private bool batteryTutorial = false;
     public bool progressTutorial = false;
     private bool attackTutorial = false;
+    private bool finalWords = false;
 
     public bool tutorialActive = false;
 
@@ -31,6 +32,7 @@ public class TutorialManager : MonoBehaviour
     public ProgressTracker progressTracker;
     public AudioSource phone;
     public ReporterAnger reporter;
+    public ReporterMove reporterMove;
 
     public AudioClip tutorialVoice;
     
@@ -147,8 +149,15 @@ public class TutorialManager : MonoBehaviour
 
                         tutorialText.text = "Listening";
                         reporter.isOutOfPlace = true;
-                        lightingTutorial = false;
-                        attackTutorial = true;
+
+                        reporter.transform.position = reporterMove.moveSpot2.position;
+                        reporterMove.reporterReset.SetActive(false);
+
+                        if (reporter.isOutOfPlace == true)
+                        {
+                            lightingTutorial = false;
+                            attackTutorial = true;
+                        }
                     }
                     tutorialText.text = "Lighting Malfunction Tutorial";
                 }
@@ -156,29 +165,31 @@ public class TutorialManager : MonoBehaviour
 
             if (attackTutorial == true)
             {
+                tutorialText.text = "Attack Tutorial";
+
+                if (reporter.isOutOfPlace == false)
+                {
+                    timer = 0;
+                    phone.clip = tutorialVoice;
+                    phone.Play();
+
+                    tutorialText.text = "Listening";
+                    attackTutorial = false;
+                    finalWords = true;
+                }
+            }
+
+            if (finalWords == true)
+            {
                 timer += Time.deltaTime;
 
-                if (timer >= 0)
+                if (timer >= gap)
                 {
-                    if (attacking == false)
-                    {
-                        attacking = true;
-                    }
-
-                    if (attacking == true && reporter.isOutOfPlace == false)
-                    {
-                        timer = 0;
-                        malfManager.malfNum++;
-                        phone.clip = tutorialVoice;
-                        phone.Play();
-
-                        tutorialText.text = "Listening";
-                        attackTutorial = false;
-                        gameManager.UpdateGameState(GameState.Gameplay);
-                    }
-                    tutorialText.text = "Lighting Malfunction Tutorial";
+                    finalWords = false;
+                    tutorialText.text = "Tutorial Done";
+                    gameManager.UpdateGameState(GameState.Gameplay);
+                }
             }
-        }
             Debug.Log(timer + "/" + gap);
         }
     }

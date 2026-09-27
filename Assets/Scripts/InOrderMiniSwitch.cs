@@ -8,6 +8,14 @@ public class InOrderMiniSwitch : MonoBehaviour, IInteractable
     public string color;
 
     public InOrderMini inOrder;
+    public MalfManager malfManager;
+    public GameObject switchPos;
+    public GameObject switchBack;
+    private bool flipped = false;
+    private bool unflipped = false;
+
+    public AudioSource inOrderAudio;
+    public AudioClip click;
     
     // Start is called before the first frame update
     void Start()
@@ -18,6 +26,18 @@ public class InOrderMiniSwitch : MonoBehaviour, IInteractable
     // Update is called once per frame
     void Update()
     {
+        if (malfManager.audioBroken)
+        {
+            if (flipped == false)
+            {
+                transform.position = switchPos.transform.position;
+                flipped = true;
+            }   
+        }
+        else
+        {
+            flipped = false;
+        }
         
     }
 
@@ -28,7 +48,12 @@ public class InOrderMiniSwitch : MonoBehaviour, IInteractable
 
     public void Interact()
     {
-        AddInput(inOrder.inputCounter);
+        if (malfManager.audioBroken)
+        {
+            AddInput(inOrder.inputCounter);
+            transform.position = switchBack.transform.position;
+            inOrderAudio.PlayOneShot(click);
+        }  
     }
 
     public void AddInput(int i)
