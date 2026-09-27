@@ -6,6 +6,8 @@ public class InOrderMiniActivateButton : MonoBehaviour, IInteractable
 {
     public InOrderMini inOrder;
     public MalfManager malfManager;
+    public AudioSource inOrderAudio;
+    public AudioClip click;
     
     // Start is called before the first frame update
     void Start()
@@ -39,5 +41,6 @@ public class InOrderMiniActivateButton : MonoBehaviour, IInteractable
                 inOrder.isInactive = false;
             }
         }
+        inOrderAudio.PlayOneShot(click);
     }
 }
