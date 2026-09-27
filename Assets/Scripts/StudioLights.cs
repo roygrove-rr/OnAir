@@ -33,6 +33,9 @@ public class StudioLights : MonoBehaviour, IInteractable
 
     private float counter = 0.0f;
     private float trigger = 10.0f;
+
+    public AudioSource lightAudio;
+    public AudioClip click;
     
     // Start is called before the first frame update
     void Start()
@@ -104,6 +107,7 @@ public class StudioLights : MonoBehaviour, IInteractable
 
             lightsOn = true;
         }
+        lightAudio.PlayOneShot(click);
         boss.lightCounter++;
     }
 }

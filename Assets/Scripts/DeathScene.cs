@@ -72,6 +72,7 @@ public class DeathScene : MonoBehaviour
             transitionCounter += Time.deltaTime;
             if (transitionCounter >= transitionTrigger)
             {
+                Cursor.lockState = CursorLockMode.Confined;
                 SceneManager.LoadScene(3);
             }
         }
