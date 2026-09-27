@@ -45,7 +45,9 @@ public class DeathScene : MonoBehaviour
             var soundplayed = false;
             if (soundplayed == false)
             {
+                soundPlayer.volume = 0.5f;
                 soundPlayer.PlayOneShot(creak);
+                soundPlayer.volume = 1f;
                 soundPlayer.PlayDelayed(2.1f);
                 soundplayed = true;
             }

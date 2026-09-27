@@ -59,7 +59,7 @@ public class TimingMini : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        timerInterval = (0.5f - (level * 0.005f));
+        timerInterval = (0.4f - (level * 0.0045f));
         
         
         if (isPaused == true)

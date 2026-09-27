@@ -6,6 +6,9 @@ public class SimonSaysButton : MonoBehaviour, IInteractable
 {
     public string color;
     public SimonSays simonSaysScript;
+
+    public AudioSource simonSaysAudio;
+    public AudioClip click;
     
     // Start is called before the first frame update
     void Start()
@@ -30,6 +33,8 @@ public class SimonSaysButton : MonoBehaviour, IInteractable
         {
             addInput(simonSaysScript.inputLength);
             simonSaysScript.inputLength++;
+
+            simonSaysAudio.PlayOneShot(click);
 
             simonSaysScript.awaitingInput = false;
             simonSaysScript.inputCooldown = true;

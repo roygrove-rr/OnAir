@@ -11,6 +11,11 @@ public class LightFix : MonoBehaviour, IInteractable
     public GameObject stage;
     public GameObject eyes;
 
+    public AudioSource audioStage;
+    public AudioSource audioFuse;
+    public AudioClip lever;
+    public AudioClip light;
+
     private bool lightsOn;
     
     // Start is called before the first frame update
@@ -40,6 +45,9 @@ public class LightFix : MonoBehaviour, IInteractable
             malfManager.lightsBroken = false;
             boss.killCounter = boss.killCounter - 3;
             malfManager.malfNum--;
+
+            audioStage.PlayOneShot(light);
+            audioFuse.PlayOneShot(lever);
         }
         else
         {

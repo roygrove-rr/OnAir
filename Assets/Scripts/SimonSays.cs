@@ -51,6 +51,9 @@ public class SimonSays : MonoBehaviour
     public bool inputCooldown;
     public float inputCooldownTime = 0.5f;
     public float cooldownTimer = 0.0f;
+
+    public AudioSource simonSaysAudio;
+    public AudioClip displaySound;
     
     // Start is called before the first frame update
     void Start()
@@ -137,6 +140,8 @@ public class SimonSays : MonoBehaviour
 
                 if (displayTimer >= displayLength)
                 {
+                    simonSaysAudio.PlayOneShot(displaySound);
+                    
                     isDelaying = true;
                     isDisplaying = false;
                     displayNum++;
@@ -227,9 +232,16 @@ public class SimonSays : MonoBehaviour
         randomOrder[2] = UnityEngine.Random.Range(0, 4);
         randomOrder[3] = UnityEngine.Random.Range(0, 4);
 
+        redMesh.material = greenMaterial;
+        blueMesh.material = greenMaterial;
+        greenMesh.material = greenMaterial;
+        yellowMesh.material = greenMaterial;
+
         malfManager.videoBroken = false;
         boss.killCounter = boss.killCounter - 3;
         malfManager.malfNum--;
+
+        simonSaysAudio.PlayOneShot(displaySound);
 
         inputCooldownTime = 1;
         successCooldown = true;

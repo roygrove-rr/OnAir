@@ -6,6 +6,9 @@ public class SimonSaysStartButton : MonoBehaviour, IInteractable
 {
     public SimonSays simonSaysScript;
     public MalfManager malfManager;
+
+    public AudioSource simonSaysAudio;
+    public AudioClip click;
     
     // Start is called before the first frame update
     void Start()
@@ -41,6 +44,8 @@ public class SimonSaysStartButton : MonoBehaviour, IInteractable
 
             simonSaysScript.displayNum = 0;
         }
+
+        simonSaysAudio.PlayOneShot(click);
     }
         
 }
